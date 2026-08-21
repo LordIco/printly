@@ -87,7 +87,32 @@
   const downloadForm = $('#downloadForm');
   const downloadStatus = $('#downloadStatus');
   const downloadClose = $('.download-close');
+  const emailInput = downloadForm?.elements.email;
+  const phoneInput = downloadForm?.elements.whatsapp;
   let downloadTrigger = null;
+
+  const validBrazilianAreaCodes = new Set([
+    '11','12','13','14','15','16','17','18','19','21','22','24','27','28',
+    '31','32','33','34','35','37','38','41','42','43','44','45','46','47','48','49',
+    '51','53','54','55','61','62','63','64','65','66','67','68','69','71','73','74',
+    '75','77','79','81','82','83','84','85','86','87','88','89','91','92','93','94',
+    '95','96','97','98','99'
+  ]);
+  const onlyDigits = value => String(value || '').replace(/\D/g,'');
+  const formatMobile = value => {
+    const digits = onlyDigits(value).slice(0,11);
+    if (digits.length <= 2) return digits ? `(${digits}` : '';
+    if (digits.length <= 7) return `(${digits.slice(0,2)}) ${digits.slice(2)}`;
+    return `(${digits.slice(0,2)}) ${digits.slice(2,7)}-${digits.slice(7)}`;
+  };
+  const isValidMobile = digits => digits.length === 11 && validBrazilianAreaCodes.has(digits.slice(0,2)) && digits[2] === '9';
+  const isValidEmail = value => /^[^\s@]+@[^\s@]+\.[A-Za-z]{2,}$/.test(value) && !value.includes('..');
+
+  phoneInput?.addEventListener('input', () => {
+    phoneInput.value = formatMobile(phoneInput.value);
+    phoneInput.setCustomValidity('');
+  });
+  emailInput?.addEventListener('input', () => emailInput.setCustomValidity(''));
 
   const setDownloadStatus = (type, message) => {
     if (!downloadStatus) return;
@@ -125,6 +150,15 @@
     const submit = $('.download-submit', downloadForm);
     const originalText = submit.textContent;
     const config = window.PRINTLY_DOWNLOAD_CONFIG || {};
+    const email = String(emailInput.value || '').trim().toLowerCase();
+    const phoneDigits = onlyDigits(phoneInput.value);
+
+    emailInput.setCustomValidity(isValidEmail(email) ? '' : 'Informe um e-mail válido, como voce@exemplo.com.br.');
+    phoneInput.setCustomValidity(isValidMobile(phoneDigits) ? '' : 'Informe um celular brasileiro válido, com DDD e nove dígitos.');
+    if (!downloadForm.reportValidity()) return;
+
+    emailInput.value = email;
+    phoneInput.value = formatMobile(phoneDigits);
     const data = new FormData(downloadForm);
 
     if (!config.SUPABASE_URL || !config.SUPABASE_PUBLISHABLE_KEY) {
@@ -147,8 +181,8 @@
         },
         body: JSON.stringify({
           name: String(data.get('name') || '').trim(),
-          email: String(data.get('email') || '').trim().toLowerCase(),
-          whatsapp: String(data.get('whatsapp') || '').trim() || null,
+          email,
+          whatsapp: phoneDigits,
           consent: data.get('consent') === 'on',
           source: 'printly-site',
           referrer: document.referrer || null,
