@@ -82,4 +82,101 @@
     };
     resize(); addEventListener('resize',resize); draw();
   }
+
+  const downloadModal = $('#downloadModal');
+  const downloadForm = $('#downloadForm');
+  const downloadStatus = $('#downloadStatus');
+  const downloadClose = $('.download-close');
+  let downloadTrigger = null;
+
+  const setDownloadStatus = (type, message) => {
+    if (!downloadStatus) return;
+    downloadStatus.className = `download-status ${type}`;
+    downloadStatus.innerHTML = message;
+  };
+  const closeDownload = () => {
+    if (!downloadModal) return;
+    downloadModal.classList.remove('open');
+    downloadModal.setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+    downloadTrigger?.focus();
+  };
+  const openDownload = trigger => {
+    if (!downloadModal) return;
+    downloadTrigger = trigger;
+    downloadModal.classList.add('open');
+    downloadModal.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
+    mobileMenu?.classList.remove('open');
+    menuButton?.setAttribute('aria-expanded','false');
+    mobileMenu?.setAttribute('aria-hidden','true');
+    setTimeout(() => downloadForm?.elements.name?.focus(), 50);
+  };
+
+  $$('[data-open-download]').forEach(button => button.addEventListener('click', () => openDownload(button)));
+  downloadClose?.addEventListener('click', closeDownload);
+  downloadModal?.addEventListener('click', event => { if (event.target === downloadModal) closeDownload(); });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && downloadModal?.classList.contains('open')) closeDownload();
+  });
+
+  downloadForm?.addEventListener('submit', async event => {
+    event.preventDefault();
+    const submit = $('.download-submit', downloadForm);
+    const originalText = submit.textContent;
+    const config = window.PRINTLY_DOWNLOAD_CONFIG || {};
+    const data = new FormData(downloadForm);
+
+    if (!config.SUPABASE_URL || !config.SUPABASE_PUBLISHABLE_KEY) {
+      setDownloadStatus('error', 'A captura ainda está em configuração. Solicite o acesso pelo <a href="https://wa.me/5519988134895" target="_blank" rel="noopener">WhatsApp</a>.');
+      return;
+    }
+
+    submit.disabled = true;
+    submit.textContent = 'Registrando...';
+    setDownloadStatus('', '');
+
+    try {
+      const response = await fetch(`${config.SUPABASE_URL}/rest/v1/download_leads`, {
+        method: 'POST',
+        headers: {
+          apikey: config.SUPABASE_PUBLISHABLE_KEY,
+          Authorization: `Bearer ${config.SUPABASE_PUBLISHABLE_KEY}`,
+          'Content-Type': 'application/json',
+          Prefer: 'return=minimal'
+        },
+        body: JSON.stringify({
+          name: String(data.get('name') || '').trim(),
+          email: String(data.get('email') || '').trim().toLowerCase(),
+          whatsapp: String(data.get('whatsapp') || '').trim() || null,
+          consent: data.get('consent') === 'on',
+          source: 'printly-site',
+          referrer: document.referrer || null,
+          page_url: location.href,
+          user_agent: navigator.userAgent
+        })
+      });
+      if (!response.ok) throw new Error(`Lead API: ${response.status}`);
+
+      downloadForm.reset();
+      if (config.DOWNLOAD_URL) {
+        setDownloadStatus('success', 'Cadastro concluído. Seu download começou; se necessário, <a href="' + config.DOWNLOAD_URL + '">clique aqui</a>.');
+        const link = document.createElement('a');
+        link.href = config.DOWNLOAD_URL;
+        link.rel = 'noopener';
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+      } else {
+        setDownloadStatus('success', 'Cadastro recebido. O instalador gratuito está sendo preparado e o link será enviado para o seu e-mail assim que estiver disponível.');
+      }
+      window.dispatchEvent(new CustomEvent('printly:download-lead'));
+    } catch (error) {
+      console.error(error);
+      setDownloadStatus('error', 'Não foi possível registrar seus dados agora. Tente novamente ou solicite o acesso pelo <a href="https://wa.me/5519988134895" target="_blank" rel="noopener">WhatsApp</a>.');
+    } finally {
+      submit.disabled = false;
+      submit.textContent = originalText;
+    }
+  });
 })();
