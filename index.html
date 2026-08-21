@@ -6,13 +6,38 @@
   <meta name="theme-color" content="#020711">
   <meta name="description" content="Printly — software de gestão para impressão 3D. Precificação, perdas, ROI de impressoras, orçamentos em PDF, materiais, produção, alertas e BI.">
   <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://lordico.github.io/printly/">
   <meta property="og:title" content="Printly — Gestão profissional para impressão 3D">
   <meta property="og:description" content="Pare de cobrar no chute, produzir no caos e administrar no achismo. Conheça o Printly.">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="assets/img/screen-dashboard.webp">
+  <meta property="og:url" content="https://lordico.github.io/printly/">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:image" content="https://lordico.github.io/printly/assets/img/screen-dashboard.webp">
+  <meta property="og:image:alt" content="Painel principal do Printly para gestão de impressão 3D">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Printly — Gestão profissional para impressão 3D">
+  <meta name="twitter:description" content="Precificação, pedidos, produção, materiais, ROI e BI para impressão 3D.">
+  <meta name="twitter:image" content="https://lordico.github.io/printly/assets/img/screen-dashboard.webp">
   <title>Printly — Gestão profissional para impressão 3D</title>
   <link rel="icon" href="assets/img/favicon.png">
   <link rel="stylesheet" href="assets/css/styles.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Printly",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Windows",
+    "description": "Software desktop para precificação e gestão de negócios de impressão 3D.",
+    "url": "https://lordico.github.io/printly/",
+    "image": "https://lordico.github.io/printly/assets/img/screen-dashboard.webp",
+    "author": {"@type": "Organization", "name": "IcoLabs", "email": "icolabsbr@gmail.com"},
+    "offers": [
+      {"@type": "Offer", "name": "Printly Free", "price": "0", "priceCurrency": "BRL", "availability": "https://schema.org/OnlineOnly"},
+      {"@type": "Offer", "name": "Printly Completo", "price": "69.90", "priceCurrency": "BRL", "availability": "https://schema.org/InStock"}
+    ]
+  }
+  </script>
 </head>
 <body>
   <canvas id="particles" aria-hidden="true"></canvas>
@@ -26,19 +51,20 @@
       </a>
       <div class="nav-links">
         <a href="#dores">Por que Printly</a>
-        <a href="#dinheiro">Custos & ROI</a>
-        <a href="#fluxo">Gestão</a>
         <a href="#telas">Telas reais</a>
+        <a href="#planos">Free x Completo</a>
+        <a href="https://lordico.github.io/suplyprintly/" target="_blank" rel="noopener">Suprimentos</a>
       </div>
-      <a class="btn btn-small btn-primary" href="#adquirir">Quero conhecer</a>
+      <button class="btn btn-small btn-primary" type="button" data-open-download>Baixar grátis</button>
       <button class="menu-button" aria-label="Abrir menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </nav>
     <div class="mobile-menu" aria-hidden="true">
       <a href="#dores">Por que Printly</a>
-      <a href="#dinheiro">Custos & ROI</a>
-      <a href="#fluxo">Gestão</a>
       <a href="#telas">Telas reais</a>
-      <a class="btn btn-primary" href="#adquirir">Conhecer o Printly</a>
+      <a href="#planos">Free x Completo</a>
+      <a href="https://lordico.github.io/suplyprintly/" target="_blank" rel="noopener">Loja de suprimentos</a>
+      <a href="https://www.instagram.com/useprintly/" target="_blank" rel="noopener">Instagram @useprintly</a>
+      <button class="btn btn-primary" type="button" data-open-download>Baixar Printly grátis</button>
     </div>
   </header>
 
@@ -50,7 +76,7 @@
         <p class="hero-text">O <strong>Printly</strong> foi criado para quem cansou de formar preço no improviso, procurar pedidos no WhatsApp, controlar produção na memória e descobrir tarde demais que uma peça deu mais custo do que retorno.</p>
         <p class="hero-text secondary">Calcule custos e perdas, planeje o ROI das impressoras, gere orçamentos profissionais em PDF e conecte clientes, materiais, estoque, produção, alertas e relatórios em uma única operação.</p>
         <div class="hero-actions">
-          <a class="btn btn-primary btn-xl" href="#dores">Quero entender o Printly <span>↓</span></a>
+          <button class="btn btn-primary btn-xl" type="button" data-open-download>Baixar Printly grátis <span>↓</span></button>
           <a class="btn btn-ghost btn-xl" href="#telas">Ver telas reais do app</a>
         </div>
         <div class="hero-proof">
@@ -63,7 +89,7 @@
       <div class="hero-visual reveal">
         <div class="hero-screen app-window tilt-card">
           <div class="app-window-bar"><span></span><span></span><span></span><em>Printly — Painel principal</em></div>
-          <img src="assets/img/screen-dashboard.webp" alt="Tela principal real do Printly">
+          <img src="assets/img/screen-dashboard.webp" width="1800" height="963" alt="Tela principal real do Printly">
           <div class="screen-sheen"></div>
         </div>
         <div class="float-card float-one">
@@ -162,7 +188,7 @@
         </div>
         <div class="split-screen cost-screen">
           <div class="screen-caption"><span>Custo real antes da venda</span><b>Precificação rápida</b></div>
-          <img src="assets/img/screen-dashboard.webp" alt="Painel real do Printly com precificação rápida e resumo do cálculo">
+          <img src="assets/img/screen-dashboard.webp" width="1800" height="963" loading="lazy" alt="Painel real do Printly com precificação rápida e resumo do cálculo">
         </div>
       </div>
     </section>
@@ -184,7 +210,7 @@
         </div>
         <div class="split-screen">
           <div class="screen-caption"><span>ROI por equipamento</span><b>Impressoras</b></div>
-          <img src="assets/img/screen-impressoras.webp" alt="Tela real de impressoras do Printly com ROI">
+          <img src="assets/img/screen-impressoras.webp" width="1918" height="1030" loading="lazy" alt="Tela real de impressoras do Printly com ROI">
         </div>
       </div>
     </section>
@@ -205,7 +231,7 @@
         </div>
         <div class="split-screen">
           <div class="screen-caption"><span>Do cálculo à proposta</span><b>Orçamentos</b></div>
-          <img src="assets/img/screen-orcamento-edit.webp" alt="Tela real de edição de orçamento no Printly">
+          <img src="assets/img/screen-orcamento-edit.webp" width="1920" height="1031" loading="lazy" alt="Tela real de edição de orçamento no Printly">
         </div>
       </div>
     </section>
@@ -246,7 +272,7 @@
         </div>
         <div class="split-screen">
           <div class="screen-caption"><span>Fila operacional</span><b>Produção</b></div>
-          <img src="assets/img/screen-producao.webp" alt="Tela real de produção do Printly">
+          <img src="assets/img/screen-producao.webp" width="1800" height="964" loading="lazy" alt="Tela real de produção do Printly">
         </div>
       </div>
     </section>
@@ -268,7 +294,7 @@
         </div>
         <div class="split-screen alerts-screen">
           <div class="screen-caption"><span>O que precisa ser visto agora</span><b>Central de Alertas</b></div>
-          <img src="assets/img/screen-alertas.webp" alt="Central de Alertas real do Printly">
+          <img src="assets/img/screen-alertas.webp" width="958" height="638" loading="lazy" alt="Central de Alertas real do Printly">
         </div>
       </div>
     </section>
@@ -283,7 +309,7 @@
         </div>
         <div class="split-screen">
           <div class="screen-caption"><span>Comercial + rentabilidade</span><b>Relatórios / BI</b></div>
-          <img src="assets/img/screen-relatorios.webp" alt="Tela real de Relatórios e BI do Printly">
+          <img src="assets/img/screen-relatorios.webp" width="1800" height="973" loading="lazy" alt="Tela real de Relatórios e BI do Printly">
         </div>
       </div>
     </section>
@@ -313,7 +339,7 @@
             <button class="zoom-link" id="zoomCurrent">Ampliar tela ↗</button>
           </div>
           <div class="stage-screen">
-            <div class="app-window large"><div class="app-window-bar"><span></span><span></span><span></span><em id="screenLabel">Painel principal</em></div><img id="mainScreen" src="assets/img/screen-dashboard.webp" alt="Tela real do Printly"></div>
+            <div class="app-window large"><div class="app-window-bar"><span></span><span></span><span></span><em id="screenLabel">Painel principal</em></div><img id="mainScreen" src="assets/img/screen-dashboard.webp" width="1800" height="963" loading="lazy" alt="Tela real do Printly"></div>
           </div>
         </div>
       </div>
@@ -334,6 +360,49 @@
       </div>
     </section>
 
+    <section class="plans-section section" id="planos">
+      <div class="container">
+        <div class="section-heading centered reveal">
+          <span class="section-kicker">COMECE NO SEU RITMO</span>
+          <h2>Baixe grátis agora. <span>Evolua quando sua operação pedir.</span></h2>
+          <p>A versão Free organiza o começo sem custo. Quando você precisar de mais cadastros, orçamentos, importação avançada e gestão completa, o Printly Completo acompanha o crescimento.</p>
+        </div>
+        <div class="plans-grid">
+          <article class="plan-card plan-free reveal">
+            <div class="plan-head"><span>PRINTLY FREE</span><strong>R$ 0</strong><small>para começar</small></div>
+            <ul>
+              <li>Precificação básica</li>
+              <li>1 impressora cadastrada</li>
+              <li>Até 5 materiais e 5 produtos próprios</li>
+              <li>Até 5 clientes e 3 projetos sob encomenda</li>
+              <li>Produção, estoque e BI em modo básico</li>
+              <li>Dados salvos localmente no Windows</li>
+            </ul>
+            <button class="btn btn-primary btn-plan" type="button" data-open-download>Baixar Printly grátis</button>
+            <small class="plan-note">Pedimos apenas os dados necessários para liberar e acompanhar o download.</small>
+          </article>
+          <article class="plan-card plan-complete reveal">
+            <div class="plan-badge">MAIS RECURSOS</div>
+            <div class="plan-head"><span>PRINTLY COMPLETO</span><strong>R$ 69,90</strong><small>pagamento único</small></div>
+            <ul>
+              <li>Cadastros ilimitados</li>
+              <li>Orçamentos profissionais ilimitados</li>
+              <li>STL e 3MF avançado</li>
+              <li>Múltiplos materiais por peça</li>
+              <li>Produção, estoque, relatórios e BI completos</li>
+              <li>Backup, restauração e atualizações incluídas</li>
+            </ul>
+            <a class="btn btn-ghost btn-plan" target="_blank" rel="noopener" href="https://wa.me/5519988134895?text=Ol%C3%A1%21%20Conheci%20o%20Printly%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20a%20vers%C3%A3o%20Completa.">Conhecer o Printly Completo</a>
+            <small class="plan-note">Licença permanente para 1 computador Windows.</small>
+          </article>
+        </div>
+        <div class="supply-callout reveal">
+          <div><span class="section-kicker">PRINTLY SUPRIMENTOS</span><h3>Materiais, peças e ferramentas para sua próxima impressão.</h3><p>Explore nossa seleção de suprimentos e ofertas de lojas parceiras, organizada para quem trabalha com impressão 3D.</p></div>
+          <a class="btn btn-primary" href="https://lordico.github.io/suplyprintly/" target="_blank" rel="noopener">Abrir loja de suprimentos ↗</a>
+        </div>
+      </div>
+    </section>
+
     <section class="brand-section section container">
       <div class="brand-card reveal">
         <div class="brand-copy">
@@ -343,9 +412,10 @@
           <div class="contact-links">
             <a href="https://wa.me/5519988134895" target="_blank" rel="noopener">WhatsApp: (19) 98813-4895</a>
             <a href="mailto:icolabsbr@gmail.com">icolabsbr@gmail.com</a>
+            <a href="https://www.instagram.com/useprintly/" target="_blank" rel="noopener">Instagram: @useprintly</a>
           </div>
         </div>
-        <img src="assets/img/icolabs-logo.jpg" alt="IcoLabs">
+        <img src="assets/img/icolabs-logo.jpg" width="539" height="172" loading="lazy" alt="IcoLabs">
       </div>
     </section>
 
@@ -355,6 +425,7 @@
         <h2>Antes de começar, <span>o que vale saber.</span></h2>
       </div>
       <div class="faq-grid reveal">
+        <details><summary>Existe uma versão gratuita?</summary><p>Sim. Você pode baixar o Printly Free para Windows e começar com os recursos essenciais. Quando precisar ampliar limites e recursos, pode migrar para o Printly Completo.</p></details>
         <details><summary>O Printly é uma planilha?</summary><p>Não. É um aplicativo desktop para Windows, com interface própria e banco de dados local.</p></details>
         <details><summary>O Printly calcula perdas e falhas?</summary><p>Sim. A taxa de falha pode entrar na formação de preço para que o custo do desperdício não seja simplesmente absorvido pela margem.</p></details>
         <details><summary>Consigo acompanhar ROI das impressoras?</summary><p>Sim. O cadastro de impressoras trabalha com valor da máquina, ROI desejado, horas por dia e dias por mês, trazendo o retorno para dentro da gestão.</p></details>
@@ -362,13 +433,14 @@
         <details><summary>Trabalha com filamento e resina?</summary><p>Sim. O cadastro de materiais contempla FDM e SLA.</p></details>
         <details><summary>Importa STL?</summary><p>Sim. O Printly lê informações geométricas do STL e permite completar os dados comerciais antes de salvar ou adicionar ao orçamento.</p></details>
         <details><summary>Onde ficam os meus dados?</summary><p>O banco fica localmente no computador. O aplicativo também possui recursos de backup e restauração.</p></details>
+        <details><summary>Por que o site pede meus dados antes do download?</summary><p>Usamos esses dados para liberar o download, entender o interesse na versão gratuita e enviar comunicações relacionadas ao Printly. Você pode solicitar correção ou exclusão a qualquer momento.</p></details>
       </div>
     </section>
 
     <section class="price-section section" id="adquirir">
       <div class="container price-layout">
         <div class="price-copy reveal">
-          <span class="section-kicker">AGORA QUE VOCÊ VIU O QUE ELE FAZ</span>
+          <span class="section-kicker">QUANDO SUA OPERAÇÃO PEDIR MAIS</span>
           <h2>Quanto vale tirar sua operação <span>do improviso?</span></h2>
           <p>Um único orçamento mal calculado, uma falha ignorada ou um atraso que vira retrabalho pode custar mais do que a ferramenta que organiza tudo isso.</p>
           <div class="final-benefits">
@@ -380,10 +452,11 @@
           </div>
         </div>
         <div class="price-card reveal">
-          <div class="price-card-top"><img src="assets/img/favicon.png" alt="Ícone Printly"><div><span>PRINTLY</span><small>3D Printing Management</small></div></div>
+          <div class="price-card-top"><img src="assets/img/favicon.png" width="256" height="256" alt="Ícone Printly"><div><span>PRINTLY COMPLETO</span><small>3D Printing Management</small></div></div>
           <div class="price-value"><small>pagamento único</small><strong><sup>R$</sup>69<em>,90</em></strong><span>licença vitalícia</span></div>
           <p class="price-description">Sem mensalidade para continuar usando o software adquirido.</p>
           <a class="btn btn-primary btn-buy" target="_blank" rel="noopener" href="https://wa.me/5519988134895?text=Ol%C3%A1%21%20Quero%20adquirir%20o%20Printly%20por%20R%24%2069%2C90%20com%20licen%C3%A7a%20vital%C3%ADcia."><span>Quero adquirir o Printly</span><b>Falar no WhatsApp</b></a>
+          <button class="free-link" type="button" data-open-download>Prefere começar grátis? Baixar Printly Free</button>
           <a class="email-link" href="mailto:icolabsbr@gmail.com?subject=Quero%20adquirir%20o%20Printly">Prefere e-mail? icolabsbr@gmail.com</a>
         </div>
       </div>
@@ -392,10 +465,10 @@
 
   <footer>
     <div class="container footer-grid">
-      <div class="footer-brand"><img src="assets/img/printly-logo.jpg" alt="Printly"><p>Gestão profissional para impressão 3D.</p></div>
-      <div><strong>Navegação</strong><a href="#dores">Por que Printly</a><a href="#dinheiro">Custos & ROI</a><a href="#telas">Telas reais</a><a href="#adquirir">Adquirir</a></div>
-      <div><strong>Contato</strong><a href="https://wa.me/5519988134895" target="_blank" rel="noopener">(19) 98813-4895</a><a href="mailto:icolabsbr@gmail.com">icolabsbr@gmail.com</a></div>
-      <div class="footer-dev"><strong>Desenvolvido por</strong><img src="assets/img/icolabs-logo.jpg" alt="IcoLabs"></div>
+      <div class="footer-brand"><img src="assets/img/printly-logo.jpg" width="1117" height="865" loading="lazy" alt="Printly"><p>Gestão profissional para impressão 3D.</p></div>
+      <div><strong>Navegação</strong><a href="#dores">Por que Printly</a><a href="#telas">Telas reais</a><a href="#planos">Free x Completo</a><button type="button" data-open-download>Baixar grátis</button></div>
+      <div><strong>Contato e comunidade</strong><a href="https://wa.me/5519988134895" target="_blank" rel="noopener">WhatsApp: (19) 98813-4895</a><a href="mailto:icolabsbr@gmail.com">icolabsbr@gmail.com</a><a href="https://www.instagram.com/useprintly/" target="_blank" rel="noopener">Instagram @useprintly</a><a href="https://lordico.github.io/suplyprintly/" target="_blank" rel="noopener">Printly Suprimentos</a></div>
+      <div class="footer-dev"><strong>Desenvolvido por</strong><img src="assets/img/icolabs-logo.jpg" width="539" height="172" loading="lazy" alt="IcoLabs"><a href="privacidade.html">Política de Privacidade</a><a href="termos.html">Termos de Uso</a></div>
     </div>
     <div class="container footer-bottom">© 2026 Printly / IcoLabs. Todos os direitos reservados.</div>
   </footer>
@@ -404,11 +477,31 @@
     <svg viewBox="0 0 24 24"><path d="M20.5 3.5A11 11 0 0 0 3.2 16.8L2 22l5.3-1.2A11 11 0 0 0 20.5 3.5zM8.3 7.7c.2-.5.4-.5.8-.5h.6c.2 0 .4.1.5.4l.8 2c.1.3.1.5-.1.7l-.6.8c-.2.2-.2.4 0 .7.6 1.1 1.5 2 2.6 2.6.3.2.5.2.7 0l.9-1.1c.2-.3.5-.3.8-.2l1.9.9c.3.1.5.3.5.5 0 .3-.1 1.4-.7 2-.6.6-1.5.9-2.4.8-1.1-.1-2.8-.6-5-2.5-2.5-2.2-4-5.2-4.1-6.5 0-.8.2-1.5.8-2.1z"/></svg>
   </a>
 
+  <div class="download-modal" id="downloadModal" aria-hidden="true">
+    <div class="download-dialog" role="dialog" aria-modal="true" aria-labelledby="downloadTitle">
+      <button class="download-close" type="button" aria-label="Fechar formulário de download">×</button>
+      <div class="download-icon"><img src="assets/img/favicon.png" width="256" height="256" alt=""></div>
+      <span class="section-kicker">PRINTLY FREE PARA WINDOWS</span>
+      <h2 id="downloadTitle">Para onde enviamos seu acesso?</h2>
+      <p>Preencha os dados abaixo para liberar o download gratuito e receber informações importantes sobre instalação e atualizações.</p>
+      <form id="downloadForm">
+        <label>Nome completo<input name="name" type="text" autocomplete="name" minlength="2" maxlength="100" required></label>
+        <label>E-mail<input name="email" type="email" autocomplete="email" maxlength="160" required></label>
+        <label>WhatsApp <small>(opcional)</small><input name="whatsapp" type="tel" autocomplete="tel" inputmode="tel" maxlength="24" placeholder="(19) 99999-9999"></label>
+        <label class="consent-check"><input name="consent" type="checkbox" required><span>Concordo com o uso destes dados para liberar o download e receber comunicações sobre o Printly, conforme a <a href="privacidade.html" target="_blank">Política de Privacidade</a>.</span></label>
+        <button class="btn btn-primary download-submit" type="submit">Liberar meu download</button>
+        <div class="download-status" id="downloadStatus" role="status" aria-live="polite"></div>
+      </form>
+      <small class="download-assurance">Seus dados não são vendidos. Você pode solicitar a exclusão quando quiser.</small>
+    </div>
+  </div>
+
   <div class="lightbox" id="lightbox" aria-hidden="true">
     <button class="lightbox-close" aria-label="Fechar">×</button>
     <img src="" alt="Tela ampliada do Printly">
   </div>
 
+  <script src="assets/js/download-config.js"></script>
   <script src="assets/js/main.js"></script>
 </body>
 </html>
