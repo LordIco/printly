@@ -91,6 +91,39 @@
   const phoneInput = downloadForm?.elements.whatsapp;
   let downloadTrigger = null;
 
+  const locale = document.documentElement.lang?.toLowerCase().startsWith('en')
+    ? 'en'
+    : document.documentElement.lang?.toLowerCase().startsWith('es') ? 'es' : 'pt';
+  const messages = {
+    pt: {
+      invalidEmail: 'Informe um e-mail válido, como voce@exemplo.com.br.',
+      invalidPhone: 'Informe um celular brasileiro válido, com DDD e nove dígitos.',
+      setupPending: 'A captura ainda está em configuração. Solicite o acesso pelo <a href="https://wa.me/5519988134895" target="_blank" rel="noopener">WhatsApp</a>.',
+      submitting: 'Registrando...',
+      downloadReady: url => `Cadastro concluído. Seu download começou; se necessário, <a href="${url}">clique aqui</a>.`,
+      installerPending: 'Cadastro recebido. O instalador gratuito está sendo preparado e o link será enviado para o seu e-mail assim que estiver disponível.',
+      submitError: 'Não foi possível registrar seus dados agora. Tente novamente ou solicite o acesso pelo <a href="https://wa.me/5519988134895" target="_blank" rel="noopener">WhatsApp</a>.'
+    },
+    en: {
+      invalidEmail: 'Enter a valid email address, such as you@example.com.',
+      invalidPhone: 'Enter a valid Brazilian mobile number, including the area code and nine digits.',
+      setupPending: 'Lead capture is still being configured. Request access through <a href="https://wa.me/5519988134895" target="_blank" rel="noopener">WhatsApp</a>.',
+      submitting: 'Submitting...',
+      downloadReady: url => `Registration complete. Your download has started; if needed, <a href="${url}">click here</a>.`,
+      installerPending: 'Registration received. The free installer is being prepared, and the link will be emailed to you as soon as it is available.',
+      submitError: 'We could not register your details right now. Try again or request access through <a href="https://wa.me/5519988134895" target="_blank" rel="noopener">WhatsApp</a>.'
+    },
+    es: {
+      invalidEmail: 'Introduce un correo electrónico válido, como tu@ejemplo.com.',
+      invalidPhone: 'Introduce un número móvil brasileño válido, con código de área y nueve dígitos.',
+      setupPending: 'La captura de datos aún se está configurando. Solicita acceso por <a href="https://wa.me/5519988134895" target="_blank" rel="noopener">WhatsApp</a>.',
+      submitting: 'Registrando...',
+      downloadReady: url => `Registro completado. La descarga ha comenzado; si es necesario, <a href="${url}">haz clic aquí</a>.`,
+      installerPending: 'Registro recibido. El instalador gratuito se está preparando y enviaremos el enlace a tu correo en cuanto esté disponible.',
+      submitError: 'No pudimos registrar tus datos ahora. Inténtalo de nuevo o solicita acceso por <a href="https://wa.me/5519988134895" target="_blank" rel="noopener">WhatsApp</a>.'
+    }
+  }[locale];
+
   const validBrazilianAreaCodes = new Set([
     '11','12','13','14','15','16','17','18','19','21','22','24','27','28',
     '31','32','33','34','35','37','38','41','42','43','44','45','46','47','48','49',
@@ -153,8 +186,8 @@
     const email = String(emailInput.value || '').trim().toLowerCase();
     const phoneDigits = onlyDigits(phoneInput.value);
 
-    emailInput.setCustomValidity(isValidEmail(email) ? '' : 'Informe um e-mail válido, como voce@exemplo.com.br.');
-    phoneInput.setCustomValidity(isValidMobile(phoneDigits) ? '' : 'Informe um celular brasileiro válido, com DDD e nove dígitos.');
+    emailInput.setCustomValidity(isValidEmail(email) ? '' : messages.invalidEmail);
+    phoneInput.setCustomValidity(isValidMobile(phoneDigits) ? '' : messages.invalidPhone);
     if (!downloadForm.reportValidity()) return;
 
     emailInput.value = email;
@@ -162,12 +195,12 @@
     const data = new FormData(downloadForm);
 
     if (!config.SUPABASE_URL || !config.SUPABASE_PUBLISHABLE_KEY) {
-      setDownloadStatus('error', 'A captura ainda está em configuração. Solicite o acesso pelo <a href="https://wa.me/5519988134895" target="_blank" rel="noopener">WhatsApp</a>.');
+      setDownloadStatus('error', messages.setupPending);
       return;
     }
 
     submit.disabled = true;
-    submit.textContent = 'Registrando...';
+    submit.textContent = messages.submitting;
     setDownloadStatus('', '');
 
     try {
@@ -194,7 +227,7 @@
 
       downloadForm.reset();
       if (config.DOWNLOAD_URL) {
-        setDownloadStatus('success', 'Cadastro concluído. Seu download começou; se necessário, <a href="' + config.DOWNLOAD_URL + '">clique aqui</a>.');
+        setDownloadStatus('success', messages.downloadReady(config.DOWNLOAD_URL));
         const link = document.createElement('a');
         link.href = config.DOWNLOAD_URL;
         link.rel = 'noopener';
@@ -202,12 +235,12 @@
         link.click();
         link.remove();
       } else {
-        setDownloadStatus('success', 'Cadastro recebido. O instalador gratuito está sendo preparado e o link será enviado para o seu e-mail assim que estiver disponível.');
+        setDownloadStatus('success', messages.installerPending);
       }
       window.dispatchEvent(new CustomEvent('printly:download-lead'));
     } catch (error) {
       console.error(error);
-      setDownloadStatus('error', 'Não foi possível registrar seus dados agora. Tente novamente ou solicite o acesso pelo <a href="https://wa.me/5519988134895" target="_blank" rel="noopener">WhatsApp</a>.');
+      setDownloadStatus('error', messages.submitError);
     } finally {
       submit.disabled = false;
       submit.textContent = originalText;
