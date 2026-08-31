@@ -1,0 +1,71 @@
+name: Publicar manual Printly
+
+on:
+  push:
+    paths:
+      - '.manual-build/READY'
+
+permissions:
+  contents: write
+
+jobs:
+  publish-manual:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Montar PDF e atualizar links
+        shell: bash
+        run: |
+          if [ ! -f .manual-build/READY ]; then
+            echo "READY ausente; nada a fazer."
+            exit 0
+          fi
+          python - <<'PY'
+          from pathlib import Path
+          import base64
+
+          build = Path('.manual-build')
+          parts = sorted(build.glob('part-*.b64'))
+          if not parts:
+              raise SystemExit('Nenhuma parte do manual encontrada.')
+
+          encoded = ''.join(p.read_text(encoding='ascii') for p in parts)
+          pdf = base64.b64decode(encoded, validate=True)
+
+          out = Path('downloads/Manual_Oficial_Printly_v0.2.8.3_REV6.pdf')
+          out.parent.mkdir(parents=True, exist_ok=True)
+          out.write_bytes(pdf)
+
+          old = 'Manual_Oficial_Printly_v0.2.2.1_REV4.pdf'
+          new = 'Manual_Oficial_Printly_v0.2.8.3_REV6.pdf'
+          for rel in ['index.html', 'en/index.html', 'es/index.html']:
+              p = Path(rel)
+              text = p.read_text(encoding='utf-8')
+              text2 = text.replace(old, new)
+              if text2 == text:
+                  print(f'Aviso: referência antiga não encontrada em {rel}')
+              p.write_text(text2, encoding='utf-8')
+
+          old_pdf = Path('downloads') / old
+          if old_pdf.exists():
+              old_pdf.unlink()
+          PY
+
+          rm -rf .manual-build
+
+      - name: Commit da publicação
+        shell: bash
+        run: |
+          git config user.name "IcoLabs Automation"
+          git config user.email "icolabsbr@gmail.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "Nenhuma alteração para publicar."
+            exit 0
+          fi
+          git commit -m "Atualiza Manual Oficial Printly para v0.2.8.3 REV6"
+          git push
