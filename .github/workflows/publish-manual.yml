@@ -33,7 +33,7 @@ jobs:
           if not parts:
               raise SystemExit('Nenhuma parte do manual encontrada.')
 
-          encoded = ''.join(p.read_text(encoding='ascii') for p in parts)
+          encoded = ''.join(''.join(p.read_text(encoding='ascii').split()) for p in parts)
           pdf = base64.b64decode(encoded, validate=True)
 
           out = Path('downloads/Manual_Oficial_Printly_v0.2.8.3_REV6.pdf')
