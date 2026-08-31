@@ -1,0 +1,177 @@
+name: Publicar manuais de instalação
+
+on:
+  push:
+    paths:
+      - '.github/workflows/publish-install-manuals.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install reportlab pillow
+      - name: Gerar PDFs e ajustar links
+        shell: bash
+        run: |
+          cat > /tmp/gen_install_manuals.py <<'PY'
+          from reportlab.lib.pagesizes import A4
+          from reportlab.lib import colors
+          from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+          from reportlab.lib.enums import TA_CENTER
+          from reportlab.lib.units import mm
+          from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Image, PageBreak, Table, TableStyle, ListFlowable, ListItem
+          from PIL import Image as PILImage
+          import os
+
+          BLUE=colors.HexColor('#2386E8')
+          NAVY=colors.HexColor('#06172C')
+          TEXT=colors.HexColor('#14233A')
+          MUTED=colors.HexColor('#6A7E95')
+          PALE=colors.HexColor('#EDF5FD')
+          BORDER=colors.HexColor('#5AA6F4')
+          GREEN=colors.HexColor('#159B69')
+          RED=colors.HexColor('#C62B2B')
+          GOLD=colors.HexColor('#B97A00')
+          styles=getSampleStyleSheet()
+          styles.add(ParagraphStyle(name='CoverTitleX', parent=styles['Title'], fontName='Helvetica-Bold', fontSize=22, leading=26, textColor=BLUE, alignment=TA_CENTER, spaceAfter=7))
+          styles.add(ParagraphStyle(name='CoverSubX', parent=styles['Normal'], fontName='Helvetica', fontSize=11.4, leading=15, textColor=TEXT, alignment=TA_CENTER, spaceAfter=12))
+          styles.add(ParagraphStyle(name='SectionX', parent=styles['Heading2'], fontName='Helvetica-Bold', fontSize=15.2, leading=18, textColor=BLUE, spaceBefore=5, spaceAfter=7))
+          styles.add(ParagraphStyle(name='BodyX', parent=styles['BodyText'], fontName='Helvetica', fontSize=10.2, leading=13.5, textColor=TEXT, spaceAfter=5))
+          styles.add(ParagraphStyle(name='SmallX', parent=styles['BodyText'], fontName='Helvetica', fontSize=8.8, leading=11.4, textColor=MUTED, spaceAfter=3))
+          styles.add(ParagraphStyle(name='StepHeadX', parent=styles['BodyText'], fontName='Helvetica-Bold', fontSize=10.5, leading=13.5, textColor=TEXT, spaceAfter=2))
+          styles.add(ParagraphStyle(name='WhiteBrandX', parent=styles['BodyText'], fontName='Helvetica-Bold', fontSize=31, leading=32, textColor=colors.white, spaceAfter=0))
+          styles.add(ParagraphStyle(name='WhiteSubBrandX', parent=styles['BodyText'], fontName='Helvetica', fontSize=8.5, leading=10, textColor=colors.HexColor('#7CCEFF'), spaceAfter=0))
+          styles.add(ParagraphStyle(name='CallTitleX', parent=styles['BodyText'], fontName='Helvetica-Bold', fontSize=10.4, leading=12.5, textColor=TEXT, spaceAfter=2))
+          styles.add(ParagraphStyle(name='CallBodyX', parent=styles['BodyText'], fontName='Helvetica', fontSize=9.8, leading=12.8, textColor=TEXT, spaceAfter=0))
+
+          def bullets(items):
+              return ListFlowable([ListItem(Paragraph(x,styles['BodyX']),leftIndent=10) for x in items], bulletType='bullet', leftIndent=16, bulletFontSize=7)
+
+          def callout(symbol,title,body,accent=BLUE):
+              icon=Paragraph(f'<para align="center"><font color="white" size="15"><b>{symbol}</b></font></para>',styles['BodyX'])
+              content=[Paragraph(title,styles['CallTitleX']),Paragraph(body,styles['CallBodyX'])]
+              t=Table([[icon,content]],colWidths=[15*mm,150*mm])
+              t.setStyle(TableStyle([('BACKGROUND',(0,0),(0,0),accent),('BACKGROUND',(1,0),(1,0),PALE),('BOX',(0,0),(-1,-1),0.8,accent),('VALIGN',(0,0),(-1,-1),'TOP'),('LEFTPADDING',(0,0),(-1,-1),7),('RIGHTPADDING',(0,0),(-1,-1),7),('TOPPADDING',(0,0),(-1,-1),6),('BOTTOMPADDING',(0,0),(-1,-1),6)]))
+              return t
+
+          def brand_header():
+              icon=Image('assets/img/favicon.png',width=29*mm,height=29*mm)
+              word=[Paragraph('Printly',styles['WhiteBrandX']),Paragraph('3D PRINTING MANAGEMENT',styles['WhiteSubBrandX'])]
+              t=Table([[icon,word]],colWidths=[38*mm,112*mm],rowHeights=[35*mm])
+              t.setStyle(TableStyle([('BACKGROUND',(0,0),(-1,-1),NAVY),('BOX',(0,0),(-1,-1),1.2,BLUE),('VALIGN',(0,0),(-1,-1),'MIDDLE'),('LEFTPADDING',(0,0),(0,0),10),('LEFTPADDING',(1,0),(1,0),5),('RIGHTPADDING',(0,0),(-1,-1),10)]))
+              return t
+
+          def footer(lang):
+              def draw(canvas,doc):
+                  canvas.saveState(); w,h=A4
+                  canvas.setStrokeColor(colors.HexColor('#C9DAEB')); canvas.line(doc.leftMargin,14*mm,w-doc.rightMargin,14*mm)
+                  canvas.setFont('Helvetica',8); canvas.setFillColor(MUTED)
+                  label={'pt':'Manual de instalação no Windows','en':'Windows Installation Manual','es':'Manual de instalación en Windows'}[lang]
+                  page={'pt':'Página','en':'Page','es':'Página'}[lang]
+                  canvas.drawString(doc.leftMargin,9.5*mm,f'Printly | IcoLabs | {label}')
+                  canvas.drawRightString(w-doc.rightMargin,9.5*mm,f'{page} {canvas.getPageNumber()}')
+                  canvas.restoreState()
+              return draw
+
+          DATA={
+          'pt':{
+            'file':'downloads/Manual_Instalacao_Printly_Windows.pdf',
+            'title':'MANUAL DE INSTALAÇÃO NO WINDOWS',
+            'sub':'Como liberar a instalação quando o Windows exibir SmartScreen, Defender ou outras proteções',
+            'why':'Por que esse aviso pode aparecer?',
+            'whybody':'O Windows pode exibir alertas de reputação para aplicativos novos ou ainda sem assinatura digital reconhecida. Um alerta de reputação, isoladamente, não significa que o arquivo seja malicioso. Antes de liberar qualquer arquivo, confirme que o instalador foi obtido por um canal oficial da Printly/IcoLabs.',
+            'meta':'Versão do manual: 1.1 | Agosto de 2026<br/>Aplica-se ao Windows 11 e, quando indicado, ao Windows 10.',
+            'sections':[
+            ('1. Antes de instalar: verificação rápida','Use os procedimentos deste manual somente quando você confia na origem do instalador. Não libere arquivos recebidos de remetentes desconhecidos ou baixados de sites não oficiais.', ['Confirme que o arquivo é o instalador do Printly (.exe).','Se recebeu o instalador por suporte, confirme o nome/versão informados pela IcoLabs.','Clique com o botão direito no arquivo e use “Verificar com o Microsoft Defender” antes de executar, quando essa opção estiver disponível.','Evite instalar a partir de pastas compartilhadas ou pendrives de origem desconhecida.'],('!','Não recomendamos','Desativar permanentemente o Microsoft Defender, Firewall ou antivírus; criar exclusão para a pasta Downloads inteira; ou liberar arquivos diferentes do instalador do Printly.',GOLD)),
+            ('2. Instalação normal','', [('Localize o instalador','Abra a pasta onde o arquivo Printly_Setup_....exe foi salvo.'),('Execute o instalador','Dê duplo clique no arquivo. Se o Controle de Conta de Usuário perguntar se deseja permitir alterações no dispositivo, confirme somente se o arquivo é o instalador confiável do Printly.'),('Conclua o assistente','Siga as telas do instalador até finalizar. Se o Windows não exibir nenhum bloqueio, nenhuma liberação adicional é necessária.')],None),
+            ('3. SmartScreen: “O Windows protegeu o computador”','Esse é o bloqueio mais comum em aplicativos novos ou com pouca reputação no SmartScreen.',['Na janela azul do SmartScreen, clique em “Mais informações”.','Confira o nome do aplicativo/arquivo exibido na tela.','Se você confirmou que o instalador veio da Printly/IcoLabs, clique em “Executar assim mesmo”.','Continue a instalação normalmente.'],('i','Se “Executar assim mesmo” não aparecer','Não altere várias proteções do Windows de uma vez. Passe para as próximas seções deste manual para identificar qual mecanismo está realizando o bloqueio.',BLUE)),
+            ('4. O arquivo baixado está marcado como bloqueado','O Windows pode marcar arquivos recebidos pela Internet como provenientes de outro computador. Quando isso acontecer, a opção Desbloquear pode aparecer nas propriedades do arquivo.',['Clique com o botão direito no instalador e selecione “Propriedades”.','Na guia “Geral”, procure a área “Segurança” na parte inferior da janela.','Se existir a caixa “Desbloquear”, marque-a.','Clique em “Aplicar” e depois em “OK”.','Execute novamente o instalador.'],('i','Importante','A opção “Desbloquear” só deve ser usada em arquivos de origem confiável. Essa orientação segue o comportamento documentado pelo Gerenciador de Anexos do Windows.',GREEN)),
+            ('5. Microsoft Defender bloqueou ou colocou o arquivo em quarentena','Se aparecer uma notificação do Microsoft Defender ou o arquivo desaparecer após o download, consulte o Histórico de Proteção.',['Abra “Segurança do Windows”.','Entre em “Proteção contra vírus e ameaças” e abra “Histórico de proteção”.','Localize o evento referente ao instalador do Printly e expanda os detalhes.','Somente se você tiver certeza da origem do arquivo, use “Ações” > “Permitir no dispositivo” ou “Permitir”, conforme a opção apresentada.','Se o Defender já tiver removido o arquivo, faça o download novamente após a liberação.'],('!','Se houver dúvida sobre a detecção','Não force a instalação. Envie ao suporte da IcoLabs uma captura da tela com o nome exato da detecção. Isso ajuda a diferenciar um alerta de reputação de uma detecção de segurança real.',RED)),
+            ('6. Windows permite apenas aplicativos da Microsoft Store','Em alguns computadores, o Windows está configurado para avisar ou permitir somente aplicativos obtidos pela Microsoft Store.',['Windows 11: abra “Configurações” > “Aplicativos” > “Configurações avançadas de aplicativos”.','Em “Escolher onde obter aplicativos”, selecione “Em qualquer lugar” ou uma opção que permita aplicativos fora da Microsoft Store.','Execute novamente o instalador do Printly.'],('i','Computador de empresa','Se essa configuração estiver bloqueada pela organização, não tente contornar a política. Solicite ao setor de TI que autorize o Printly.',BLUE)),
+            ('7. Controle de Aplicativo Inteligente (Smart App Control)','No Windows 11, o Smart App Control pode bloquear aplicativos considerados não confiáveis. A Microsoft informa que não existe uma exceção por aplicativo para esse recurso.',None,('!','Recomendação','Se o Smart App Control for o bloqueador, a opção mais segura é falar com o suporte da IcoLabs. Desativar esse recurso reduz a proteção do sistema e não deve ser a primeira tentativa. Se você optar por desativá-lo temporariamente, faça isso somente após confirmar a origem do instalador.',GOLD)),
+            ('8. Windows 11 em Modo S','O Windows 11 Home em Modo S permite apenas aplicativos da Microsoft Store. Para instalar o Printly fora da Store, é necessário sair do Modo S.',['Abra “Configurações” > “Sistema” > “Ativação”.','Localize a opção relacionada a sair do Modo S e abra a Microsoft Store.','Na página “Sair do modo S” (ou nome equivalente), selecione “Obter”.','Depois da confirmação, execute o instalador do Printly normalmente.'],('!','Atenção: mudança permanente','Sair do Modo S é gratuito, porém a Microsoft informa que a mudança é permanente. Não faça isso apenas por impulso: confirme que deseja usar aplicativos de fora da Microsoft Store.',RED)),
+            ('9. Antivírus de terceiros','Avast, AVG, Norton, McAfee, Kaspersky, Bitdefender e outros produtos podem usar regras próprias. Se um deles bloquear o Printly:',['Abra a quarentena ou histórico de detecções do antivírus.','Confirme que o item corresponde exatamente ao instalador do Printly.','Use a opção de restaurar/permitir somente esse arquivo, se você confia na origem.','Não desative o antivírus inteiro e não crie uma exclusão ampla para a pasta Downloads.'],None),
+            ('10. Computadores corporativos, escolares ou gerenciados','Políticas de empresa podem impedir a instalação de executáveis mesmo com acesso de administrador local. Nesses casos, o bloqueio pode vir de AppLocker, WDAC, políticas de grupo, EDR ou ferramentas de segurança corporativa.',None,('i','Procedimento correto','Envie o instalador ao responsável de TI e solicite a autorização/whitelist do Printly. Não tente contornar políticas de segurança da organização.',BLUE))],
+            'check':'11. Checklist rápido de solução','headers':['Situação','O que fazer','Se continuar bloqueado'],'rows':[['SmartScreen','Mais informações > Executar assim mesmo','Veja se o Defender bloqueou'],['Arquivo bloqueado','Propriedades > Geral > Desbloquear','Baixe novamente do canal oficial'],['Defender/quarentena','Histórico de proteção > Permitir no dispositivo','Envie a detecção ao suporte'],['Somente Microsoft Store','Permita apps “Em qualquer lugar”','Verifique Modo S'],['Smart App Control','Não há exceção individual','Fale com o suporte / TI'],['Modo S','Sair do Modo S pela Microsoft Store','Mudança é permanente'],['PC corporativo','Solicitar liberação ao TI','Não contornar a política']],
+            'after':'12. Depois de instalar','afteritems':['Abra o Printly pelo atalho criado pelo instalador.','Se o Windows solicitar permissão de rede, permita somente se o recurso que você está usando realmente exigir comunicação de rede.','Mantenha o Microsoft Defender/antivírus ativo normalmente.','Não exclua a pasta de dados do Printly ao desinstalar se pretende reinstalar e recuperar seus cadastros.'],
+            'support':'13. Suporte IcoLabs','supportintro':'Se a instalação continuar bloqueada, envie ao suporte:','supportitems':['captura da tela do aviso;','nome exato do arquivo do instalador;','versão do Windows;','nome do antivírus instalado, se houver;','texto/nome da detecção, quando aparecer.'],'refs':'Este manual foi preparado com base nas orientações públicas da Microsoft para Windows Security, Histórico de Proteção, Gerenciador de Anexos, recomendação de aplicativos, Smart App Control e Windows em Modo S. Os nomes das telas podem variar ligeiramente conforme a edição e a atualização do Windows.'},
+          'en':{
+            'file':'downloads/Printly_Windows_Installation_Manual_EN-US.pdf','title':'WINDOWS INSTALLATION MANUAL','sub':'How to allow installation when Windows shows SmartScreen, Defender, or other protection warnings','why':'Why can this warning appear?','whybody':'Windows may show reputation warnings for new apps or apps without a recognized digital signature. A reputation warning by itself does not mean the file is malicious. Before allowing any file, confirm that the installer was obtained through an official Printly/IcoLabs channel.','meta':'Manual version: 1.1 | August 2026<br/>Applies to Windows 11 and, when indicated, to Windows 10.',
+            'sections':[
+            ('1. Before installing: quick verification','Use the procedures in this manual only when you trust the origin of the installer. Do not allow files received from unknown senders or downloaded from unofficial websites.',['Confirm that the file is the Printly installer (.exe).','If you received the installer through support, confirm the file name/version provided by IcoLabs.','Right-click the file and use “Scan with Microsoft Defender” before running it, when that option is available.','Avoid installing from shared folders or USB drives from unknown sources.'],('!','We do not recommend','Permanently disabling Microsoft Defender, Firewall, or antivirus; creating an exclusion for the entire Downloads folder; or allowing files other than the Printly installer.',GOLD)),
+            ('2. Standard installation','',[('Locate the installer','Open the folder where the Printly_Setup_....exe file was saved.'),('Run the installer','Double-click the file. If User Account Control asks whether you want to allow changes to the device, confirm only if the file is the trusted Printly installer.'),('Finish the wizard','Follow the installer screens until the end. If Windows does not show any blocking message, no additional action is required.')],None),
+            ('3. SmartScreen: “Windows protected your PC”','This is the most common block for new apps or apps with little SmartScreen reputation.',['In the blue SmartScreen window, click “More info”.','Check the app/file name shown on the screen.','If you confirmed that the installer came from Printly/IcoLabs, click “Run anyway”.','Continue the installation normally.'],('i','If “Run anyway” does not appear','Do not change several Windows protections at the same time. Continue to the next sections of this manual to identify which mechanism is blocking the installer.',BLUE)),
+            ('4. The downloaded file is marked as blocked','Windows may mark files downloaded from the Internet as coming from another computer. When that happens, an Unblock option may appear in the file properties.',['Right-click the installer and select “Properties”.','On the “General” tab, look for the “Security” area at the bottom of the window.','If the “Unblock” checkbox exists, enable it.','Click “Apply” and then “OK”.','Run the installer again.'],('i','Important','The “Unblock” option should only be used for files from trusted sources. This follows the documented behavior of Windows Attachment Manager.',GREEN)),
+            ('5. Microsoft Defender blocked or quarantined the file','If you see a Microsoft Defender notification or the file disappears after download, review Protection History.',['Open “Windows Security”.','Go to “Virus & threat protection” and open “Protection history”.','Find the event related to the Printly installer and expand the details.','Only if you are sure about the file origin, use “Actions” > “Allow on device” or “Allow”, depending on the option shown.','If Defender has already removed the file, download it again after allowing it.'],('!','If you are unsure about the detection','Do not force the installation. Send IcoLabs support a screenshot showing the exact detection name. This helps distinguish a reputation alert from a real security detection.',RED)),
+            ('6. Windows allows only Microsoft Store apps','On some computers, Windows is configured to warn about or allow only apps obtained from the Microsoft Store.',['Windows 11: open “Settings” > “Apps” > “Advanced app settings”.','Under “Choose where to get apps”, select “Anywhere” or an option that allows apps outside the Microsoft Store.','Run the Printly installer again.'],('i','Company computer','If this setting is locked by your organization, do not try to bypass the policy. Ask your IT department to authorize Printly.',BLUE)),
+            ('7. Smart App Control','In Windows 11, Smart App Control may block apps considered untrusted. Microsoft states that there is no per-app exception for this feature.',None,('!','Recommendation','If Smart App Control is the blocking mechanism, the safest option is to contact IcoLabs support. Disabling this feature reduces system protection and should not be your first attempt. If you decide to disable it temporarily, do so only after confirming the installer origin.',GOLD)),
+            ('8. Windows 11 in S mode','Windows 11 Home in S mode allows only apps from the Microsoft Store. To install Printly outside the Store, you must switch out of S mode.',['Open “Settings” > “System” > “Activation”.','Find the option related to switching out of S mode and open Microsoft Store.','On the “Switch out of S mode” page (or similar name), select “Get”.','After confirmation, run the Printly installer normally.'],('!','Warning: permanent change','Switching out of S mode is free, but Microsoft states that the change is permanent. Confirm that you really want to use apps from outside the Microsoft Store.',RED)),
+            ('9. Third-party antivirus','Avast, AVG, Norton, McAfee, Kaspersky, Bitdefender, and other products may use their own rules. If one of them blocks Printly:',['Open the quarantine or detection history in the antivirus software.','Confirm that the item matches the Printly installer exactly.','Use the restore/allow option only for that file if you trust its origin.','Do not disable the whole antivirus and do not create a broad exclusion for the Downloads folder.'],None),
+            ('10. Corporate, school, or managed computers','Company policies may block executable installation even when you have local administrator access. The block may come from AppLocker, WDAC, Group Policy, EDR, or other corporate security tools.',None,('i','Correct procedure','Send the installer to the IT administrator and request approval/whitelisting for Printly. Do not try to bypass the organization’s security policies.',BLUE))],
+            'check':'11. Quick troubleshooting checklist','headers':['Situation','What to do','If still blocked'],'rows':[['SmartScreen','More info > Run anyway','Check whether Defender blocked it'],['Blocked file','Properties > General > Unblock','Download again from the official channel'],['Defender/quarantine','Protection history > Allow on device','Send the detection to support'],['Microsoft Store only','Allow apps from “Anywhere”','Check S mode'],['Smart App Control','There is no individual exception','Talk to support / IT'],['S mode','Switch out of S mode in Microsoft Store','The change is permanent'],['Corporate PC','Request release from IT','Do not bypass the policy']],
+            'after':'12. After installing','afteritems':['Open Printly from the shortcut created by the installer.','If Windows requests network permission, allow it only if the feature you are using really requires network communication.','Keep Microsoft Defender/your antivirus enabled normally.','Do not delete the Printly data folder during uninstallation if you plan to reinstall and recover your records.'],
+            'support':'13. IcoLabs Support','supportintro':'If the installation remains blocked, send support the following:','supportitems':['a screenshot of the warning;','the exact installer file name;','your Windows version;','the name of the installed antivirus, if any;','the detection text/name, when it appears.'],'refs':'This manual was prepared based on Microsoft’s public guidance for Windows Security, Protection History, Attachment Manager, app recommendation settings, Smart App Control, and Windows in S mode. Screen names may vary slightly depending on the Windows edition and update level.'},
+          'es':{
+            'file':'downloads/Manual_de_Instalacion_Printly_Windows_ES.pdf','title':'MANUAL DE INSTALACIÓN EN WINDOWS','sub':'Cómo permitir la instalación cuando Windows muestre SmartScreen, Defender u otras protecciones','why':'¿Por qué puede aparecer esta advertencia?','whybody':'Windows puede mostrar alertas de reputación para aplicaciones nuevas o que todavía no tienen una firma digital reconocida. Una alerta de reputación, por sí sola, no significa que el archivo sea malicioso. Antes de permitir cualquier archivo, confirma que el instalador fue obtenido por un canal oficial de Printly/IcoLabs.','meta':'Versión del manual: 1.1 | Agosto de 2026<br/>Se aplica a Windows 11 y, cuando se indique, a Windows 10.',
+            'sections':[
+            ('1. Antes de instalar: verificación rápida','Usa los procedimientos de este manual solo cuando confías en el origen del instalador. No permitas archivos recibidos de remitentes desconocidos ni descargados de sitios no oficiales.',['Confirma que el archivo es el instalador de Printly (.exe).','Si recibiste el instalador a través del soporte, confirma el nombre/versión informados por IcoLabs.','Haz clic derecho en el archivo y usa “Examinar con Microsoft Defender” antes de ejecutarlo, cuando esa opción esté disponible.','Evita instalar desde carpetas compartidas o memorias USB de origen desconocido.'],('!','No recomendamos','Desactivar permanentemente Microsoft Defender, Firewall o el antivirus; crear una exclusión para toda la carpeta Descargas; o permitir archivos distintos del instalador de Printly.',GOLD)),
+            ('2. Instalación normal','',[('Localiza el instalador','Abre la carpeta donde se guardó el archivo Printly_Setup_....exe.'),('Ejecuta el instalador','Haz doble clic en el archivo. Si el Control de cuentas de usuario pregunta si deseas permitir cambios en el dispositivo, confirma solo si el archivo es el instalador confiable de Printly.'),('Finaliza el asistente','Sigue las pantallas del instalador hasta terminar. Si Windows no muestra ningún bloqueo, no hace falta ninguna liberación adicional.')],None),
+            ('3. SmartScreen: “Windows protegió el equipo”','Este es el bloqueo más común en aplicaciones nuevas o con poca reputación en SmartScreen.',['En la ventana azul de SmartScreen, haz clic en “Más información”.','Revisa el nombre de la aplicación/archivo mostrado en la pantalla.','Si confirmaste que el instalador proviene de Printly/IcoLabs, haz clic en “Ejecutar de todas formas”.','Continúa la instalación normalmente.'],('i','Si “Ejecutar de todas formas” no aparece','No cambies varias protecciones de Windows al mismo tiempo. Continúa con las siguientes secciones para identificar qué mecanismo está realizando el bloqueo.',BLUE)),
+            ('4. El archivo descargado aparece como bloqueado','Windows puede marcar archivos descargados de Internet como procedentes de otro equipo. Cuando esto sucede, la opción Desbloquear puede aparecer en las propiedades del archivo.',['Haz clic derecho en el instalador y selecciona “Propiedades”.','En la pestaña “General”, busca el área “Seguridad” en la parte inferior de la ventana.','Si existe la casilla “Desbloquear”, márcala.','Haz clic en “Aplicar” y luego en “Aceptar”.','Vuelve a ejecutar el instalador.'],('i','Importante','La opción “Desbloquear” solo debe usarse en archivos de origen confiable. Esta orientación sigue el comportamiento documentado del Administrador de datos adjuntos de Windows.',GREEN)),
+            ('5. Microsoft Defender bloqueó o puso el archivo en cuarentena','Si aparece una notificación de Microsoft Defender o el archivo desaparece después de la descarga, revisa el Historial de protección.',['Abre “Seguridad de Windows”.','Entra en “Protección contra virus y amenazas” y abre “Historial de protección”.','Localiza el evento relacionado con el instalador de Printly y expande los detalles.','Solo si estás seguro del origen del archivo, usa “Acciones” > “Permitir en el dispositivo” o “Permitir”, según la opción mostrada.','Si Defender ya eliminó el archivo, vuelve a descargarlo después de permitirlo.'],('!','Si tienes dudas sobre la detección','No fuerces la instalación. Envía al soporte de IcoLabs una captura de pantalla con el nombre exacto de la detección. Esto ayuda a diferenciar una alerta de reputación de una detección de seguridad real.',RED)),
+            ('6. Windows permite solo aplicaciones de Microsoft Store','En algunos equipos, Windows está configurado para avisar o permitir solo aplicaciones obtenidas en Microsoft Store.',['Windows 11: abre “Configuración” > “Aplicaciones” > “Configuración avanzada de aplicaciones”.','En “Elegir de dónde obtener aplicaciones”, selecciona “De cualquier lugar” o una opción que permita aplicaciones fuera de Microsoft Store.','Vuelve a ejecutar el instalador de Printly.'],('i','Equipo de empresa','Si esta configuración está bloqueada por tu organización, no intentes saltarte la política. Solicita al área de TI que autorice Printly.',BLUE)),
+            ('7. Smart App Control','En Windows 11, Smart App Control puede bloquear aplicaciones consideradas no confiables. Microsoft informa que no existe una excepción por aplicación para esta función.',None,('!','Recomendación','Si Smart App Control es el mecanismo que bloquea, la opción más segura es hablar con el soporte de IcoLabs. Desactivar esta función reduce la protección del sistema y no debe ser el primer intento. Si decides desactivarla temporalmente, hazlo solo después de confirmar el origen del instalador.',GOLD)),
+            ('8. Windows 11 en modo S','Windows 11 Home en modo S permite solo aplicaciones de Microsoft Store. Para instalar Printly fuera de la Store, es necesario salir del modo S.',['Abre “Configuración” > “Sistema” > “Activación”.','Localiza la opción relacionada con salir del modo S y abre Microsoft Store.','En la página “Salir del modo S” (o nombre equivalente), selecciona “Obtener”.','Después de la confirmación, ejecuta el instalador de Printly normalmente.'],('!','Atención: cambio permanente','Salir del modo S es gratuito, pero Microsoft informa que el cambio es permanente. Confirma que realmente deseas usar aplicaciones fuera de Microsoft Store.',RED)),
+            ('9. Antivirus de terceros','Avast, AVG, Norton, McAfee, Kaspersky, Bitdefender y otros productos pueden usar reglas propias. Si uno de ellos bloquea Printly:',['Abre la cuarentena o el historial de detecciones del antivirus.','Confirma que el elemento corresponde exactamente al instalador de Printly.','Usa la opción de restaurar/permitir solo ese archivo si confías en su origen.','No desactives todo el antivirus ni crees una exclusión amplia para la carpeta Descargas.'],None),
+            ('10. Equipos corporativos, escolares o administrados','Las políticas de empresa pueden impedir la instalación de ejecutables incluso con acceso de administrador local. El bloqueo puede venir de AppLocker, WDAC, directivas de grupo, EDR u otras herramientas de seguridad corporativa.',None,('i','Procedimiento correcto','Envía el instalador al responsable de TI y solicita la autorización o inclusión en lista blanca de Printly. No intentes sortear las políticas de seguridad de la organización.',BLUE))],
+            'check':'11. Lista rápida de solución','headers':['Situación','Qué hacer','Si sigue bloqueado'],'rows':[['SmartScreen','Más información > Ejecutar de todas formas','Revisa si Defender lo bloqueó'],['Archivo bloqueado','Propiedades > General > Desbloquear','Descárgalo de nuevo desde el canal oficial'],['Defender/cuarentena','Historial de protección > Permitir en el dispositivo','Envía la detección al soporte'],['Solo Microsoft Store','Permite apps de “Cualquier lugar”','Revisa el modo S'],['Smart App Control','No existe excepción individual','Habla con soporte / TI'],['Modo S','Salir del modo S en Microsoft Store','El cambio es permanente'],['PC corporativo','Solicitar liberación a TI','No saltarse la política']],
+            'after':'12. Después de instalar','afteritems':['Abre Printly desde el acceso directo creado por el instalador.','Si Windows solicita permiso de red, permítelo solo si la función que estás usando realmente requiere comunicación de red.','Mantén Microsoft Defender/el antivirus activo con normalidad.','No elimines la carpeta de datos de Printly al desinstalar si planeas reinstalar y recuperar tus registros.'],
+            'support':'13. Soporte IcoLabs','supportintro':'Si la instalación sigue bloqueada, envía al soporte lo siguiente:','supportitems':['captura de pantalla del aviso;','nombre exacto del archivo instalador;','versión de Windows;','nombre del antivirus instalado, si existe;','texto/nombre de la detección, cuando aparezca.'],'refs':'Este manual fue preparado con base en las orientaciones públicas de Microsoft para Seguridad de Windows, Historial de protección, Administrador de datos adjuntos, configuración de recomendación de aplicaciones, Smart App Control y Windows en modo S. Los nombres de las pantallas pueden variar ligeramente según la edición y la actualización de Windows.'}}
+
+          def build(lang,d):
+              os.makedirs('downloads',exist_ok=True)
+              doc=SimpleDocTemplate(d['file'],pagesize=A4,leftMargin=20*mm,rightMargin=20*mm,topMargin=16*mm,bottomMargin=20*mm)
+              story=[brand_header(),Spacer(1,9*mm),Paragraph(d['title'],styles['CoverTitleX']),Paragraph(d['sub'],styles['CoverSubX']),callout('!',d['why'],d['whybody'],BLUE),Spacer(1,11*mm),Paragraph(d['meta'],styles['SmallX']),PageBreak()]
+              pagebreak_after={3,5,6,8,10}
+              for idx,(title,intro,items,co) in enumerate(d['sections'],1):
+                  story.append(Paragraph(title,styles['SectionX']))
+                  if intro: story.append(Paragraph(intro,styles['BodyX']))
+                  if title.startswith('2.'):
+                      for n,(head,body) in enumerate(items,1):
+                          story.append(Paragraph(f'{n}. {head}',styles['StepHeadX'])); story.append(Paragraph(body,styles['BodyX']))
+                  elif items: story.append(bullets(items))
+                  if co: story.append(Spacer(1,2*mm)); story.append(callout(*co))
+                  story.append(Spacer(1,2*mm))
+                  if idx in pagebreak_after: story.append(PageBreak())
+              story.append(Paragraph(d['check'],styles['SectionX']))
+              table_data=[[Paragraph(f'<b>{x}</b>',styles['SmallX']) for x in d['headers']]]+[[Paragraph(x,styles['SmallX']) for x in r] for r in d['rows']]
+              t=Table(table_data,colWidths=[39*mm,74*mm,48*mm],repeatRows=1)
+              t.setStyle(TableStyle([('BACKGROUND',(0,0),(-1,0),NAVY),('TEXTCOLOR',(0,0),(-1,0),colors.white),('GRID',(0,0),(-1,-1),0.45,colors.HexColor('#BDD2E7')),('VALIGN',(0,0),(-1,-1),'TOP'),('LEFTPADDING',(0,0),(-1,-1),5),('RIGHTPADDING',(0,0),(-1,-1),5),('TOPPADDING',(0,0),(-1,-1),5),('BOTTOMPADDING',(0,0),(-1,-1),5)]))
+              story += [t,Spacer(1,5*mm),Paragraph(d['after'],styles['SectionX']),bullets(d['afteritems']),Spacer(1,3*mm),Paragraph(d['support'],styles['SectionX']),Paragraph(d['supportintro'],styles['BodyX']),bullets(d['supportitems']),Spacer(1,3*mm),callout('@','IcoLabs','icolabsbr@gmail.com',BLUE),Spacer(1,4*mm),Paragraph('<b>Referências técnicas / Technical references / Referencias técnicas</b>',styles['BodyX']),Paragraph(d['refs'],styles['SmallX'])]
+              doc.build(story,onFirstPage=footer(lang),onLaterPages=footer(lang))
+
+          for lang,d in DATA.items(): build(lang,d)
+
+          # Mantém cada página do site apontando para o PDF no idioma correspondente.
+          for path,old,new in [
+              ('en/index.html','../downloads/Manual_Instalacao_Printly_Windows.pdf','../downloads/Printly_Windows_Installation_Manual_EN-US.pdf'),
+              ('es/index.html','../downloads/Manual_Instalacao_Printly_Windows.pdf','../downloads/Manual_de_Instalacion_Printly_Windows_ES.pdf')]:
+              txt=open(path,encoding='utf-8').read()
+              txt=txt.replace(old,new)
+              open(path,'w',encoding='utf-8').write(txt)
+          PY
+          python /tmp/gen_install_manuals.py
+      - name: Publicar no repositório
+        run: |
+          git config user.name "IcoLabs Automation"
+          git config user.email "icolabsbr@gmail.com"
+          git add downloads/Manual_Instalacao_Printly_Windows.pdf downloads/Printly_Windows_Installation_Manual_EN-US.pdf downloads/Manual_de_Instalacion_Printly_Windows_ES.pdf en/index.html es/index.html
+          git commit -m "Atualiza manuais de instalação PT EN ES" || exit 0
+          git push
