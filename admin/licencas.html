@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="theme-color" content="#050b14">
+<title>Printly · Licenças</title>
+<style>
+:root{color-scheme:dark;--bg:#050b14;--panel:#0a1523;--panel2:#0d1d2e;--line:#173652;--txt:#edf7ff;--muted:#8ba5bb;--cyan:#20d8ff;--blue:#4f72ff;--green:#35df91;--red:#ff6476;--amber:#ffca5b}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:radial-gradient(circle at 20% 0,#092038 0,transparent 38%),var(--bg);color:var(--txt);min-height:100vh}
+button,input,select,textarea{font:inherit}.wrap{width:min(1480px,calc(100% - 28px));margin:0 auto;padding:28px 0 70px}.top{display:flex;align-items:center;gap:14px;margin-bottom:20px}.mark{width:44px;height:44px;border:1px solid #24557b;border-radius:13px;display:grid;place-items:center;background:#081725;box-shadow:0 0 30px #00c8ff18;font-weight:900;color:var(--cyan)}h1{font-size:24px;margin:0}.sub{color:var(--muted);font-size:13px;margin-top:3px}.spacer{flex:1}.card{background:linear-gradient(180deg,#0a1726dd,#07111ddd);border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:0 20px 60px #0007}.login{width:min(440px,100%);margin:10vh auto}.grid{display:grid;grid-template-columns:390px minmax(0,1fr);gap:18px}.field{display:grid;gap:6px;margin-bottom:12px}.field label{font-size:12px;color:#b7cadd;font-weight:700}.field input,.field select,.field textarea{width:100%;background:#06101b;border:1px solid #1c3e5d;border-radius:10px;color:var(--txt);padding:11px 12px;outline:none}.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--cyan);box-shadow:0 0 0 3px #20d8ff12}.field textarea{min-height:74px;resize:vertical}.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.btn{border:1px solid #265679;background:#0b1a2a;color:var(--txt);padding:10px 13px;border-radius:10px;cursor:pointer;font-weight:800}.btn:hover{border-color:#3eaee0}.btn.primary{background:linear-gradient(90deg,#18caf4,#5570ff);color:#03101b;border:0}.btn.danger{border-color:#713144;color:#ffc5cc;background:#291019}.btn.good{border-color:#1d6a4b;color:#bdf9da;background:#0b281c}.btn.small{padding:7px 9px;font-size:12px}.btn:disabled{opacity:.45;cursor:not-allowed}.status{padding:8px 10px;border-radius:9px;font-size:12px;font-weight:800}.status.active{background:#0d2d21;color:#7af2b4}.status.revoked,.status.refunded,.status.chargeback,.status.cancelled{background:#35131a;color:#ffabb6}.status.suspended,.status.pending{background:#352b10;color:#ffe091}.status.expired{background:#252c35;color:#bcc8d2}.head2{display:flex;align-items:center;gap:10px;margin-bottom:14px}.head2 h2{margin:0;font-size:17px}.muted{color:var(--muted);font-size:12px}.tablewrap{overflow:auto;border:1px solid var(--line);border-radius:12px}table{width:100%;border-collapse:collapse;min-width:930px}th,td{text-align:left;padding:11px 10px;border-bottom:1px solid #142d43;font-size:12px;vertical-align:top}th{position:sticky;top:0;background:#0e1f31;color:#9bb6ca;z-index:2}tr:hover td{background:#0c1a29}.keybox{padding:14px;border:1px solid #237395;background:#071c2a;border-radius:12px;margin-top:14px}.key{font:800 15px ui-monospace,SFMono-Regular,Consolas,monospace;color:#8deeff;word-break:break-all}.notice{padding:11px 12px;border-radius:10px;margin:12px 0;font-size:12px;line-height:1.5}.notice.ok{border:1px solid #1d694a;background:#0b281c;color:#bdf9da}.notice.err{border:1px solid #723346;background:#2b121b;color:#ffc0ca}.notice.info{border:1px solid #22597d;background:#0a2134;color:#b8eaff}.hidden{display:none!important}.toolbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:12px}.toolbar input{flex:1;min-width:220px;background:#06101b;border:1px solid #1c3e5d;border-radius:10px;color:var(--txt);padding:10px 12px}.modalback{position:fixed;inset:0;background:#000a;display:grid;place-items:center;padding:18px;z-index:50}.modal{width:min(860px,100%);max-height:88vh;overflow:auto}.device{padding:10px;border:1px solid #183b59;border-radius:10px;margin:7px 0}.event{font-size:11px;padding:7px 0;border-bottom:1px solid #14283b;color:#aac0d2}@media(max-width:950px){.grid{grid-template-columns:1fr}.wrap{width:min(100% - 18px,1480px)}.top{align-items:flex-start}.top .spacer{display:none}.top{flex-wrap:wrap}}
+</style>
+<script src="../assets/js/download-config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+<div class="wrap">
+  <section id="loginCard" class="card login">
+    <div class="top"><div class="mark">P</div><div><h1>Gestão de Licenças</h1><div class="sub">Acesso administrativo IcoLabs</div></div></div>
+    <form id="loginForm">
+      <div class="field"><label>E-mail</label><input id="loginEmail" type="email" autocomplete="username" required></div>
+      <div class="field"><label>Senha</label><input id="loginPassword" type="password" autocomplete="current-password" required></div>
+      <button class="btn primary" type="submit">Entrar</button>
+      <div id="loginMsg"></div>
+    </form>
+  </section>
+
+  <section id="app" class="hidden">
+    <div class="top"><div class="mark">P</div><div><h1>Licenças Printly</h1><div class="sub">Comercial · testes · divulgadores · parceiros</div></div><div class="spacer"></div><button id="logout" class="btn">Sair</button></div>
+    <div class="grid">
+      <div class="card">
+        <div class="head2"><h2>Nova licença</h2></div>
+        <form id="createForm">
+          <div class="field"><label>Nome do usuário</label><input id="customerName" required></div>
+          <div class="field"><label>E-mail</label><input id="customerEmail" type="email" required></div>
+          <div class="field"><label>WhatsApp</label><input id="customerWhatsapp" placeholder="(19) 99999-9999"></div>
+          <div class="field"><label>Tipo</label><select id="licenseType"><option value="tester">Tester</option><option value="influencer">Divulgador / Influenciador</option><option value="partner">Parceiro</option><option value="commercial">Venda manual</option><option value="internal">Interna IcoLabs</option><option value="manual">Outra manual</option></select></div>
+          <div class="field"><label>Validade</label><select id="validity"><option value="60">60 dias</option><option value="90">90 dias</option><option value="180">180 dias</option><option value="365">1 ano</option><option value="0">Permanente</option></select></div>
+          <div class="field"><label>Computadores permitidos</label><input id="maxDevices" type="number" min="1" max="20" value="1"></div>
+          <div class="field"><label>Observação interna</label><textarea id="notes" placeholder="Ex.: teste Instagram, parceiro canal X, cortesia de lançamento..."></textarea></div>
+          <button id="createBtn" class="btn primary" type="submit">Gerar licença</button>
+          <div id="createMsg"></div>
+          <div id="newKeyBox" class="keybox hidden"><div class="muted">A chave completa é exibida somente agora. Copie e envie ao usuário.</div><div id="newKey" class="key"></div><div class="row" style="margin-top:10px"><button id="copyKey" type="button" class="btn small">Copiar chave</button></div></div>
+        </form>
+      </div>
+
+      <div class="card">
+        <div class="head2"><h2>Licenças emitidas</h2><div class="spacer"></div><span id="count" class="muted"></span></div>
+        <div class="toolbar"><input id="search" placeholder="Buscar por nome, e-mail ou final da licença"><button id="refresh" class="btn">Atualizar</button></div>
+        <div class="tablewrap"><table><thead><tr><th>Cliente</th><th>Tipo</th><th>Status</th><th>Licença</th><th>Validade</th><th>Dispositivos</th><th>Ações</th></tr></thead><tbody id="tbody"></tbody></table></div>
+        <div id="listMsg"></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div id="modalBack" class="modalback hidden"><div class="card modal"><div class="head2"><h2 id="modalTitle">Detalhes</h2><div class="spacer"></div><button id="closeModal" class="btn small">Fechar</button></div><div id="modalBody"></div></div></div>
+
+<script>
+const cfg = window.PRINTLY_DOWNLOAD_CONFIG || {};
+const sb = supabase.createClient(cfg.SUPABASE_URL, cfg.SUPABASE_PUBLISHABLE_KEY, {auth:{persistSession:true,autoRefreshToken:true}});
+const $=id=>document.getElementById(id); let rows=[];
+const esc=s=>String(s??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
+const fmt=d=>d?new Date(d).toLocaleDateString('pt-BR'):'Permanente';
+const typeLabel={commercial:'Comercial',tester:'Tester',influencer:'Divulgador',partner:'Parceiro',internal:'Interna',manual:'Manual'};
+function notice(el,text,kind='info'){el.innerHTML=text?`<div class="notice ${kind}">${esc(text)}</div>`:''}
+async function invoke(body){const {data,error}=await sb.functions.invoke('printly-license-admin',{body});if(error)throw new Error(error.message||'Falha na operação');if(data?.error)throw new Error(data.detail||data.error);return data}
+async function boot(){const {data:{session}}=await sb.auth.getSession();if(session){$('loginCard').classList.add('hidden');$('app').classList.remove('hidden');await load()}else{$('loginCard').classList.remove('hidden');$('app').classList.add('hidden')}}
+$('loginForm').addEventListener('submit',async e=>{e.preventDefault();notice($('loginMsg'),'Entrando...');const {error}=await sb.auth.signInWithPassword({email:$('loginEmail').value.trim(),password:$('loginPassword').value});if(error){notice($('loginMsg'),'Acesso não autorizado ou senha incorreta.','err');return}try{await invoke({action:'list',limit:1});notice($('loginMsg'),'');await boot()}catch(err){await sb.auth.signOut();notice($('loginMsg'),'Este usuário não possui permissão administrativa.','err')}});
+$('logout').onclick=async()=>{await sb.auth.signOut();location.reload()};
+function expiration(){const days=Number($('validity').value);return days?new Date(Date.now()+days*86400000).toISOString():null}
+$('licenseType').onchange=()=>{const t=$('licenseType').value;if(t==='tester'){$('validity').value='60';$('maxDevices').value=1}else if(t==='influencer'){$('validity').value='180';$('maxDevices').value=1}else if(t==='partner'){$('validity').value='365';$('maxDevices').value=2}else if(t==='internal'){$('validity').value='0';$('maxDevices').value=3}else if(t==='commercial'){$('validity').value='0';$('maxDevices').value=1}};
+$('createForm').addEventListener('submit',async e=>{e.preventDefault();$('createBtn').disabled=true;$('newKeyBox').classList.add('hidden');notice($('createMsg'),'Gerando licença...');try{const data=await invoke({action:'create',customer_name:$('customerName').value,customer_email:$('customerEmail').value,customer_whatsapp:$('customerWhatsapp').value,license_type:$('licenseType').value,expires_at:expiration(),max_devices:Number($('maxDevices').value||1),notes:$('notes').value,source:'admin_panel'});$('newKey').textContent=data.license_key;$('newKeyBox').classList.remove('hidden');notice($('createMsg'),'Licença criada com sucesso.','ok');await load();}catch(err){notice($('createMsg'),err.message,'err')}finally{$('createBtn').disabled=false}});
+$('copyKey').onclick=async()=>{await navigator.clipboard.writeText($('newKey').textContent);$('copyKey').textContent='Copiado';setTimeout(()=>$('copyKey').textContent='Copiar chave',1200)};
+async function load(){notice($('listMsg'),'Carregando...');try{const data=await invoke({action:'list',limit:300,search:$('search').value.trim()});rows=data.licenses||[];$('count').textContent=`${rows.length} licença(s)`;$('tbody').innerHTML=rows.map(r=>`<tr><td><b>${esc(r.customer_name)}</b><br><span class="muted">${esc(r.customer_email)}</span></td><td>${esc(typeLabel[r.license_type]||r.license_type)}</td><td><span class="status ${esc(r.status)}">${esc(r.status.toUpperCase())}</span></td><td><span class="key" style="font-size:11px">${esc(r.license_hint)}</span></td><td>${esc(fmt(r.expires_at))}</td><td>${esc(r.max_devices)}</td><td><div class="row"><button class="btn small" onclick="details('${r.id}')">Detalhes</button>${r.status==='active'?`<button class="btn small danger" onclick="changeStatus('${r.id}','revoke')">Revogar</button>`:`<button class="btn small good" onclick="changeStatus('${r.id}','reactivate')">Reativar</button>`}<button class="btn small" onclick="resetDevices('${r.id}')">Liberar PC</button></div></td></tr>`).join('');notice($('listMsg'),'')}catch(err){notice($('listMsg'),err.message,'err')}}
+$('refresh').onclick=load;$('search').addEventListener('keydown',e=>{if(e.key==='Enter')load()});
+window.changeStatus=async(id,action)=>{const label=action==='revoke'?'revogar':'reativar';if(!confirm(`Deseja ${label} esta licença?`))return;let reason='';if(action==='revoke')reason=prompt('Motivo da revogação (opcional):','')||'';try{await invoke({action,license_id:id,reason});await load()}catch(err){alert(err.message)}};
+window.resetDevices=async id=>{if(!confirm('Liberar os computadores vinculados? A próxima ativação ocupará novamente as vagas da licença.'))return;try{await invoke({action:'reset_devices',license_id:id});await load()}catch(err){alert(err.message)}};
+window.details=async id=>{try{const d=await invoke({action:'details',license_id:id});const l=d.license;$('modalTitle').textContent=l.customer_name||'Detalhes';$('modalBody').innerHTML=`<div class="row"><span class="status ${esc(l.status)}">${esc(l.status.toUpperCase())}</span><span class="key" style="font-size:12px">${esc(l.license_hint)}</span><span class="muted">${esc(typeLabel[l.license_type]||l.license_type)}</span></div><p class="muted">${esc(l.customer_email)} · ${esc(l.customer_whatsapp||'sem WhatsApp')}<br>Validade: ${esc(fmt(l.expires_at))}<br>Notas: ${esc(l.notes||'—')}</p><h3>Computadores</h3>${(d.devices||[]).length?(d.devices||[]).map(x=>`<div class="device"><b>${esc(x.device_name||'Computador')}</b> · ${esc(x.machine_hint)}<br><span class="muted">${esc(x.status)} · última validação ${esc(new Date(x.last_seen_at).toLocaleString('pt-BR'))} · app ${esc(x.app_version||'')}</span></div>`).join(''):'<div class="muted">Ainda não ativada em nenhum computador.</div>'}<h3>Eventos recentes</h3>${(d.events||[]).map(x=>`<div class="event">${esc(new Date(x.created_at).toLocaleString('pt-BR'))} · ${esc(x.event_type)}</div>`).join('')||'<div class="muted">Sem eventos.</div>'}<div class="row" style="margin-top:16px"><button class="btn" onclick="rotateKey('${l.id}')">Trocar chave</button>${l.status==='active'?`<button class="btn danger" onclick="setRefund('${l.id}')">Marcar reembolso</button>`:''}</div>`;$('modalBack').classList.remove('hidden')}catch(err){alert(err.message)}};
+window.rotateKey=async id=>{if(!confirm('Gerar uma nova chave? A chave anterior deixará de funcionar e os computadores serão liberados.'))return;try{const d=await invoke({action:'rotate_key',license_id:id});await navigator.clipboard.writeText(d.license_key).catch(()=>{});alert('Nova chave:\n\n'+d.license_key+'\n\nA chave foi copiada quando permitido pelo navegador.');$('modalBack').classList.add('hidden');await load()}catch(err){alert(err.message)}};
+window.setRefund=async id=>{if(!confirm('Marcar como REEMBOLSADA? O Printly Completo será bloqueado na próxima validação.'))return;try{await invoke({action:'refund',license_id:id,reason:'Reembolso registrado manualmente'});$('modalBack').classList.add('hidden');await load()}catch(err){alert(err.message)}};
+$('closeModal').onclick=()=>$('modalBack').classList.add('hidden');$('modalBack').onclick=e=>{if(e.target===$('modalBack'))$('modalBack').classList.add('hidden')};
+boot();
+</script>
+</body>
+</html>
