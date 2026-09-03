@@ -15,6 +15,10 @@ window.PRINTLY_DOWNLOAD_CONFIG = {
     var buyUrl = cfg.BUY_URL + '?source=' + encodeURIComponent(source);
     document.querySelectorAll('.plan-complete .btn-plan, .price-card .btn-buy').forEach(function (link) {
       link.href = buyUrl;
+      link.target = '_blank';
+      link.rel = 'noopener';
+      var detail = link.querySelector('b');
+      if (detail) detail.textContent = lang.indexOf('en') === 0 ? 'Secure checkout' : 'Checkout seguro';
     });
 
     var form = document.getElementById('downloadForm');
