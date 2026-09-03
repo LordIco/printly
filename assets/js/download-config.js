@@ -4,3 +4,10 @@ window.PRINTLY_DOWNLOAD_CONFIG = {
   DOWNLOAD_URL: 'https://lordico.github.io/printly/downloads/Printly_Setup_v0.2.8.4.exe',
   BUY_URL: 'https://uiesczevcmkzdtybxuez.supabase.co/functions/v1/printly-buy'
 };
+
+window.addEventListener('DOMContentLoaded', function () {
+  var buyUrl = window.PRINTLY_DOWNLOAD_CONFIG.BUY_URL + '?source=site';
+  document.querySelectorAll('.plan-complete .btn-plan, .price-card .btn-buy').forEach(function (link) {
+    link.href = buyUrl;
+  });
+});
