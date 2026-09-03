@@ -5,9 +5,39 @@ window.PRINTLY_DOWNLOAD_CONFIG = {
   BUY_URL: 'https://uiesczevcmkzdtybxuez.supabase.co/functions/v1/printly-buy'
 };
 
-window.addEventListener('DOMContentLoaded', function () {
-  var buyUrl = window.PRINTLY_DOWNLOAD_CONFIG.BUY_URL + '?source=site';
-  document.querySelectorAll('.plan-complete .btn-plan, .price-card .btn-buy').forEach(function (link) {
-    link.href = buyUrl;
+(function () {
+  var pendingEmail = '';
+
+  window.addEventListener('DOMContentLoaded', function () {
+    var cfg = window.PRINTLY_DOWNLOAD_CONFIG;
+    var lang = (document.documentElement.lang || 'pt-BR').toLowerCase();
+    var source = lang.indexOf('en') === 0 ? 'site-en' : (lang.indexOf('es') === 0 ? 'site-es' : 'site');
+    var buyUrl = cfg.BUY_URL + '?source=' + encodeURIComponent(source);
+    document.querySelectorAll('.plan-complete .btn-plan, .price-card .btn-buy').forEach(function (link) {
+      link.href = buyUrl;
+    });
+
+    var form = document.getElementById('downloadForm');
+    if (form) {
+      form.addEventListener('submit', function () {
+        pendingEmail = String(form.elements.email && form.elements.email.value || '').trim().toLowerCase();
+      }, true);
+    }
   });
-});
+
+  window.addEventListener('printly:download-lead', function () {
+    var cfg = window.PRINTLY_DOWNLOAD_CONFIG;
+    if (!pendingEmail || !cfg.SUPABASE_URL || !cfg.DOWNLOAD_URL) return;
+    fetch(cfg.SUPABASE_URL + '/functions/v1/printly-download-track', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        email: pendingEmail,
+        source: 'printly-site',
+        event_type: 'download_started',
+        file_url: cfg.DOWNLOAD_URL
+      })
+    }).catch(function () {});
+    pendingEmail = '';
+  });
+})();
