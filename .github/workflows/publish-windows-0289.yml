@@ -17,7 +17,7 @@ jobs:
         run: |
           python -m pip install --quiet gdown
           mkdir -p downloads
-          gdown --id 17yWahZXIwqAtifQSObOxrufHXqIPiYGJ -O downloads/Printly_Setup_v0.2.8.9.exe
+          gdown 17yWahZXIwqAtifQSObOxrufHXqIPiYGJ -O downloads/Printly_Setup_v0.2.8.9.exe
           test "$(stat -c%s downloads/Printly_Setup_v0.2.8.9.exe)" -eq 46644565
           echo "8dd9188b9b82d839f9b32f43370e3330d34cacf608c9d7df024a17e898f957f9  downloads/Printly_Setup_v0.2.8.9.exe" | sha256sum -c -
       - name: Publicar e limpar rotina temporaria
