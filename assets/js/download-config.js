@@ -119,7 +119,7 @@ window.PRINTLY_DOWNLOAD_CONFIG = {
       if (grid) {
         grid.style.gridTemplateColumns = 'minmax(0, 860px)';
         grid.style.justifyContent = 'center';
-        grid.innerHTML = '<article class="plan-card plan-complete reveal" style="width:100%;max-width:860px;margin:0 auto">' +
+        grid.innerHTML = '<article class="plan-card plan-complete" style="width:100%;max-width:860px;margin:0 auto;opacity:1;transform:none">' +
           '<div class="plan-badge">' + c.badge + '</div>' +
           '<div class="plan-head"><span>' + c.product + '</span><strong>' + c.price + '</strong><small>' + c.priceNote + '</small></div>' +
           '<ul>' + c.items.map(function (item) { return '<li>' + item + '</li>'; }).join('') + '</ul>' +
@@ -178,7 +178,7 @@ window.PRINTLY_DOWNLOAD_CONFIG = {
       link.target = '_blank';
       link.rel = 'noopener';
       var detail = link.querySelector('b');
-      if (detail) detail.textContent = lang.indexOf('en') === 0 ? 'Secure checkout' : (lang.indexOf('es') === 0 ? 'Checkout seguro' : 'Checkout seguro');
+      if (detail) detail.textContent = lang.indexOf('en') === 0 ? 'Secure checkout' : 'Checkout seguro';
     });
 
     document.querySelectorAll('script[type="application/ld+json"]').forEach(function (node) {
