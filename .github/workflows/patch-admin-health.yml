@@ -1,0 +1,63 @@
+name: Atualizar diagnóstico do Printly Admin
+
+on:
+  push:
+    paths:
+      - '.github/workflows/patch-admin-health.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Aplicar diagnóstico ao painel
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          p=Path('admin/index.html')
+          t=p.read_text(encoding='utf-8')
+
+          css='''\n.health-summary{display:flex;align-items:center;gap:10px;padding:12px 13px;border-radius:12px;border:1px solid #1b4262;background:#071522;margin-bottom:10px}.health-summary.ok{border-color:#226b4e;background:#0b241b}.health-summary.warn{border-color:#725b20;background:#2a2311}.health-summary.error{border-color:#713247;background:#2a121a}.health-grid{display:grid;gap:8px}.health-row{display:flex;align-items:flex-start;gap:10px;padding:9px 10px;border:1px solid #173750;border-radius:10px;background:#071522}.health-row .ico{font-size:15px;line-height:1.2}.health-row.ok .ico,.setting-state.ok{color:var(--green)}.health-row.warn .ico,.setting-state.warn{color:var(--amber)}.health-row.error .ico,.setting-state.error{color:var(--red)}.health-row b{display:block;font-size:12px}.health-row small{display:block;color:var(--muted);margin-top:2px}.setting-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:7px}.setting-head label{margin:0}.setting-state{font-size:11px;font-weight:850;white-space:nowrap;padding:4px 7px;border-radius:999px;border:1px solid currentColor}.setting-msg{font-size:11px;color:var(--muted);margin-top:7px;min-height:14px}.btn.testing{opacity:.7;pointer-events:none}\n'''
+          if '.health-summary{' not in t:
+              t=t.replace('</style>',css+'</style>',1)
+
+          old='<button id="refresh" class="btn">Atualizar</button><button id="logout" class="btn">Sair</button>'
+          new='<button id="testHealth" class="btn good">Testar integrações</button><button id="refresh" class="btn">Atualizar</button><button id="logout" class="btn">Sair</button>'
+          if old in t:
+              t=t.replace(old,new,1)
+
+          helper=r'''\nasync function healthApi(){const {data,error}=await sb.functions.invoke('printly-admin-health',{body:{action:'check'}});if(error)throw new Error(error.message||'Falha no diagnóstico');if(data?.error)throw new Error(data.detail||data.error);return data}\nlet lastHealth=null;\nfunction stateMeta(s){return s==='ok'?['✓','OK']:s==='warn'?['!','ATENÇÃO']:['×','ERRO']}\nfunction renderHealth(x){lastHealth=x;const m=stateMeta(x.overall);const checks=Object.values(x.checks||{});$('health').innerHTML=`<div class="health-summary ${esc(x.overall)}"><b>${m[0]} ${x.overall==='ok'?'Integrações operacionais':x.overall==='warn'?'Integrações com atenção':'Integração com falha'}</b><span class="muted">Testado em ${dt(x.checked_at)}</span></div><div class="health-grid">${checks.map(c=>{const z=stateMeta(c.status);return `<div class="health-row ${esc(c.status)}"><span class="ico">${z[0]}</span><div><b>${esc(c.label)}</b><small>${esc(c.message)}</small></div></div>`}).join('')}</div>`}\nasync function runHealth(show=true){const b=$('testHealth');try{if(b){b.classList.add('testing');b.textContent='Testando...'}const x=await healthApi();renderHealth(x);if(show&&x.overall==='ok')alert('Teste concluído: integrações principais operacionais.');else if(show&&x.overall!=='ok')alert('Teste concluído. Há itens que precisam de atenção.');return x}catch(e){$('health').innerHTML=`<div class="notice err">Falha ao executar diagnóstico: ${esc(e.message)}</div>`;if(show)alert('Não foi possível concluir o teste das integrações.');return null}finally{if(b){b.classList.remove('testing');b.textContent='Testar integrações'}}}\n$('testHealth').onclick=()=>runHealth(true);\n'''
+          marker="function note(el,t,k='ok')"
+          if 'async function healthApi()' not in t and marker in t:
+              t=t.replace(marker,helper+marker,1)
+
+          old_load="async function loadSettings(){const x=await api({action:'settings'});$('settingsGrid').innerHTML=(x.settings||[]).map(s=>`<div class=\"setting\"><label>${esc(s.key)}<br><span class=\"muted\">${esc(s.description||'')}</span></label><div style=\"display:flex;gap:7px\"><input id=\"set_${s.key}\" value=\"${esc(s.value)}\"><button class=\"btn small\" onclick=\"saveSetting('${s.key}')\">Salvar</button></div></div>`).join('')}window.saveSetting=async k=>{try{await api({action:'update_setting',key:k,value:$('set_'+k).value});note($('settingsMsg'),'Configuração atualizada.','ok')}catch(e){note($('settingsMsg'),e.message,'err')}};"
+          new_load="async function loadSettings(){const x=await api({action:'settings'});let hx=lastHealth;try{hx=await healthApi();lastHealth=hx}catch{}$('settingsGrid').innerHTML=(x.settings||[]).map(s=>{const st=hx?.settings?.[s.key]||{status:'warn',message:'Ainda não testado.'};const m=stateMeta(st.status);return `<div class=\"setting\"><div class=\"setting-head\"><label>${esc(s.key)}<br><span class=\"muted\">${esc(s.description||'')}</span></label><span class=\"setting-state ${esc(st.status)}\">${m[0]} ${m[1]}</span></div><div style=\"display:flex;gap:7px\"><input id=\"set_${s.key}\" value=\"${esc(s.value)}\"><button class=\"btn small\" onclick=\"saveSetting('${s.key}')\">Salvar</button></div><div class=\"setting-msg\">${esc(st.message||'')}</div></div>`}).join('')}window.saveSetting=async k=>{try{await api({action:'update_setting',key:k,value:$('set_'+k).value});note($('settingsMsg'),'Configuração atualizada.','ok');lastHealth=null;await loadSettings()}catch(e){note($('settingsMsg'),e.message,'err')}};"
+          if old_load in t:
+              t=t.replace(old_load,new_load,1)
+          elif 'setting-state' not in t:
+              raise SystemExit('loadSettings pattern not found')
+
+          if "if(session){try{await loadDashboard()}" in t:
+              t=t.replace("if(session){try{await loadDashboard()}","if(session){try{await loadDashboard();await runHealth(false)}",1)
+          if "if(current==='dashboard')return loadDashboard();" in t:
+              t=t.replace("if(current==='dashboard')return loadDashboard();","if(current==='dashboard'){await loadDashboard();return runHealth(false)}",1)
+
+          p.write_text(t,encoding='utf-8')
+          PY
+
+      - name: Publicar
+        shell: bash
+        run: |
+          git config user.name "IcoLabs Automation"
+          git config user.email "icolabsbr@gmail.com"
+          git add admin/index.html
+          git diff --cached --quiet && exit 0
+          git commit -m "Adiciona diagnóstico de integrações ao Printly Admin"
+          git push
