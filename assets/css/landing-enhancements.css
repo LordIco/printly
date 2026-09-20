@@ -1,0 +1,30 @@
+/* Additive enhancements to the existing Printly dark/cyan identity. */
+.printly-trust-strip{position:relative;z-index:2;background:linear-gradient(180deg,#061625,#04101d);border-block:1px solid rgba(36,216,255,.15)}
+.printly-trust-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;padding-block:22px}
+.printly-trust-item{min-width:0;display:flex;align-items:flex-start;gap:11px;padding:12px 10px;border-left:2px solid rgba(36,216,255,.6)}
+.printly-trust-symbol{display:grid;place-items:center;flex:0 0 30px;width:30px;height:30px;border-radius:10px;background:rgba(36,216,255,.09);color:var(--cyan);font-size:17px;font-weight:800}
+.printly-trust-item strong{display:block;font-size:13px;line-height:1.3;color:var(--text);font-weight:800}
+.printly-trust-item span:not(.printly-trust-symbol){display:block;margin-top:4px;color:var(--muted);font-size:11px;line-height:1.4}
+.printly-trust-links{display:flex;flex-wrap:wrap;gap:4px 12px;margin-top:6px}
+.printly-trust-links a{font-size:11px;color:#98dfff;text-decoration:underline;text-underline-offset:3px}
+.printly-trust-links a:hover{color:#fff}
+.printly-gallery-benefits{display:grid;gap:9px;list-style:none;padding:0;margin:18px 0 20px}
+.printly-gallery-benefits li{position:relative;margin:0;padding:10px 11px 10px 31px;border:1px solid rgba(36,216,255,.12);border-radius:11px;background:rgba(36,216,255,.035);color:#cee7f7;font-size:12px;line-height:1.45}
+.printly-gallery-benefits li:before{content:'✓';position:absolute;left:12px;top:9px;color:var(--green);font-weight:900}
+.gallery-tabs button:focus-visible,.printly-trust-links a:focus-visible,.printly-mobile-cta-button:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+.printly-mobile-cta{display:none}
+@media(max-width:980px){.printly-trust-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 12px}}
+@media(max-width:720px){
+  body:has(.printly-mobile-cta){padding-bottom:calc(88px + env(safe-area-inset-bottom,0px))}
+  .printly-mobile-cta{position:fixed;z-index:180;inset:auto 0 0;display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:72px;padding:10px max(14px,env(safe-area-inset-left,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(14px,env(safe-area-inset-right,0px));background:rgba(3,13,26,.97);border-top:1px solid rgba(36,216,255,.34);box-shadow:0 -12px 40px rgba(0,0,0,.45);backdrop-filter:blur(16px)}
+  .printly-mobile-cta-copy{display:flex;flex-direction:column;gap:4px;min-width:0}
+  .printly-mobile-cta-copy strong{color:#fff;font-size:15px;line-height:1.1}
+  .printly-mobile-cta-copy small{color:var(--muted);font-size:10px;line-height:1.3}
+  .printly-mobile-cta-button{flex:0 0 auto;min-height:42px;padding:0 14px;border-radius:11px;font-size:12px;white-space:nowrap}
+  .floating-wa{bottom:calc(93px + env(safe-area-inset-bottom,0px))!important}
+  body:has(.download-modal.open) .printly-mobile-cta,body:has(.mobile-menu.open) .printly-mobile-cta{display:none}
+  body:has(.download-modal.open) .floating-wa{visibility:hidden}
+}
+@media(max-width:520px){.printly-trust-grid{grid-template-columns:1fr;gap:0;padding-block:12px}.printly-trust-item{padding:12px 8px}.printly-trust-item strong{font-size:12px}}
+@media(max-width:360px){.printly-mobile-cta-copy small{display:none}.printly-mobile-cta-button{padding:0 10px}}
+@media(prefers-reduced-motion:reduce){.printly-mobile-cta-button:hover{transform:none}}
