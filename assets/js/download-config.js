@@ -90,7 +90,7 @@ window.PRINTLY_DOWNLOAD_CONFIG = {
   else loadCalculator();
 })();
 
-/* PT-only trust points, mobile trial CTA and gallery explanations. */
+/* PT landing trust bar, mobile CTA and benefits; existing signup/pricing unchanged. */
 (function () {
   if ((document.documentElement.lang || '').toLowerCase() !== 'pt-br') return;
   function loadEnhancements() {
@@ -104,6 +104,24 @@ window.PRINTLY_DOWNLOAD_CONFIG = {
     script.onerror = function () { css.remove(); };
     document.body.appendChild(script);
   }
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded',loadEnhancements,{once:true});
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', loadEnhancements, {once:true});
   else loadEnhancements();
+})();
+
+/* EN/ES: mirror the calculator and conversion features with translated text and locale-safe asset URLs. */
+(function () {
+  var lang = (document.documentElement.lang || '').toLowerCase().slice(0,2);
+  if (lang !== 'en' && lang !== 'es') return;
+  var source = document.currentScript && document.currentScript.src;
+  if (!source) return;
+  var base = new URL('./', source);
+  ['printly-calculator.css','landing-enhancements.css','printly-i18n.css'].forEach(function (file) {
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = new URL('../css/' + file + '?v=20260920-i18n1', base).href;
+    document.head.appendChild(link);
+  });
+  var script = document.createElement('script');
+  script.src = new URL('printly-i18n.js?v=20260920-i18n1', base).href;
+  document.body.appendChild(script);
 })();
