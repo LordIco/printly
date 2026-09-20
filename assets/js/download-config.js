@@ -141,3 +141,17 @@ window.PRINTLY_DOWNLOAD_CONFIG = {
   script.src = new URL('printly-currency.js?v=20260920-1', base).href;
   document.body.appendChild(script);
 })();
+
+/* Regional display units; preserve canonical calculator values, pricing, and signup. */
+(function () {
+  var current = document.currentScript && document.currentScript.src;
+  if (!current) return;
+  var base = new URL('./', current);
+  var css = document.createElement('link');
+  css.rel = 'stylesheet';
+  css.href = new URL('../css/printly-units.css?v=20260920-1', base).href;
+  document.head.appendChild(css);
+  var script = document.createElement('script');
+  script.src = new URL('printly-units.js?v=20260920-1', base).href;
+  document.body.appendChild(script);
+})();
