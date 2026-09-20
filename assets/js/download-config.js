@@ -125,3 +125,19 @@ window.PRINTLY_DOWNLOAD_CONFIG = {
   script.src = new URL('printly-i18n.js?v=20260920-i18n1', base).href;
   document.body.appendChild(script);
 })();
+
+/* EN → USD, ES → EUR for the public calculator; indicative FX for BRL license. */
+(function () {
+  var lang = (document.documentElement.lang || '').toLowerCase().slice(0,2);
+  if (lang !== 'en' && lang !== 'es') return;
+  var current = document.currentScript && document.currentScript.src;
+  if (!current) return;
+  var base = new URL('./', current);
+  var css = document.createElement('link');
+  css.rel = 'stylesheet';
+  css.href = new URL('../css/printly-currency.css?v=20260920-1', base).href;
+  document.head.appendChild(css);
+  var script = document.createElement('script');
+  script.src = new URL('printly-currency.js?v=20260920-1', base).href;
+  document.body.appendChild(script);
+})();
