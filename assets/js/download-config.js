@@ -89,3 +89,21 @@ window.PRINTLY_DOWNLOAD_CONFIG = {
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', loadCalculator, {once:true});
   else loadCalculator();
 })();
+
+/* PT-only trust points, mobile trial CTA and gallery explanations. */
+(function () {
+  if ((document.documentElement.lang || '').toLowerCase() !== 'pt-br') return;
+  function loadEnhancements() {
+    if (!document.querySelector('main .hero') || document.getElementById('printly-trust-strip')) return;
+    var css = document.createElement('link');
+    css.rel = 'stylesheet';
+    css.href = 'assets/css/landing-enhancements.css?v=20260920-1';
+    document.head.appendChild(css);
+    var script = document.createElement('script');
+    script.src = 'assets/js/landing-enhancements.js?v=20260920-1';
+    script.onerror = function () { css.remove(); };
+    document.body.appendChild(script);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded',loadEnhancements,{once:true});
+  else loadEnhancements();
+})();
