@@ -71,3 +71,21 @@ window.PRINTLY_DOWNLOAD_CONFIG = {
     pendingEmail = '';
   });
 })();
+
+/* Landing page PT: add calculator in the existing hero; all download, buy and EN/ES flows above remain unchanged. */
+(function () {
+  if ((document.documentElement.lang || '').toLowerCase() !== 'pt-br') return;
+  function loadCalculator() {
+    if (!document.querySelector('.hero .hero-visual') || document.getElementById('printly-public-calculator')) return;
+    var css = document.createElement('link');
+    css.rel = 'stylesheet';
+    css.href = 'assets/css/printly-calculator.css?v=20260920-1';
+    document.head.appendChild(css);
+    var script = document.createElement('script');
+    script.src = 'assets/js/printly-calculator.js?v=20260920-1';
+    script.onerror = function () { css.remove(); };
+    document.body.appendChild(script);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', loadCalculator, {once:true});
+  else loadCalculator();
+})();
