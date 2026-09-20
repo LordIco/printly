@@ -1,0 +1,10 @@
+/* Display-unit controls over the existing calculator's canonical values. */
+.pc-unit-field{display:flex!important;flex-direction:column;gap:6px;min-width:0;color:#cde6f7;font-size:12px;font-weight:700}
+.pc-unit-heading{display:block;font-size:12px;line-height:1.35}
+.pc-unit-controls{display:flex!important;gap:6px;align-items:stretch;min-width:0}
+.pc-unit-value{flex:1 1 auto;min-width:0;width:100%;min-height:41px;padding:8px 10px;border-radius:9px;border:1px solid rgba(86,158,207,.35);background:#051525;color:#eef8ff;font:inherit}
+.pc-unit-select{flex:0 0 auto;max-width:88px;min-height:41px;padding:6px;border:1px solid rgba(36,216,255,.35);border-radius:9px;background:#102840;color:#eef8ff;font:inherit;cursor:pointer}
+.pc-unit-value:focus-visible,.pc-unit-select:focus-visible{outline:2px solid #24d8ff;outline-offset:2px}
+.pc-unit-value:invalid{border-color:#ff6678}
+.pc-units-note{margin:7px 0 13px;color:#a5c3d8;font-size:11px;line-height:1.5}
+.pc-calc .pc-fieldset label[hidden]{display:none!important}
