@@ -1,0 +1,36 @@
+PRINTLY COMPLETO | SUA LICENÇA ESTÁ PRONTA
+
+PAGAMENTO CONFIRMADO — PRINTLY COMPLETO
+
+Olá, {{CLIENTE_NOME}}!
+
+Sua compra do Printly Completo foi aprovada. Sua chave de licença está disponível abaixo.
+
+SUA CHAVE DE ATIVAÇÃO
+{{CHAVE_LICENCA}}
+
+Licença permanente | 1 computador Windows
+
+COMO ATIVAR
+1. Acesse https://useprintly.com.br/ e baixe o Printly.
+2. Instale o aplicativo no Windows.
+3. Abra Configurações > Licença / Ativação.
+4. Cole a chave e clique em Ativar / validar licença.
+5. Aguarde a confirmação de que sua licença está ativa.
+
+RESUMO DA COMPRA
+Produto: Printly Completo
+Pedido Eduzz: #{{PEDIDO_EDUZZ}}
+Pagamento aprovado em: {{DATA_COMPRA}}
+E-mail da compra: {{EMAIL_COMPRA}}
+
+IMPORTANTE
+A licença é vinculada ao primeiro computador em que for ativada. Guarde sua chave em segurança. Para suporte ou transferência autorizada de máquina, fale com nossa equipe.
+
+Suporte por WhatsApp: https://wa.me/5519988134895
+Site: https://useprintly.com.br/
+Você também pode responder diretamente a esta mensagem.
+
+Printly 3D Printing Management
+Desenvolvido por IcoLabs — Inovação em Soluções Digitais
+© {{ANO}} Printly · IcoLabs.
