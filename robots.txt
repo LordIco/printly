@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://lordico.github.io/printly/sitemap.xml
+Sitemap: https://useprintly.com.br/sitemap.xml
