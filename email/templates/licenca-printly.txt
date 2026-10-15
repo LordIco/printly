@@ -11,12 +11,17 @@ SUA CHAVE DE ATIVAÇÃO
 
 Licença permanente | 1 computador Windows
 
-COMO ATIVAR
-1. Acesse https://useprintly.com.br/ e baixe o Printly.
-2. Instale o aplicativo no Windows.
-3. Abra Configurações > Licença / Ativação.
-4. Cole a chave e clique em Ativar / validar licença.
-5. Aguarde a confirmação de que sua licença está ativa.
+COMO ATIVAR — PARA QUEM JÁ TEM O PRINTLY INSTALADO
+Você não precisa baixar nem instalar novamente.
+
+1. Abra o Printly no seu computador.
+2. Acesse Configurações > Licença / Ativação.
+3. Cole a chave acima e clique em Ativar / validar licença.
+4. Aguarde a confirmação "Licença ativada".
+
+AINDA NÃO INSTALOU O PRINTLY?
+Baixe pelo site oficial: https://useprintly.com.br/
+Depois, siga os passos de ativação acima.
 
 RESUMO DA COMPRA
 Produto: Printly Completo
