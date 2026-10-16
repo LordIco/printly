@@ -1,10 +1,102 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow,noarchive"><meta name="theme-color" content="#030a13"><title>Acesso à licença Printly</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="theme-color" content="#030a13">
+<title>Recuperar licença — Printly</title>
 <style>
-*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;padding:24px;background:radial-gradient(circle at 50% -20%,#113a5a 0,transparent 42%),#030a13;color:#eef9ff;font:15px/1.55 Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif}.box{width:min(620px,100%);background:#071522eb;border:1px solid #17405e;border-radius:22px;padding:28px;box-shadow:0 30px 90px #0009}.brand{display:flex;align-items:center;gap:12px;margin-bottom:24px}.brand img{width:48px;height:48px;border-radius:12px}.brand b{font-size:22px}.brand small{display:block;color:#80a1b8}h1{font-size:clamp(28px,6vw,42px);line-height:1.05;margin:0 0 12px;letter-spacing:-.04em}h1 span{color:#34d8ff}p{color:#9fb8ca;margin:0 0 22px}.field{display:grid;gap:7px;margin:13px 0}.field label{font-size:12px;font-weight:800;color:#bed1df}.field input{width:100%;padding:13px 14px;background:#04101b;border:1px solid #1a4668;border-radius:11px;color:#fff;outline:none}.field input:focus{border-color:#2bd8ff;box-shadow:0 0 0 3px #20ccef1c}.btn{width:100%;border:0;border-radius:11px;padding:13px 16px;margin-top:7px;background:linear-gradient(90deg,#24d5fa,#5b6cff);color:#03111a;font-weight:900;cursor:pointer}.btn:disabled{opacity:.55}.msg{margin-top:14px;padding:12px 13px;border-radius:10px;display:none}.msg.ok{display:block;background:#0b2b20;border:1px solid #256d51;color:#c4f8dc}.msg.err{display:block;background:#2c121b;border:1px solid #703348;color:#ffc5cd}.license{margin-top:16px;padding:16px;background:#04101b;border:1px solid #245375;border-radius:13px;display:none}.license.show{display:block}.key{font:800 16px/1.5 ui-monospace,SFMono-Regular,Consolas,monospace;color:#86edff;overflow-wrap:anywhere;margin:8px 0}.copy{border:1px solid #2b6388;background:#092036;color:#dff8ff;border-radius:8px;padding:8px 10px;cursor:pointer;font-weight:800}.help{margin-top:20px;padding-top:16px;border-top:1px solid #14344c;color:#7898af;font-size:12px}.help a{color:#41dfff} </style>
-</head><body><main class="box"><div class="brand"><img src="../assets/img/favicon.png" alt=""><div><b>Printly</b><small>Acesso à licença</small></div></div><h1>Recupere sua <span>licença Printly.</span></h1><p>Use o mesmo e-mail e WhatsApp informados na compra. A chave só é exibida quando existe um pagamento aprovado e uma licença ativa para o Printly.</p><form id="form"><div class="field"><label>E-mail da compra</label><input id="email" type="email" autocomplete="email" required></div><div class="field"><label>WhatsApp da compra</label><input id="phone" type="tel" autocomplete="tel" placeholder="(19) 99999-9999" required></div><button id="submit" class="btn">Localizar minha licença</button></form><div id="msg" class="msg"></div><div id="license" class="license"><small>SUA CHAVE PRINTLY</small><div id="key" class="key"></div><button id="copy" class="copy" type="button">Copiar chave</button><div class="help">Abra o Printly → Licença / Ativação → cole esta chave. A ativação é vinculada ao limite de computadores da sua licença.</div></div><div class="help">Pagamento ainda não aprovado? Aguarde a confirmação da Eduzz e tente novamente. Em caso de suporte, <a href="https://uiesczevcmkzdtybxuez.supabase.co/functions/v1/printly-link?key=support_url" target="_blank" rel="noopener">fale com a IcoLabs</a>.</div></main>
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;display:grid;place-items:center;padding:22px;background:radial-gradient(circle at 50% -20%,#113a5a 0,transparent 45%),#030a13;color:#edfaff;font:15px/1.6 Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+.shell{width:min(625px,100%);background:#071522f2;border:1px solid #1b4460;border-radius:22px;box-shadow:0 25px 85px #000a;overflow:hidden}
+.header{border-bottom:1px solid #193e57;padding:25px 29px 21px;background:linear-gradient(125deg,#09243d,#06111f)}
+.brand{display:flex;align-items:center;gap:13px}.brand img{width:45px;height:45px;border-radius:11px}.brand b{font-size:24px;letter-spacing:-1px;line-height:1.1}.brand small{display:block;font-size:11px;letter-spacing:1.1px;color:#9dbfd2;font-weight:700}
+.main{padding:31px 30px 26px}.steps{display:flex;align-items:center;gap:9px;color:#83a7be;font-weight:700;font-size:11px;letter-spacing:.55px;margin-bottom:20px}.step{display:flex;align-items:center;gap:6px}.dot{display:grid;place-items:center;width:22px;height:22px;border:1px solid #37647d;border-radius:50%;font-size:11px}.step.active{color:#6fe9ff}.step.active .dot{border-color:#43cde9;color:#42d9fc;background:#082d42}
+h1{font-size:clamp(28px,6vw,40px);line-height:1.14;margin:0 0 12px;letter-spacing:-1.3px}h1 span{color:#34d8ff}
+p{color:#a6bfd0;margin:0 0 23px}.field{display:grid;gap:7px;margin:17px 0}.field label{font-size:12px;color:#c7dce9;font-weight:750}.field input{width:100%;border-radius:10px;border:1px solid #255271;background:#04101c;color:#fff;padding:14px;font-size:16px;outline:none}.field input:focus{border-color:#38c8e9;box-shadow:0 0 0 3px #18cafa24}
+button{font:inherit;cursor:pointer}.btn{display:block;width:100%;padding:14px 16px;border:0;border-radius:11px;background:linear-gradient(105deg,#23d1f5,#6173ff);color:#04121d;font-weight:900}.btn:disabled{cursor:wait;opacity:.6}
+.secondary{padding:9px 12px;border-radius:9px;border:1px solid #285678;color:#b8e2f5;background:#0b2740;font-weight:750}.secondary:disabled{opacity:.5}
+.msg{display:none;margin:15px 0 0;padding:13px 14px;border-radius:10px;font-size:14px}.msg.info{display:block;background:#0c2b39;border:1px solid #21627b;color:#c7efff}.msg.ok{display:block;background:#0c2c22;border:1px solid #27744f;color:#c6ffe0}.msg.err{display:block;background:#311820;border:1px solid #823e51;color:#ffccd3}
+.small{font-size:12px;color:#89adc3}.actions{display:flex;flex-wrap:wrap;gap:9px;align-items:center;margin-top:17px}
+.license{border:1px solid #245475;background:#06111e;border-radius:12px;padding:16px;margin:13px 0}.tag{font-weight:750;font-size:11px;color:#65dffc;letter-spacing:1px;text-transform:uppercase}.key{margin:11px 0;color:#98efff;font:800 17px/1.6 ui-monospace,SFMono-Regular,Consolas,monospace;overflow-wrap:anywhere}.license .meta{font-size:13px;color:#abc6d6;margin-top:6px}.license .copy{margin-top:13px}
+.help{margin-top:23px;padding-top:18px;border-top:1px solid #1e425d;font-size:12px;color:#96b2c5}.help a{color:#67ddff}
+footer{padding:18px 30px 23px;border-top:1px solid #163a53;background:#06101c;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;color:#85a5bb;font-size:11px}footer img{width:142px;max-width:100%;height:auto}
+[hidden]{display:none!important}
+@media(max-width:480px){.main{padding:26px 20px}.header{padding:20px}.shell{border-radius:18px}footer{padding:16px 20px}.steps{font-size:10px}}
+</style>
+</head>
+<body>
+<main class="shell">
+<header class="header"><div class="brand"><img src="../assets/img/favicon.png" alt="Ícone Printly"><div><b>Printly</b><small>ACESSO &amp; LICENÇAS</small></div></div></header>
+<div class="main">
+<div class="steps" aria-label="Etapas da recuperação"><span class="step active" id="s1"><span class="dot">1</span> Seu e-mail</span><span aria-hidden="true">›</span><span class="step" id="s2"><span class="dot">2</span> Verificação</span><span aria-hidden="true">›</span><span class="step" id="s3"><span class="dot">3</span> Sua licença</span></div>
+<section id="phase1">
+<h1>Recupere sua <span>licença Printly.</span></h1>
+<p>Informe o e-mail cadastrado na sua compra ou no acesso concedido pela IcoLabs. Enviaremos um código para confirmar que a conta de e-mail é sua.</p>
+<form id="requestForm"><div class="field"><label for="email">E-mail cadastrado</label><input id="email" type="email" maxlength="254" autocomplete="email" placeholder="voce@exemplo.com.br" required></div><button class="btn" id="requestBtn" type="submit">Enviar código de verificação</button></form>
+</section>
+<section id="phase2" hidden>
+<h1>Verifique seu <span>e-mail.</span></h1>
+<p>Se existir uma licença ativa para <strong id="emailLabel" style="color:#e8f9ff"></strong>, enviaremos um código de seis dígitos. Confira também a pasta de spam.</p>
+<form id="verifyForm"><div class="field"><label for="otp">Código de 6 dígitos</label><input id="otp" type="text" inputmode="numeric" pattern="[0-9]{6}" autocomplete="one-time-code" maxlength="6" placeholder="000000" required></div><button class="btn" id="verifyBtn" type="submit">Confirmar código e recuperar licença</button></form>
+<div class="actions"><button id="backBtn" type="button" class="secondary">Alterar e-mail</button><button id="resendBtn" type="button" class="secondary">Solicitar outro código</button></div>
+<p class="small" style="margin:14px 0 0">O código expira em 10 minutos e pode ser utilizado uma única vez. Por segurança, os envios são limitados.</p>
+</section>
+<section id="phase3" hidden>
+<h1>Suas licenças <span>Printly.</span></h1>
+<p>Verificação concluída. Estas são as licenças atualmente disponíveis para o e-mail confirmado. Guarde suas chaves em segurança.</p>
+<div id="licenses"></div>
+<div class="actions"><button id="againBtn" type="button" class="secondary">Concluir e limpar dados da tela</button></div>
+</section>
+<div id="message" class="msg" role="status" aria-live="polite"></div>
+<div class="help">Já tem o Printly instalado? Abra <strong>Configurações → Licença / Ativação</strong> e informe a chave recuperada. Se ainda não instalou, baixe pelo <a href="https://useprintly.com.br/">site oficial</a>. Precisa de ajuda? <a href="https://uiesczevcmkzdtybxuez.supabase.co/functions/v1/printly-link?key=support_url" target="_blank" rel="noopener">Fale com a IcoLabs.</a></div>
+</div>
+<footer><span>RECUPERAÇÃO PROTEGIDA POR VERIFICAÇÃO DE E-MAIL<br>© 2026 Printly · IcoLabs</span><img src="../assets/img/icolabs-identidade-1.1-email.png" alt="IcoLabs"></footer>
+</main>
 <script>
-const endpoint='https://uiesczevcmkzdtybxuez.supabase.co/functions/v1/printly-license-claim';const f=document.getElementById('form'),m=document.getElementById('msg'),box=document.getElementById('license'),k=document.getElementById('key'),btn=document.getElementById('submit');f.addEventListener('submit',async e=>{e.preventDefault();m.className='msg';m.textContent='';box.classList.remove('show');btn.disabled=true;btn.textContent='Consultando...';try{const r=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:document.getElementById('email').value,whatsapp:document.getElementById('phone').value})});const d=await r.json();if(!r.ok||!d.ok)throw new Error(d.error||'not_found');k.textContent=d.license_key;box.classList.add('show');m.className='msg ok';m.textContent='Licença encontrada e ativa.'}catch(err){m.className='msg err';m.textContent=err.message==='too_many_attempts'?'Muitas tentativas. Aguarde um pouco e tente novamente.':'Não encontramos uma licença ativa com esses dados. Confira e-mail/WhatsApp ou aguarde a aprovação do pagamento.'}finally{btn.disabled=false;btn.textContent='Localizar minha licença'}});document.getElementById('copy').onclick=async()=>{await navigator.clipboard.writeText(k.textContent);document.getElementById('copy').textContent='Copiada ✓'};
+(()=>{
+'use strict';
+const url='https://uiesczevcmkzdtybxuez.supabase.co/functions/v1/printly-license-claim';
+const $=id=>document.getElementById(id);
+let requestId='',verifiedEmail='',current=1;
+const phase=n=>{current=n;for(let i=1;i<=3;i++){$('phase'+i).hidden=i!==n;$('s'+i).classList.toggle('active',i===n)}$('message').className='msg';$('message').textContent=''};
+const show=(msg,kind='info')=>{$('message').textContent=msg;$('message').className='msg '+kind};
+async function call(payload){const response=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},cache:'no-store',body:JSON.stringify(payload)});const body=await response.json().catch(()=>({}));if(!response.ok||!body.ok){const err=new Error(body.error||'service_unavailable');err.code=body.error;throw err}return body}
+const requestCode=async()=>{
+ const email=$('email').value.trim().toLowerCase();
+ if(!$('email').checkValidity()){$('email').reportValidity();return}
+ $('requestBtn').disabled=true;$('requestBtn').textContent='Solicitando código...';
+ $('resendBtn').disabled=true;
+ try{const data=await call({action:'request',email});requestId=data.request_id;verifiedEmail=email;$('emailLabel').textContent=email;$('otp').value='';phase(2);show('Solicitação registrada. Se houver uma licença ativa neste e-mail, o código será enviado.','info');$('otp').focus()}
+ catch(e){show(e.code==='rate_limited'?'Muitas solicitações. Aguarde um pouco antes de tentar novamente.':e.code==='invalid_email'?'Informe um e-mail válido.':'Não conseguimos processar agora. Tente novamente mais tarde.','err')}
+ finally{$('requestBtn').disabled=false;$('requestBtn').textContent='Enviar código de verificação';$('resendBtn').disabled=false}
+};
+$('requestForm').addEventListener('submit',e=>{e.preventDefault();requestCode()});
+$('verifyForm').addEventListener('submit',async e=>{
+ e.preventDefault();
+ const code=$('otp').value.trim();if(!/^[0-9]{6}$/.test(code)){$('otp').reportValidity();return}
+ $('verifyBtn').disabled=true;$('verifyBtn').textContent='Verificando...';
+ try{
+ const data=await call({action:'verify',request_id:requestId,code});
+ requestId='';$('otp').value='';$('licenses').replaceChildren();
+ if(!(data.licenses||[]).length){phase(3);show('Nenhuma licença ativa disponível. Caso precise de ajuda, entre em contato com o suporte.','info');return}
+ const names={tester:'Tester',influencer:'Influenciador',partner:'Parceiro',commercial:'Comercial',internal:'Interna IcoLabs',manual:'Cortesia'};
+ for(const item of data.licenses){
+ const card=document.createElement('div');card.className='license';
+ const tag=document.createElement('div');tag.className='tag';tag.textContent=names[item.license_type]||'Printly Completo';card.append(tag);
+ const key=document.createElement('div');key.className='key';key.textContent=String(item.license_key||'');card.append(key);
+ const meta=document.createElement('div');meta.className='meta';meta.textContent='Validade: '+(item.expires_at?new Date(item.expires_at).toLocaleDateString('pt-BR'):'Permanente');card.append(meta);
+ const copy=document.createElement('button');copy.type='button';copy.className='secondary copy';copy.textContent='Copiar chave';copy.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(key.textContent);copy.textContent='Chave copiada ✓'}catch{copy.textContent='Selecione e copie a chave acima'}});card.append(copy);
+ $('licenses').append(card)
+ }
+ phase(3);show('E-mail confirmado. Suas licenças foram recuperadas com segurança.','ok');
+ }catch(e){show(e.code==='invalid_or_expired_code'?'Código incorreto, expirado ou já utilizado. Confira o código ou solicite outro.':'Não conseguimos verificar agora. Tente novamente.','err')}
+ finally{$('verifyBtn').disabled=false;$('verifyBtn').textContent='Confirmar código e recuperar licença'}
+});
+$('backBtn').onclick=()=>{requestId='';verifiedEmail='';$('otp').value='';phase(1)};
+$('resendBtn').onclick=()=>{requestId='';$('otp').value='';phase(1);show('Para receber outro código, confirme seu e-mail e selecione Enviar código de verificação.','info')};
+$('againBtn').onclick=()=>{requestId='';verifiedEmail='';$('email').value='';$('otp').value='';$('licenses').replaceChildren();phase(1)};
+window.addEventListener('pagehide',()=>{$('licenses').replaceChildren();$('otp').value='';requestId=''});
+})();
 </script></body></html>
