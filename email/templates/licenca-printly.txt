@@ -32,6 +32,8 @@ E-mail da compra: {{EMAIL_COMPRA}}
 IMPORTANTE
 A licença é vinculada ao primeiro computador em que for ativada. Guarde sua chave em segurança. Para suporte ou transferência autorizada de máquina, fale com nossa equipe.
 
+Perdeu sua chave? Recupere pelo site oficial: https://useprintly.com.br/acesso/
+
 Suporte por WhatsApp: https://wa.me/5519988134895
 Site: https://useprintly.com.br/
 Você também pode responder diretamente a esta mensagem.
