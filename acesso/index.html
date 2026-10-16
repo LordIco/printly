@@ -59,7 +59,11 @@ footer{padding:18px 30px 23px;border-top:1px solid #163a53;background:#06101c;di
 'use strict';
 const url='https://uiesczevcmkzdtybxuez.supabase.co/functions/v1/printly-license-claim';
 const $=id=>document.getElementById(id);
-let requestId='',verifiedEmail='',current=1;
+let requestId='',verifiedEmail='',current=1,expiresAt=0;
+const sessionKey='printly_recovery_challenge_v1';
+const persist=()=>{try{sessionStorage.setItem(sessionKey,JSON.stringify({requestId,verifiedEmail,expiresAt}))}catch{}};
+const clearChallenge=()=>{requestId='';verifiedEmail='';expiresAt=0;try{sessionStorage.removeItem(sessionKey)}catch{}};
+const recover=()=>{try{const x=JSON.parse(sessionStorage.getItem(sessionKey)||'null');if(x&&/^[0-9a-f-]{36}$/i.test(x.requestId||'')&&typeof x.verifiedEmail==='string'&&Number(x.expiresAt)>Date.now()){requestId=x.requestId;verifiedEmail=x.verifiedEmail;expiresAt=Number(x.expiresAt);$('email').value=verifiedEmail;$('emailLabel').textContent=verifiedEmail;phase(2);show('Há um código de verificação válido. Digite o último código recebido por e-mail.','info');return true}}catch{}clearChallenge();return false};
 const phase=n=>{current=n;for(let i=1;i<=3;i++){$('phase'+i).hidden=i!==n;$('s'+i).classList.toggle('active',i===n)}$('message').className='msg';$('message').textContent=''};
 const show=(msg,kind='info')=>{$('message').textContent=msg;$('message').className='msg '+kind};
 async function call(payload){const response=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},cache:'no-store',body:JSON.stringify(payload)});const body=await response.json().catch(()=>({}));if(!response.ok||!body.ok){const err=new Error(body.error||'service_unavailable');err.code=body.error;throw err}return body}
@@ -68,7 +72,7 @@ const requestCode=async()=>{
  if(!$('email').checkValidity()){$('email').reportValidity();return}
  $('requestBtn').disabled=true;$('requestBtn').textContent='Solicitando código...';
  $('resendBtn').disabled=true;
- try{const data=await call({action:'request',email});requestId=data.request_id;verifiedEmail=email;$('emailLabel').textContent=email;$('otp').value='';phase(2);show('Solicitação registrada. Se houver uma licença ativa neste e-mail, o código será enviado.','info');$('otp').focus()}
+ try{const data=await call({action:'request',email});requestId=data.request_id;verifiedEmail=email;expiresAt=Date.now()+1000*Number(data.expires_in_seconds||600);persist();$('emailLabel').textContent=email;$('otp').value='';phase(2);show(data.reused?'Já existe uma solicitação válida. Digite o último código recebido. Não enviamos outro e-mail.':'Solicitação registrada. Se houver licença ativa, o código será enviado ao seu e-mail.','info');$('otp').focus()}
  catch(e){show(e.code==='rate_limited'?'Muitas solicitações. Aguarde um pouco antes de tentar novamente.':e.code==='invalid_email'?'Informe um e-mail válido.':'Não conseguimos processar agora. Tente novamente mais tarde.','err')}
  finally{$('requestBtn').disabled=false;$('requestBtn').textContent='Enviar código de verificação';$('resendBtn').disabled=false}
 };
@@ -79,7 +83,7 @@ $('verifyForm').addEventListener('submit',async e=>{
  $('verifyBtn').disabled=true;$('verifyBtn').textContent='Verificando...';
  try{
  const data=await call({action:'verify',request_id:requestId,code});
- requestId='';$('otp').value='';$('licenses').replaceChildren();
+ clearChallenge();$('otp').value='';$('licenses').replaceChildren();
  if(!(data.licenses||[]).length){phase(3);show('Nenhuma licença ativa disponível. Caso precise de ajuda, entre em contato com o suporte.','info');return}
  const names={tester:'Tester',influencer:'Influenciador',partner:'Parceiro',commercial:'Comercial',internal:'Interna IcoLabs',manual:'Cortesia'};
  for(const item of data.licenses){
@@ -94,9 +98,10 @@ $('verifyForm').addEventListener('submit',async e=>{
  }catch(e){show(e.code==='invalid_or_expired_code'?'Código incorreto, expirado ou já utilizado. Confira o código ou solicite outro.':'Não conseguimos verificar agora. Tente novamente.','err')}
  finally{$('verifyBtn').disabled=false;$('verifyBtn').textContent='Confirmar código e recuperar licença'}
 });
-$('backBtn').onclick=()=>{requestId='';verifiedEmail='';$('otp').value='';phase(1)};
-$('resendBtn').onclick=()=>{requestId='';$('otp').value='';phase(1);show('Para receber outro código, confirme seu e-mail e selecione Enviar código de verificação.','info')};
-$('againBtn').onclick=()=>{requestId='';verifiedEmail='';$('email').value='';$('otp').value='';$('licenses').replaceChildren();phase(1)};
-window.addEventListener('pagehide',()=>{$('licenses').replaceChildren();$('otp').value='';requestId=''});
+$('backBtn').onclick=()=>{clearChallenge();$('otp').value='';phase(1)};
+$('resendBtn').onclick=()=>{if(requestId&&expiresAt>Date.now()){show('Seu código anterior ainda está válido. Utilize o último código recebido por e-mail. Você poderá solicitar um novo código após o vencimento.','info');$('otp').focus();return}clearChallenge();$('otp').value='';phase(1);show('Solicite um novo código para continuar.','info')};
+$('againBtn').onclick=()=>{clearChallenge();$('email').value='';$('otp').value='';$('licenses').replaceChildren();phase(1)};
+window.addEventListener('pagehide',()=>{$('licenses').replaceChildren();$('otp').value='' });
+recover();
 })();
 </script></body></html>
