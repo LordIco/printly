@@ -27,10 +27,16 @@ window.PRINTLY_DOWNLOAD_CONFIG = {
     document.querySelectorAll('script[type="application/ld+json"]').forEach(function (node) {
       try {
         var data = JSON.parse(node.textContent);
-        if (data && data['@type'] === 'SoftwareApplication' && data.name === 'Printly') {
-          data.offers = { '@type': 'Offer', name: 'Printly — licença permanente', price: price.raw, priceCurrency: 'BRL', availability: 'https://schema.org/InStock' };
-          node.textContent = JSON.stringify(data);
-        }
+        var items = data && Array.isArray(data['@graph']) ? data['@graph'] : [data];
+        items.forEach(function (item) {
+          if (item && item['@type'] === 'SoftwareApplication' && item.name === 'Printly') {
+            item.offers = { '@type': 'Offer', name: 'Printly — licença permanente', price: price.raw, priceCurrency: 'BRL',
+              priceSpecification: { '@type': 'UnitPriceSpecification', price: '99.90', priceCurrency: 'BRL',
+                priceType: 'https://schema.org/StrikethroughPrice' },
+              availability: 'https://schema.org/InStock', url: 'https://useprintly.com.br/#planos' };
+            node.textContent = JSON.stringify(data);
+          }
+        });
       } catch (e) {}
     });
   }
