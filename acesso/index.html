@@ -6,6 +6,8 @@
 <meta name="robots" content="noindex,nofollow,noarchive">
 <meta name="theme-color" content="#030a13">
 <title>Recuperar licença — Printly</title>
+<meta name="description" content="Recupere sua licença Printly com segurança por meio da verificação do seu e-mail cadastrado.">
+<link rel="canonical" href="https://useprintly.com.br/acesso/">
 <style>
 *{box-sizing:border-box}
 body{margin:0;min-height:100vh;display:grid;place-items:center;padding:22px;background:radial-gradient(circle at 50% -20%,#113a5a 0,transparent 45%),#030a13;color:#edfaff;font:15px/1.6 Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
@@ -13,7 +15,7 @@ body{margin:0;min-height:100vh;display:grid;place-items:center;padding:22px;back
 .header{border-bottom:1px solid #193e57;padding:25px 29px 21px;background:linear-gradient(125deg,#09243d,#06111f)}
 .brand{display:flex;align-items:center;gap:13px}.brand img{width:45px;height:45px;border-radius:11px}.brand b{font-size:24px;letter-spacing:-1px;line-height:1.1}.brand small{display:block;font-size:11px;letter-spacing:1.1px;color:#9dbfd2;font-weight:700}
 .main{padding:31px 30px 26px}.steps{display:flex;align-items:center;gap:9px;color:#83a7be;font-weight:700;font-size:11px;letter-spacing:.55px;margin-bottom:20px}.step{display:flex;align-items:center;gap:6px}.dot{display:grid;place-items:center;width:22px;height:22px;border:1px solid #37647d;border-radius:50%;font-size:11px}.step.active{color:#6fe9ff}.step.active .dot{border-color:#43cde9;color:#42d9fc;background:#082d42}
-h1{font-size:clamp(28px,6vw,40px);line-height:1.14;margin:0 0 12px;letter-spacing:-1.3px}h1 span{color:#34d8ff}
+h1,h2.phase-title{font-size:clamp(28px,6vw,40px);line-height:1.14;margin:0 0 12px;letter-spacing:-1.3px}h1 span{color:#34d8ff}
 p{color:#a6bfd0;margin:0 0 23px}.field{display:grid;gap:7px;margin:17px 0}.field label{font-size:12px;color:#c7dce9;font-weight:750}.field input{width:100%;border-radius:10px;border:1px solid #255271;background:#04101c;color:#fff;padding:14px;font-size:16px;outline:none}.field input:focus{border-color:#38c8e9;box-shadow:0 0 0 3px #18cafa24}
 button{font:inherit;cursor:pointer}.btn{display:block;width:100%;padding:14px 16px;border:0;border-radius:11px;background:linear-gradient(105deg,#23d1f5,#6173ff);color:#04121d;font-weight:900}.btn:disabled{cursor:wait;opacity:.6}
 .secondary{padding:9px 12px;border-radius:9px;border:1px solid #285678;color:#b8e2f5;background:#0b2740;font-weight:750}.secondary:disabled{opacity:.5}
@@ -30,23 +32,23 @@ footer{padding:18px 30px 23px;border-top:1px solid #163a53;background:#06101c;di
 <main class="shell">
 <header class="header"><div class="brand"><img src="../assets/img/favicon.png" alt="Ícone Printly"><div><b>Printly</b><small>ACESSO &amp; LICENÇAS</small></div></div></header>
 <div class="main">
-<div class="steps" aria-label="Etapas da recuperação"><span class="step active" id="s1"><span class="dot">1</span> Seu e-mail</span><span aria-hidden="true">›</span><span class="step" id="s2"><span class="dot">2</span> Verificação</span><span aria-hidden="true">›</span><span class="step" id="s3"><span class="dot">3</span> Sua licença</span></div>
+<div class="steps" role="group" aria-label="Etapas da recuperação"><span class="step active" id="s1"><span class="dot">1</span> Seu e-mail</span><span aria-hidden="true">›</span><span class="step" id="s2"><span class="dot">2</span> Verificação</span><span aria-hidden="true">›</span><span class="step" id="s3"><span class="dot">3</span> Sua licença</span></div>
 <section id="phase1">
 <h1>Recupere sua <span>licença Printly.</span></h1>
 <p>Informe o e-mail cadastrado na sua compra ou no acesso concedido pela IcoLabs. Enviaremos um código para confirmar que a conta de e-mail é sua.</p>
 <form id="requestForm"><div class="field"><label for="email">E-mail cadastrado</label><input id="email" type="email" maxlength="254" autocomplete="email" placeholder="voce@exemplo.com.br" required></div><button class="btn" id="requestBtn" type="submit">Enviar código de verificação</button></form>
 </section>
 <section id="phase2" hidden>
-<h1>Verifique seu <span>e-mail.</span></h1>
+<h2 class="phase-title" tabindex="-1">Verifique seu <span>e-mail.</span></h2>
 <p>Se existir uma licença ativa para <strong id="emailLabel" style="color:#e8f9ff"></strong>, enviaremos um código de seis dígitos. Confira também a pasta de spam.</p>
 <form id="verifyForm"><div class="field"><label for="otp">Código de 6 dígitos</label><input id="otp" type="text" inputmode="numeric" pattern="[0-9]{6}" autocomplete="one-time-code" maxlength="6" placeholder="000000" required></div><button class="btn" id="verifyBtn" type="submit">Confirmar código e recuperar licença</button></form>
 <div class="actions"><button id="backBtn" type="button" class="secondary">Alterar e-mail</button><button id="resendBtn" type="button" class="secondary">Solicitar outro código</button></div>
 <p class="small" style="margin:14px 0 0">O código expira em 10 minutos e pode ser utilizado uma única vez. Por segurança, os envios são limitados.</p>
 </section>
 <section id="phase3" hidden>
-<h1>Suas licenças <span>Printly.</span></h1>
+<h2 class="phase-title" tabindex="-1">Suas licenças <span>Printly.</span></h2>
 <p>Verificação concluída. Estas são as licenças atualmente disponíveis para o e-mail confirmado. Guarde suas chaves em segurança.</p>
-<div id="licenses"></div>
+<div id="licenses" aria-live="polite"></div>
 <div class="actions"><button id="againBtn" type="button" class="secondary">Concluir e limpar dados da tela</button></div>
 </section>
 <div id="message" class="msg" role="status" aria-live="polite"></div>
@@ -64,7 +66,7 @@ const sessionKey='printly_recovery_challenge_v1';
 const persist=()=>{try{sessionStorage.setItem(sessionKey,JSON.stringify({requestId,verifiedEmail,expiresAt}))}catch{}};
 const clearChallenge=()=>{requestId='';verifiedEmail='';expiresAt=0;try{sessionStorage.removeItem(sessionKey)}catch{}};
 const recover=()=>{try{const x=JSON.parse(sessionStorage.getItem(sessionKey)||'null');if(x&&/^[0-9a-f-]{36}$/i.test(x.requestId||'')&&typeof x.verifiedEmail==='string'&&Number(x.expiresAt)>Date.now()){requestId=x.requestId;verifiedEmail=x.verifiedEmail;expiresAt=Number(x.expiresAt);$('email').value=verifiedEmail;$('emailLabel').textContent=verifiedEmail;phase(2);show('Há um código de verificação válido. Digite o último código recebido por e-mail.','info');return true}}catch{}clearChallenge();return false};
-const phase=n=>{current=n;for(let i=1;i<=3;i++){$('phase'+i).hidden=i!==n;$('s'+i).classList.toggle('active',i===n)}$('message').className='msg';$('message').textContent=''};
+const phase=n=>{current=n;for(let i=1;i<=3;i++){$('phase'+i).hidden=i!==n;$('s'+i).classList.toggle('active',i===n);if(i===n)$('s'+i).setAttribute('aria-current','step');else $('s'+i).removeAttribute('aria-current')}$('message').className='msg';$('message').textContent='';if(n>1){const heading=$('phase'+n).querySelector('.phase-title');if(heading)heading.focus({preventScroll:true})}};
 const show=(msg,kind='info')=>{$('message').textContent=msg;$('message').className='msg '+kind};
 async function call(payload){const response=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},cache:'no-store',body:JSON.stringify(payload)});const body=await response.json().catch(()=>({}));if(!response.ok||!body.ok){const err=new Error(body.error||'service_unavailable');err.code=body.error;throw err}return body}
 const requestCode=async()=>{
