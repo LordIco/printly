@@ -355,3 +355,80 @@ footer .brand img{
   .hero-nozzle img{object-position:50% 58%}
   .floating-wa{min-width:54px!important}
 }
+
+
+/* Hero background correction — no clipping / visible nozzle */
+.hero{
+  overflow:visible!important;
+}
+.hero-nozzle{
+  left:calc(50% - 50vw)!important;
+  right:auto!important;
+  top:0!important;
+  bottom:0!important;
+  width:100vw!important;
+  height:100%!important;
+  overflow:hidden!important;
+  opacity:1!important;
+}
+.hero-nozzle img{
+  position:absolute!important;
+  left:-180px!important;
+  top:0!important;
+  width:900px!important;
+  height:100%!important;
+  object-fit:cover!important;
+  object-position:50% 50%!important;
+  opacity:.78!important;
+  filter:saturate(1.26) contrast(1.12) brightness(.92)!important;
+  transform:none!important;
+  -webkit-mask-image:none!important;
+  mask-image:none!important;
+}
+.hero::after{
+  background:
+    linear-gradient(90deg,
+      rgba(2,10,24,.34) 0%,
+      rgba(2,10,24,.46) 18%,
+      rgba(2,10,24,.78) 34%,
+      rgba(2,10,24,.96) 49%,
+      rgba(2,10,24,.92) 63%,
+      rgba(2,10,24,.75) 100%
+    ),
+    linear-gradient(180deg,rgba(2,10,24,.05) 0%,rgba(2,10,24,.10) 62%,rgba(2,10,24,.55) 100%)!important;
+}
+.hero-copy::before{
+  background:linear-gradient(90deg,rgba(2,10,24,.74) 0%,rgba(2,10,24,.58) 70%,rgba(2,10,24,.20) 100%)!important;
+}
+@media(max-width:1180px){
+  .hero-nozzle{width:100vw!important}
+  .hero-nozzle img{
+    left:-220px!important;
+    width:850px!important;
+    opacity:.72!important;
+  }
+}
+@media(max-width:900px){
+  .hero{
+    overflow:hidden!important;
+  }
+  .hero-nozzle{
+    left:0!important;
+    width:100%!important;
+    height:420px!important;
+  }
+  .hero-nozzle img{
+    left:0!important;
+    width:100%!important;
+    height:100%!important;
+    object-position:50% 53%!important;
+    opacity:.48!important;
+  }
+  .hero::after{
+    background:linear-gradient(180deg,rgba(2,10,24,.18) 0%,rgba(2,10,24,.58) 46%,rgba(2,10,24,.94) 78%,#020a18 100%)!important;
+  }
+}
+@media(max-width:620px){
+  .hero-nozzle{height:340px!important}
+  .hero-nozzle img{opacity:.42!important}
+}
