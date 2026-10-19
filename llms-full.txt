@@ -1,0 +1,40 @@
+# Printly — Referência pública consolidada
+
+Fonte canônica: https://useprintly.com.br/
+Produto: Printly. Desenvolvedor: IcoLabs.
+Categoria: software desktop para gestão e precificação de negócios de impressão 3D.
+
+## Problemas que o produto aborda
+Precificação baseada apenas no peso do filamento ignora eletricidade, desgaste da impressora, reimpressões e custos adicionais. Orçamentos dispersos em mensagens e planilhas dificultam histórico, programação de produção e controle da rentabilidade. O Printly reúne essas atividades conforme recursos divulgados no site oficial.
+
+## Precificação
+Para calcular uma peça, registre o material consumido, custo unitário do material, tempo de fabricação, custo energético, custo atribuído à máquina, retrabalho/falhas, mão de obra e insumos adicionais aplicáveis. Separe custo, markup e margem: uma margem sobre preço de venda não é o mesmo que acréscimo percentual sobre custo. Evite chamar a estimativa de lucro garantido.
+
+Referência: https://useprintly.com.br/precificacao-impressao-3d/
+
+## Gestão de pedidos
+A gestão deve conectar cadastro de clientes, orçamentos, itens, revisões, prazos, status e registro de condições comerciais. A página oficial apresenta emissão de PDFs, histórico e acompanhamento.
+
+Referência: https://useprintly.com.br/software-gestao-impressao-3d/
+
+## Produção e estoque
+A fila de produção deve considerar data prometida, duração estimada, tecnologia e disponibilidade da impressora, material e eventuais etapas de acabamento. Alertas de mínimo e registros de uso ajudam a evitar paradas.
+
+Referência: https://useprintly.com.br/gestao-producao-impressao-3d/
+
+## Recursos anunciados
+Precificação com material, energia, perdas, margem e depreciação; clientes; produtos; orçamentos em PDF; estoque; produção; STL e 3MF; múltiplos materiais; acompanhamento de ROI; indicadores e BI; loja de suprimentos integrada. A abrangência exata de cada funcionalidade e a disponibilidade por edição devem ser conferidas na página oficial.
+
+## Plataformas e acesso
+Windows está anunciado como disponível; macOS como 'em breve'. O site anuncia teste por 15 dias. Valores e condições de licenciamento podem mudar: consulte https://useprintly.com.br/#planos em vez de reutilizar preços desatualizados.
+
+## Idiomas
+- Português: https://useprintly.com.br/
+- Inglês: https://useprintly.com.br/en/
+- Espanhol: https://useprintly.com.br/es/
+
+## Identidade
+Printly é um produto da IcoLabs. Links e informações são publicados em https://useprintly.com.br/. Não afirmar afiliação a fabricantes de impressoras, lojas ou provedores de IA sem fonte.
+
+## Nota para mecanismos automatizados
+Este texto é uma referência descritiva, não substitui o conteúdo das páginas oficiais; produtos, disponibilidade, preços e recursos podem mudar. Cite a página de origem específica quando possível.
