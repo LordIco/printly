@@ -432,3 +432,17 @@ footer .brand img{
   .hero-nozzle{height:340px!important}
   .hero-nozzle img{opacity:.42!important}
 }
+
+
+/* Hero image test v5 — user-selected bright nozzle frame */
+.hero{overflow:hidden!important;background:#020a18!important}
+.hero-nozzle{position:absolute!important;left:calc(50% - 50vw)!important;right:auto!important;top:0!important;bottom:0!important;width:100vw!important;height:100%!important;overflow:hidden!important;opacity:1!important;z-index:-2!important}
+.hero-nozzle img{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:cover!important;object-position:center 50%!important;opacity:.74!important;filter:saturate(1.10) contrast(1.05) brightness(.82)!important;transform:none!important;-webkit-mask-image:none!important;mask-image:none!important}
+.hero::before{background:radial-gradient(circle at 50% 61%,rgba(34,216,242,.16),transparent 28%),linear-gradient(180deg,#020a18 0%,rgba(2,10,24,.18) 30%,rgba(2,10,24,.26) 72%,#020a18 100%)!important}
+.hero::after{background:linear-gradient(90deg,rgba(2,10,24,.82) 0%,rgba(2,10,24,.70) 20%,rgba(2,10,24,.42) 40%,rgba(2,10,24,.34) 52%,rgba(2,10,24,.64) 68%,rgba(2,10,24,.83) 100%)!important}
+.hero-copy::before{display:none!important}
+.hero h1{text-shadow:0 7px 28px rgba(0,0,0,.62)!important}
+.hero-text{text-shadow:0 2px 12px rgba(0,0,0,.72)!important}
+.hero-screen{backdrop-filter:blur(4px);background:rgba(3,18,38,.82)!important}
+@media(max-width:900px){.hero-nozzle{height:470px!important}.hero-nozzle img{object-position:center 48%!important;opacity:.56!important}.hero::after{background:linear-gradient(180deg,rgba(2,10,24,.34) 0%,rgba(2,10,24,.58) 48%,rgba(2,10,24,.92) 78%,#020a18 100%)!important}}
+@media(max-width:620px){.hero-nozzle{height:390px!important}.hero-nozzle img{object-position:center 50%!important;opacity:.50!important}}
