@@ -1,0 +1,17 @@
+# Printly
+
+> Software desktop de gestão e precificação para negócios de impressão 3D, desenvolvido pela IcoLabs.
+
+## Recursos
+- Precificação completa
+- Clientes e orçamentos em PDF
+- Materiais, estoque e produção
+- STL e 3MF, múltiplos materiais
+- ROI, relatórios e BI
+- Loja de suprimentos integrada
+
+## Referências
+- https://useprintly.com.br/
+- https://useprintly.com.br/precificacao-impressao-3d/
+- https://useprintly.com.br/software-gestao-impressao-3d/
+- https://useprintly.com.br/gestao-producao-impressao-3d/

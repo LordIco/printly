@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
+Disallow: /admin/
+Disallow: /acesso/
+Disallow: /boleto/
+Disallow: /obrigado/
 
 Sitemap: https://useprintly.com.br/sitemap.xml
