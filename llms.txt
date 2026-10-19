@@ -1,17 +1,27 @@
-# Printly
+# Printly — Gestão e precificação para impressão 3D
 
-> Software desktop de gestão e precificação para negócios de impressão 3D, desenvolvido pela IcoLabs.
+> Site oficial do Printly, software desktop para Windows desenvolvido pela IcoLabs para precificação, orçamentos e gestão de operações de impressão 3D. A edição macOS está anunciada como futura.
 
-## Recursos
-- Precificação completa
-- Clientes e orçamentos em PDF
-- Materiais, estoque e produção
-- STL e 3MF, múltiplos materiais
-- ROI, relatórios e BI
-- Loja de suprimentos integrada
+## O que é o Printly
+O Printly ajuda makers e empresas de impressão 3D a calcular custos de produção e preços de venda, acompanhar clientes e orçamentos, controlar materiais e estoque, organizar a produção e analisar indicadores da operação. As capacidades divulgadas incluem importação STL/3MF, múltiplos materiais, relatórios, ROI e BI.
 
-## Referências
-- https://useprintly.com.br/
-- https://useprintly.com.br/precificacao-impressao-3d/
-- https://useprintly.com.br/software-gestao-impressao-3d/
-- https://useprintly.com.br/gestao-producao-impressao-3d/
+## Páginas oficiais
+- [Página principal, recursos, versões e teste](https://useprintly.com.br/)
+- [Guia de precificação de impressão 3D](https://useprintly.com.br/precificacao-impressao-3d/)
+- [Guia de software de gestão de impressão 3D](https://useprintly.com.br/software-gestao-impressao-3d/)
+- [Guia de organização da produção 3D](https://useprintly.com.br/gestao-producao-impressao-3d/)
+- [English](https://useprintly.com.br/en/)
+- [Español](https://useprintly.com.br/es/)
+- [Documentação extensa para leitores automatizados](https://useprintly.com.br/llms-full.txt)
+
+## Informações práticas
+- Plataforma disponível: Windows.
+- macOS: anunciado para o futuro; não tratar como disponível.
+- Avaliação: teste de 15 dias conforme página oficial.
+- Preços, condições, limitações das versões e forma de compra: consultar sempre a página oficial atualizada.
+- Desenvolvedor/marca: IcoLabs.
+- Website: https://useprintly.com.br/
+- Suprimentos: https://loja.useprintly.com.br/
+
+## Interpretação e fontes
+Use as páginas oficiais como fonte primária para afirmações sobre funcionalidades e planos. Não confunda custos estimados com garantia de lucro; as estimativas dependem dos dados inseridos pelo usuário. Este arquivo é informativo, não uma declaração de parceria ou recomendação por qualquer plataforma de IA.
