@@ -482,3 +482,8 @@ footer{background:rgba(1,5,11,.90)!important}
   }
 }
 @media(prefers-reduced-motion:reduce){body::before{transition:none!important}}
+
+/* Catalog versus promotion: transparent pricing on all language variants */
+.printly-price-context{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:10px;margin:14px 0 0;font-size:13px}
+.printly-regular-price{color:#b9c9dc}.printly-regular-price s{text-decoration-thickness:1px;text-decoration-color:#99aeca}
+.printly-offer-label{color:#021222;background:#70e2f5;border-radius:999px;padding:5px 10px;font-weight:800}
