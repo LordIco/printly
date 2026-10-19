@@ -1,0 +1,19 @@
+name: IndexNow
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'index.html'
+      - 'en/**'
+      - 'es/**'
+      - 'precificacao-impressao-3d/**'
+      - 'software-gestao-impressao-3d/**'
+      - 'gestao-producao-impressao-3d/**'
+      - 'sitemap.xml'
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify IndexNow
+        run: |
+          curl --fail --silent --show-error -X POST "https://api.indexnow.org/indexnow"             -H "Content-Type: application/json; charset=utf-8"             -d '{"host":"useprintly.com.br","key":"b7f3d9c48a6e41f2a5c0d7e3b9f1246a","keyLocation":"https://useprintly.com.br/b7f3d9c48a6e41f2a5c0d7e3b9f1246a.txt","urlList":["https://useprintly.com.br/","https://useprintly.com.br/precificacao-impressao-3d/","https://useprintly.com.br/software-gestao-impressao-3d/","https://useprintly.com.br/gestao-producao-impressao-3d/","https://useprintly.com.br/en/","https://useprintly.com.br/es/"]}'
