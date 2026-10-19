@@ -502,10 +502,10 @@
       <h2 id="downloadTitle">Para onde enviamos seu acesso?</h2>
       <p>Preencha os dados abaixo para liberar o download do Printly e iniciar seu teste completo de 15 dias. Também podemos enviar informações importantes sobre instalação e atualizações.</p>
       <form id="downloadForm">
-        <label>Nome completo<input name="name" type="text" autocomplete="name" minlength="2" maxlength="100" required></label>
-        <label>E-mail<input name="email" type="email" autocomplete="email" inputmode="email" maxlength="160" placeholder="voce@exemplo.com.br" required><small class="field-hint">Informe um endereço de e-mail válido.</small></label>
-        <label>WhatsApp <small>(celular com DDD)</small><input name="whatsapp" type="tel" autocomplete="tel" inputmode="numeric" minlength="15" maxlength="15" pattern="\([1-9][0-9]\) 9[0-9]{4}-[0-9]{4}" placeholder="(19) 99999-9999" required><small class="field-hint">Obrigatório: celular brasileiro com DDD.</small></label>
-        <label class="consent-check"><input name="consent" type="checkbox" required><span>Concordo com o uso destes dados para liberar o download e receber comunicações sobre o Printly, conforme a <a href="privacidade.html" target="_blank">Política de Privacidade</a>.</span></label>
+        <label>Nome completo<input aria-label="Nome completo" name="name" type="text" autocomplete="name" minlength="2" maxlength="100" required></label>
+        <label>E-mail<input aria-label="E-mail" name="email" type="email" autocomplete="email" inputmode="email" maxlength="160" placeholder="voce@exemplo.com.br" required><small class="field-hint">Informe um endereço de e-mail válido.</small></label>
+        <label>WhatsApp <small>(celular com DDD)</small><input aria-label="WhatsApp" name="whatsapp" type="tel" autocomplete="tel" inputmode="numeric" minlength="15" maxlength="15" pattern="\([1-9][0-9]\) 9[0-9]{4}-[0-9]{4}" placeholder="(19) 99999-9999" required><small class="field-hint">Obrigatório: celular brasileiro com DDD.</small></label>
+        <label class="consent-check"><input aria-label="Aceite dos termos de privacidade" name="consent" type="checkbox" required><span>Concordo com o uso destes dados para liberar o download e receber comunicações sobre o Printly, conforme a <a href="privacidade.html" target="_blank">Política de Privacidade</a>.</span></label>
         <button class="btn btn-primary download-submit" type="submit">Liberar meu download</button>
         <div class="download-status" id="downloadStatus" role="status" aria-live="polite"></div>
       </form>
