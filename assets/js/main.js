@@ -23,14 +23,21 @@
   }
 
   const screens = {
-    dashboard:{n:'01',title:'Painel para decidir sem trocar de contexto',text:'Precificação rápida, resumo do cálculo, produtos, fila de produção e histórico reunidos na visão inicial.',label:'Painel principal',img:'assets/img/screen-dashboard.webp'},
-    quote:{n:'02',title:'Orçamento conectado à operação',text:'Cliente, prazo, prioridade, itens, custo interno, margem, total e geração de PDF no mesmo fluxo.',label:'Orçamento',img:'assets/img/screen-orcamento-edit.webp'},
-    printers:{n:'03',title:'ROI da impressora dentro da gestão',text:'Valor da máquina, potência, ROI desejado, horas por dia e dias por mês ajudam a planejar o retorno do equipamento.',label:'Impressoras / ROI',img:'assets/img/screen-impressoras.webp'},
-    materials:{n:'04',title:'Filamentos e resinas com estoque e custo',text:'Materiais FDM e SLA, saldo, valor em estoque, mínimo e movimentações ficam registrados em uma área dedicada.',label:'Materiais / Estoque',img:'assets/img/screen-materiais.webp'},
-    production:{n:'05',title:'Produção com prioridade, prazo e status',text:'Acompanhe cliente, projeto, quantidade, entrega, impressora, material e comparação entre previsto e realizado.',label:'Produção',img:'assets/img/screen-producao.webp'},
-    stl:{n:'06',title:'Do STL ao item comercial',text:'Leia dimensões, formato, triângulos e volume geométrico; depois associe material, impressora e leve o item ao orçamento.',label:'Importar STL',img:'assets/img/screen-stl.webp'},
+    dashboard:{n:'01',title:'Painel para decidir sem trocar de contexto',text:'Precificação rápida, resumo do cálculo, produtos, fila de produção e histórico reunidos na visão inicial.',label:'Painel principal',img:'assets/img/screen-dashboard.webp?v=20261028'},
+    quote:{n:'02',title:'Orçamento conectado à operação',text:'Cliente, prazo, prioridade, itens, custo interno, margem, total e geração de PDF no mesmo fluxo.',label:'Orçamento',img:'assets/img/screen-orcamento-edit.webp?v=20261028'},
+    printers:{n:'03',title:'ROI da impressora dentro da gestão',text:'Valor da máquina, potência, ROI desejado, horas por dia e dias por mês ajudam a planejar o retorno do equipamento.',label:'Impressoras / ROI',img:'assets/img/screen-impressoras.webp?v=20261028'},
+    materials:{n:'04',title:'Filamentos e resinas com estoque e custo',text:'Materiais FDM e SLA, saldo, valor em estoque, mínimo e movimentações ficam registrados em uma área dedicada.',label:'Materiais / Estoque',img:'assets/img/screen-materiais.webp?v=20261028'},
+    production:{n:'05',title:'Produção com prioridade, prazo e status',text:'Acompanhe cliente, projeto, quantidade, entrega, impressora, material e comparação entre previsto e realizado.',label:'Produção',img:'assets/img/screen-producao.webp?v=20261028'},
+    stl:{n:'06',title:'Da importação 3D ao item comercial',text:'Leia dimensões, formato, triângulos e volume geométrico; depois associe material, impressora e leve o item ao orçamento.',label:'Importar 3D',img:'assets/img/screen-stl.webp?v=20261028'},
     alerts:{n:'07',title:'Problemas importantes aparecem antes',text:'Atrasos, produção com problema, estoque baixo, orçamento sem retorno e pedidos prontos ficam centralizados.',label:'Central de Alertas',img:'assets/img/screen-alertas.webp'},
-    reports:{n:'08',title:'Rentabilidade e operação em uma visão gerencial',text:'Faturamento, valor orçado, custo, lucro estimado, margem, ticket, conversão e status ganham filtros e gráficos.',label:'Relatórios / BI',img:'assets/img/screen-relatorios.webp'}
+    reports:{n:'08',title:'Rentabilidade e operação em uma visão gerencial',text:'Faturamento, valor orçado, custo, lucro estimado, margem, ticket, conversão e status ganham filtros e gráficos.',label:'Relatórios / BI',img:'assets/img/screen-relatorios.webp?v=20261028'},
+    quick:{n:'09',title:'Precificação rápida com custos discriminados',text:'Material, energia, depreciação, perdas previstas e lucro estimado aparecem junto ao preço sugerido.',label:'Precificação Rápida',img:'assets/img/screen-precificacao.webp'},
+    setup:{n:'10',title:'Configure seu negócio com orientação passo a passo',text:'O Printly Setup ajuda a informar negócio, localização e custo de energia antes do primeiro cálculo.',label:'Printly Setup / Negócio',img:'assets/img/screen-setup-negocio.webp'},
+    products:{n:'11',title:'Catálogo de produtos próprios',text:'Organize produtos recorrentes por categoria, SKU, materiais, consumo, tempo e último preço.',label:'Produtos Próprios',img:'assets/img/screen-produtos.webp'},
+    quotes:{n:'12',title:'Acompanhe seus orçamentos em um só lugar',text:'Visualize clientes, itens, valores, status e prazos em uma lista organizada.',label:'Orçamentos',img:'assets/img/screen-orcamentos.webp'},
+    pdf:{n:'13',title:'Orçamento profissional em PDF',text:'Apresente itens, valores e condições comerciais em um documento pronto para compartilhar com o cliente.',label:'PDF de orçamento',img:'assets/img/screen-orcamento-pdf.webp'},
+    multimaterial:{n:'14',title:'Mais de um material ou cor por peça',text:'Especifique a composição de materiais da peça e distribua os consumos entre as cores cadastradas.',label:'Materiais / Cores',img:'assets/img/screen-multimaterial.webp'},
+    reportsproduction:{n:'15',title:'Produção e capacidade em gráficos',text:'Acompanhe fila por etapa, prazos de entrega e ocupação estimada das impressoras.',label:'Relatórios / Produção',img:'assets/img/screen-relatorios-producao.webp'}
   };
   const tabs = $$('.gallery-tabs button');
   const img = $('#mainScreen'), title = $('#screenTitle'), text = $('#screenText'), label = $('#screenLabel'), number = $('.stage-number');
