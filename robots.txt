@@ -1,3 +1,17 @@
+User-agent: OAI-AdsBot
+Allow: /
+Disallow: /admin/
+Disallow: /acesso/
+Disallow: /boleto/
+Disallow: /obrigado/
+
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /admin/
+Disallow: /acesso/
+Disallow: /boleto/
+Disallow: /obrigado/
+
 User-agent: *
 Allow: /
 Disallow: /admin/
