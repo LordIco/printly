@@ -1,0 +1,40 @@
+name: Publicar Printly Windows v0.2.8.26
+
+on:
+  push:
+    paths:
+      - ".github/workflows/publicar-printly-windows-v0.2.8.26.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publicar:
+    if: github.repository == 'LordIco/printly'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Obter site
+        uses: actions/checkout@v4
+      - name: Instalar cliente Google Drive
+        run: python -m pip install --disable-pip-version-check "gdown==5.2.0"
+      - name: Baixar instalador oficial Printly
+        run: |
+          mkdir -p downloads
+          gdown --id "1IkcqXT5kYLCWxqUFxWxPQYzpzR--yp75" --output "downloads/Printly_Setup_v0.2.8.26.exe"
+      - name: Conferir integridade do executavel
+        shell: bash
+        run: |
+          echo "fc87abb6a7c16d02ba0ace1a2daa0ef99f6194ab97db6787c8bbfb52ec536027  downloads/Printly_Setup_v0.2.8.26.exe" | sha256sum --check
+          test "$(stat -c %s downloads/Printly_Setup_v0.2.8.26.exe)" -eq 51470483
+      - name: Publicar instalador mantendo versoes anteriores
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- downloads/Printly_Setup_v0.2.8.26.exe
+          if ! git diff --cached --quiet; then
+            git commit -m "release: publicar instalador Printly Windows v0.2.8.26"
+            git push
+          fi
