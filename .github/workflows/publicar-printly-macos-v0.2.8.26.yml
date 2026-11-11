@@ -1,0 +1,41 @@
+name: Publicar Printly macOS Intel v0.2.8.26
+
+on:
+  push:
+    paths:
+      - ".github/workflows/publicar-printly-macos-v0.2.8.26.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publicar:
+    if: github.repository == 'LordIco/printly'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Obter site
+        uses: actions/checkout@v4
+      - name: Instalar cliente Google Drive
+        run: python -m pip install --disable-pip-version-check "gdown==5.2.0"
+      - name: Baixar instalador macOS
+        run: |
+          mkdir -p downloads
+          gdown --id "1Tl1No3_JWaDFaylVNnVDQHDzB3XRWcC1" --output "downloads/Printly_Setup_v0.2.8.26_macOS_Intel.dmg"
+      - name: Conferir integridade do DMG
+        shell: bash
+        run: |
+          echo "13a0b45944307b9e1ee10a22a061f88fc26890dd5426ff49765b6a2b92a6a4f1  downloads/Printly_Setup_v0.2.8.26_macOS_Intel.dmg" | sha256sum --check
+          test "$(stat -c %s downloads/Printly_Setup_v0.2.8.26_macOS_Intel.dmg)" -eq 59035737
+          tail -c 512 downloads/Printly_Setup_v0.2.8.26_macOS_Intel.dmg | head -c 4 | od -An -t x1 | grep -q '6b 6f 6c 79'
+      - name: Publicar sem excluir instaladores existentes
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- downloads/Printly_Setup_v0.2.8.26_macOS_Intel.dmg
+          if ! git diff --cached --quiet; then
+            git commit -m "release: publicar Printly macOS Intel v0.2.8.26"
+            git push
+          fi
