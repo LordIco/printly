@@ -62,7 +62,7 @@
       const strong = document.createElement('strong');
       strong.textContent = '15 dias grátis';
       const small = document.createElement('small');
-      small.textContent = 'Todos os recursos no Windows';
+      small.textContent = 'Para Windows e Macs Intel';
       copy.append(strong,small);
       const button = document.createElement('button');
       button.type = 'button';
