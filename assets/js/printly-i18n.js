@@ -19,7 +19,7 @@
       below:(actual,target,diff)=>`Your estimated margin is ${actual}%, below your ${target}% target. You are ${diff} short per part.`,
       target:actual=>`That price meets your target margin. Estimated margin: ${actual}%.`,
       trustLabel:'Printly product information',trust:[['✓','No subscription','Permanent license'],['▣','Your data stays local','Backup and restore'],['◎','Three languages','Português · English · Español'],['↧','PDF manuals','User guide and installation']],
-      mobileLabel:'Printly free trial',mobileStrong:'15 days free',mobileSmall:'Full Windows app',mobileButton:'Try Printly',
+      mobileLabel:'Printly free trial',mobileStrong:'15 days free',mobileSmall:'Windows and Intel Mac',mobileButton:'Try Printly',
       galleryKicker:'EXPLORE PRINTLY',galleryTitle:'See the actual app in action.',galleryIntro:'Eight real screens showing how costs, quotes and production connect.',galleryLabel:'Printly app screenshots',galleryBenefits:'Highlights of the selected screen',zoom:'Enlarge screen ↗',
       screens: {
         dashboard:['Dashboard','Pricing, production and history together','Quick pricing, a cost summary, your products, production queue and history in one view.',['Cost, suggested price and profit','Production queue in view','History at your fingertips'],'Main dashboard'],
@@ -45,7 +45,7 @@
       below:(actual,target,diff)=>`Tu margen estimado es del ${actual}%, inferior al ${target}% deseado. Faltan ${diff} por pieza.`,
       target:actual=>`Ese precio alcanza el margen deseado. Margen estimado: ${actual}%.`,
       trustLabel:'Información sobre Printly',trust:[['✓','Sin mensualidades','Licencia permanente'],['▣','Tus datos en tu equipo','Copia de seguridad y restauración'],['◎','Tres idiomas','Português · English · Español'],['↧','Manuales en PDF','Uso e instalación']],
-      mobileLabel:'Prueba gratuita de Printly',mobileStrong:'15 días gratis',mobileSmall:'Todas las funciones en Windows',mobileButton:'Probar Printly',
+      mobileLabel:'Prueba gratuita de Printly',mobileStrong:'15 días gratis',mobileSmall:'Windows y Mac Intel',mobileButton:'Probar Printly',
       galleryKicker:'DESCUBRE PRINTLY',galleryTitle:'Conoce la aplicación de verdad.',galleryIntro:'Ocho pantallas reales que conectan costes, presupuestos y producción.',galleryLabel:'Capturas de Printly',galleryBenefits:'Ventajas de la pantalla seleccionada',zoom:'Ampliar pantalla ↗',
       screens: {
         dashboard:['Panel','Precios, producción e historial en una pantalla','Cálculo rápido, resumen de costes, productos, cola de producción e historial en una sola vista.',['Coste, precio sugerido y beneficio','Cola de producción visible','Historial a mano'],'Panel principal'],
