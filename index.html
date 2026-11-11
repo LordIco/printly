@@ -31,6 +31,40 @@
 .printly-hero-video video{display:block;width:100%;height:auto;aspect-ratio:16/9;background:#020a18}
 .printly-hero-video video:focus-visible{outline:2px solid #22d8f2;outline-offset:-3px}
 </style>
+<style id="printly-cinematic-hero-2026">
+/* A imagem do vídeo mantém a proporção original 16:9, sem recorte ou deformação. */
+.printly-hero-video video{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:contain;background:#020a18}
+.hero .hero-visual{display:flex;flex-direction:column;align-self:start;gap:18px;min-width:0}
+.hero .hero-copy{min-width:0}
+.hero .hero-proof{margin-top:22px;gap:12px}
+.hero .hero-proof>div{min-height:80px}
+.printly-cost-calculator{box-sizing:border-box;width:100%;padding:clamp(18px,2vw,28px);border:1px solid rgba(26,190,246,.65);border-radius:17px;background:linear-gradient(145deg,#09223b 0%,#03101f 68%,#020c1b 100%);box-shadow:0 14px 45px #00101f75,0 0 24px #17c9ff16;color:#eaf6ff}
+.printly-cost-calculator *{box-sizing:border-box}
+.printly-calc-kicker,.printly-cost-calculator legend,.printly-result-heading{display:block;color:#27dcff;font-size:11px;font-weight:800;letter-spacing:.11em}
+.printly-cost-calculator h2{margin:8px 0 4px;font-size:clamp(21px,2vw,29px);line-height:1.12;color:#fff}
+.printly-calc-desc{margin:0 0 15px;color:#b5c9d9;font-size:13px}
+.printly-cost-calculator fieldset{padding:13px 0 9px;margin:0;border:0;border-top:1px solid #1e445a}
+.printly-cost-calculator legend{padding:0 8px 0 0;float:none}
+.printly-calc-grid,.printly-result-rows{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px 14px}
+.printly-cost-calculator label{display:flex;flex-direction:column;gap:5px;font-size:12px;font-weight:650;color:#d3e5f4;min-width:0}
+.printly-cost-calculator input{width:100%;height:38px;padding:8px 11px;border:1px solid #2b5872;border-radius:7px;background:#061a2f;color:#fff;font:inherit;font-size:15px;outline:none}
+.printly-cost-calculator input:focus{border-color:#22dcff;box-shadow:0 0 0 2px #22dcff33}
+.printly-calc-result{margin-top:9px;border:1px solid #20506c;border-radius:12px;padding:13px;background:#021426}
+.printly-cost-bar{display:flex;height:6px;border-radius:10px;overflow:hidden;margin:9px 0 12px;background:#17334e}
+.printly-cost-bar i:first-child{flex:5;background:#169ef2}.printly-cost-bar i:nth-child(2){flex:3;background:#7065fa}.printly-cost-bar i:last-child{flex:2;background:#ffc367}
+.printly-result-rows{gap:7px 14px}
+.printly-result-rows span{font-size:12px;color:#b8d0df;display:flex;justify-content:space-between;gap:8px}
+.printly-result-rows b{font-size:12px;color:#fff;font-variant-numeric:tabular-nums;text-align:right}
+.printly-price-highlight{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:15px;padding:11px 13px;background:linear-gradient(90deg,#124777,#1d336d);border:1px solid #2679ae;border-radius:9px}
+.printly-price-highlight strong{font-size:11px;letter-spacing:.04em}
+.printly-price-highlight output{font-weight:900;color:#39daff;font-size:clamp(21px,2vw,29px);font-variant-numeric:tabular-nums}
+.printly-charge-label{margin-top:14px}
+.printly-calc-feedback{font-size:12px;color:#ffd077;min-height:2.5em;margin:9px 0 12px}
+.printly-calc-cta{width:100%;min-height:42px}
+.printly-calc-note{display:block;color:#9eb5c6;font-size:11px;line-height:1.45;margin-top:11px}
+@media(min-width:1024px){.hero{align-items:start}.hero .hero-copy{display:flex;flex-direction:column;min-height:100%}.hero .hero-proof{margin-top:26px}.hero .platform-availability{margin-top:10px}}
+@media(max-width:640px){.printly-cost-calculator{padding:16px}.printly-calc-grid{gap:9px}.printly-result-rows{grid-template-columns:1fr}.printly-price-highlight output{font-size:23px}}
+</style>
 </head>
 <body>
   <canvas id="particles" aria-hidden="true"></canvas>
@@ -95,6 +129,44 @@
             <a href="assets/video/printly-video-home.mp4">Assistir ao vídeo do Printly</a>
           </video>
         </figure>
+        <section class="printly-cost-calculator" aria-labelledby="printlyCalcTitle">
+          <span class="printly-calc-kicker">SIMULADOR GRATUITO · IMPRESSÃO 3D</span>
+          <h2 id="printlyCalcTitle">Quanto custa sua peça?</h2>
+          <p class="printly-calc-desc">Experimente com seus números. O resultado muda na hora.</p>
+          <form id="printlyCalcForm" class="printly-calc-form" autocomplete="off">
+            <fieldset><legend>01 · Dados da impressão</legend><div class="printly-calc-grid">
+              <label>Peso da peça (g)<input name="weight" type="number" min="0" step="any" value="85" inputmode="decimal"></label>
+              <label>Tempo de impressão (horas)<input name="time" type="number" min="0" step="any" value="6" inputmode="decimal"></label>
+            </div></fieldset>
+            <fieldset><legend>02 · Custos operacionais</legend><div class="printly-calc-grid">
+              <label>Preço do filamento (R$/kg)<input name="filament" type="number" min="0" step="any" value="110" inputmode="decimal"></label>
+              <label>Potência da máquina (W)<input name="power" type="number" min="0" step="any" value="150" inputmode="decimal"></label>
+              <label>Energia (R$/kWh)<input name="energy" type="number" min="0" step="any" value="0.95" inputmode="decimal"></label>
+              <label>Desgaste da máquina (R$/h)<input name="wear" type="number" min="0" step="any" value="1.2" inputmode="decimal"></label>
+            </div></fieldset>
+            <fieldset><legend>03 · Formação de preço</legend><div class="printly-calc-grid">
+              <label>Provisão de perdas (%)<input name="loss" type="number" min="0" max="99" step="any" value="8" inputmode="decimal"></label>
+              <label>Margem desejada (% sobre venda)<input name="margin" type="number" min="0" max="99" step="any" value="40" inputmode="decimal"></label>
+            </div></fieldset>
+            <div class="printly-calc-result" aria-live="polite">
+              <strong class="printly-result-heading">COMPOSIÇÃO DO CUSTO</strong>
+              <div class="printly-cost-bar" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div class="printly-result-rows">
+                <span>Material <b id="pcMaterial">R$ 9,35</b></span>
+                <span>Energia <b id="pcEnergy">R$ 0,86</b></span>
+                <span>Desgaste <b id="pcWear">R$ 7,20</b></span>
+                <span>Perdas <b id="pcLoss">R$ 1,39</b></span>
+                <span>Custo total <b id="pcTotal">R$ 18,80</b></span>
+                <span>Lucro estimado <b id="pcProfit">R$ 12,53</b></span>
+              </div>
+              <div class="printly-price-highlight"><strong>PREÇO SUGERIDO</strong><output id="pcPrice">R$ 31,33</output></div>
+            </div>
+            <label class="printly-charge-label">E você, quanto cobraria por esta peça? (R$)<input name="charge" type="number" min="0" step="any" value="25" inputmode="decimal"></label>
+            <p class="printly-calc-feedback" id="pcFeedback">Confira sua margem em relação ao preço sugerido.</p>
+            <button class="btn btn-primary printly-calc-cta" type="button" data-open-download>Experimente o Printly completo por 15 dias</button>
+            <small class="printly-calc-note">Simulação simplificada de filamento (FDM). O aplicativo completo inclui mais custos e opções de cálculo.</small>
+          </form>
+        </section>
       </div>
     </section>
 
@@ -528,5 +600,21 @@
 
   <script src="assets/js/download-config.js?v=20261019-7"></script>
   <script src="assets/js/main.js?v=20261028-1"></script>
+<script id="printly-calculator-script">
+(()=>{const form=document.querySelector('#printlyCalcForm');if(!form)return;
+const fmt=new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'});
+const el=id=>document.getElementById(id);
+const number=name=>Math.max(0,Number(form.elements.namedItem(name)?.value)||0);
+const round=v=>Math.round((v+Number.EPSILON)*100)/100;
+const render=()=>{
+ const material=number('weight')/1000*number('filament'),energy=number('power')/1000*number('time')*number('energy'),wear=number('time')*number('wear');
+ const base=material+energy+wear,loss=base*Math.min(99,number('loss'))/100,total=base+loss,margin=Math.min(99,number('margin'))/100,price=total/(1-margin),charge=number('charge'),profit=price-total;
+ [['pcMaterial',material],['pcEnergy',energy],['pcWear',wear],['pcLoss',loss],['pcTotal',total],['pcProfit',profit],['pcPrice',price]].forEach(([id,value])=>{el(id).textContent=fmt.format(round(value))});
+ const actual=charge>0?(charge-total)/charge*100:0;
+ el('pcFeedback').textContent=charge<=0?'Informe um preço de venda para comparar sua margem.':actual>=margin*100?'Sua margem estimada é de '+actual.toFixed(1).replace('.',',')+'%, dentro da meta de '+Math.round(margin*100)+'%.':'Sua margem estimada é de '+actual.toFixed(1).replace('.',',')+'%, abaixo dos '+Math.round(margin*100)+'% desejados. Faltam '+fmt.format(Math.max(0,round(price-charge)))+' por peça.';
+};form.addEventListener('input',render);render();
+const cta=form.querySelector('[data-open-download]');cta?.addEventListener('click',()=>{const top=document.querySelector('.hero-primary-cta');top?.click()});
+})();
+</script>
 </body>
 </html>
