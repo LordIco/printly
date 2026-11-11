@@ -69,6 +69,144 @@
 @media(max-width:620px){.hero .hero-support-panel{padding:14px;gap:13px}.hero .hero-support-panel .platform-availability,.hero .hero-support-panel .hero-proof{grid-template-columns:1fr}.hero .hero-support-panel .platform-card,.hero .hero-support-panel .manual-card,.hero .hero-support-panel .hero-proof>div{min-height:82px;flex-direction:row;align-items:center}.hero .printly-hero-video .printly-video-actions>span{display:none}.hero .printly-hero-video .printly-video-actions{justify-content:flex-end}}
 
 @media(max-width:1040px){.hero .hero-visual.printly-stacked-hero{width:100%!important;max-width:900px!important;margin:0 auto!important}}
+<style id="printly-mobile-refinement-2026">
+/* Mobile landing refinement: ALL changes intentionally scoped to <=767px.
+   Desktop markup, ordering and visual presentation remain untouched. */
+@media screen and (max-width:767px){
+  /* Flatten the two hero wrappers only on mobile, so their existing
+     content can be presented in an optimal reading sequence. */
+  main .hero.container{
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr)!important;
+    grid-auto-flow:row!important;
+    grid-auto-rows:max-content!important;
+    align-items:start!important;
+    gap:0!important;
+    min-height:0!important;
+    padding-top:28px!important;
+    padding-bottom:42px!important;
+  }
+  main .hero .hero-copy,
+  main .hero .hero-visual.printly-stacked-hero{
+    display:contents!important;
+  }
+  main .hero .hero-copy>.eyebrow{order:1;grid-column:1;justify-self:start;max-width:100%;padding:9px 11px;font-size:9px;line-height:1.35;letter-spacing:.09em}
+  main .hero .hero-copy>h1{order:2;grid-column:1;margin:15px 0 15px;max-width:100%;font-size:clamp(36px,9vw,48px)!important;line-height:1.02!important;letter-spacing:-.045em!important}
+  main .hero .hero-copy>.hero-text{order:3;grid-column:1;font-size:14px!important;line-height:1.6!important;margin:0 0 10px!important}
+  main .hero .hero-copy>.hero-text.secondary{order:4;font-size:13px!important;line-height:1.55!important;color:#b8d1e5!important;margin-bottom:17px!important}
+  /* Put the real video before CTA/support cards, keeping the original 16:9 player. */
+  main .hero .printly-stacked-hero>.printly-hero-video{
+    order:5;
+    grid-column:1!important;grid-row:auto!important;
+    margin:0 0 15px!important;
+    border-radius:15px!important;
+    width:100%!important;
+    max-width:100%!important;
+    min-width:0!important;
+    box-shadow:0 8px 36px rgba(0,0,0,.3)!important;
+  }
+  main .hero .printly-stacked-hero .printly-hero-video video{
+    width:100%!important;
+    height:auto!important;
+    aspect-ratio:16/9!important;
+    object-fit:contain!important;
+  }
+  main .hero .printly-hero-video .app-window-bar{height:32px;padding:0 10px}
+  main .hero .printly-hero-video .app-window-bar em{font-size:9px}
+  main .hero .printly-hero-video .printly-video-actions{padding:8px 10px}
+  main .hero .hero-copy>.hero-actions{
+    order:6;grid-column:1;
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    gap:9px!important;
+    margin:0 0 18px!important;
+  }
+  main .hero .hero-actions .btn{width:100%!important;min-height:47px!important;font-size:13px!important}
+  main .hero .hero-copy>.hero-support-panel{
+    order:7;grid-column:1;
+    margin:0 0 22px!important;
+    padding:14px!important;
+    gap:13px!important;
+    border-radius:16px;
+    flex:none!important;
+  }
+  main .hero .hero-support-heading strong{font-size:16px!important}
+  main .hero .hero-support-panel .platform-availability,
+  main .hero .hero-support-panel .hero-proof{
+    display:grid!important;
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:9px!important;
+    margin:0!important;
+  }
+  main .hero .hero-support-panel .platform-card,
+  main .hero .hero-support-panel .manual-card,
+  main .hero .hero-support-panel .hero-proof>div{
+    grid-column:auto!important;
+    display:flex!important;
+    flex-direction:column!important;
+    justify-content:center!important;
+    align-items:flex-start!important;
+    min-height:97px!important;
+    padding:12px!important;
+    gap:7px!important;
+  }
+  main .hero .hero-support-panel .manual-card,
+  main .hero .hero-support-panel .hero-proof>div:last-child{
+    grid-column:1/-1!important;
+    min-height:72px!important;
+  }
+  main .hero .hero-support-panel .platform-card b,
+  main .hero .hero-support-panel .manual-card b,
+  main .hero .hero-support-panel .hero-proof strong{font-size:12px!important}
+  main .hero .hero-support-panel .platform-card small,
+  main .hero .hero-support-panel .manual-card small,
+  main .hero .hero-support-panel .hero-proof small{font-size:10px!important;line-height:1.4!important}
+  main .hero .hero-support-panel .language-support{
+    padding:1px 0!important;
+    font-size:10px!important;
+    line-height:1.5!important;
+  }
+  /* The existing fully interactive simulator is moved after the cards. */
+  main .hero .printly-stacked-hero>.pc-calc{
+    order:8;grid-column:1!important;grid-row:auto!important;
+    width:100%!important;min-width:0!important;
+    margin:0!important;
+  }
+  main .hero .pc-calc{padding:16px!important;border-radius:17px!important}
+  main .hero .pc-fields{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:9px!important}
+  main .hero .pc-fields label{font-size:11px!important;min-width:0}
+  main .hero .pc-calc input{font-size:16px!important;max-width:100%}
+  main .hero .pc-price strong{font-size:clamp(22px,6vw,28px)!important}
+  /* Floating conversion bar and WhatsApp must not compete for the same space. */
+  body:has(.printly-mobile-cta){
+    padding-bottom:calc(74px + env(safe-area-inset-bottom,0px))!important;
+  }
+  .printly-mobile-cta{
+    min-height:62px!important;
+    padding:8px max(12px,env(safe-area-inset-left,0px)) calc(8px + env(safe-area-inset-bottom,0px)) max(12px,env(safe-area-inset-right,0px))!important;
+    gap:8px!important;
+  }
+  .printly-mobile-cta-copy strong{font-size:13px!important}
+  .printly-mobile-cta-copy small{font-size:10px!important}
+  .printly-mobile-cta-button{min-height:40px!important;padding:0 12px!important}
+  .floating-wa{
+    bottom:calc(78px + env(safe-area-inset-bottom,0px))!important;
+    right:12px!important;
+  }
+  .printly-trust-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:6px!important}
+  .printly-trust-item{min-width:0}
+}
+@media screen and (max-width:370px){
+  main .hero .hero-copy>h1{font-size:34px!important}
+  main .hero .hero-support-panel .platform-availability,
+  main .hero .hero-support-panel .hero-proof{grid-template-columns:1fr!important}
+  main .hero .hero-support-panel .platform-card,
+  main .hero .hero-support-panel .manual-card,
+  main .hero .hero-support-panel .hero-proof>div{grid-column:1!important;min-height:70px!important}
+  main .hero .pc-fields{grid-template-columns:1fr!important}
+  .printly-mobile-cta-copy small{display:none!important}
+}
+</style>
 </style>
 </head>
 <body>
