@@ -44,7 +44,9 @@
   if (!slot || doc.getElementById('printly-public-calculator')) return;
   // Preserve page structure, gallery, licensing and original CTA; modify only hero visual.
   slot.classList.add('hero-calculator-slot');
-  slot.innerHTML = `
+  // Build the original calculator without replacing the existing hero video.
+  const template = doc.createElement('template');
+  template.innerHTML = `
   <section class="pc-calc" id="printly-public-calculator" aria-labelledby="pc-title">
     <header class="pc-calc-head">
       <span class="pc-calc-kicker">SIMULADOR GRATUITO · IMPRESSÃO 3D</span>
@@ -91,6 +93,8 @@
       <p class="pc-disclaimer">Simulação simplificada de filamento (FDM). As perdas são uma provisão percentual; o aplicativo inclui outros componentes e opções de cálculo.</p>
     </form>
   </section>`;
+  // Append below the video; never erase the hero's other children.
+  slot.appendChild(template.content);
   const form = doc.getElementById('pc-form');
   const outputs = Object.fromEntries([...slot.querySelectorAll('[data-out]')].map(el => [el.dataset.out,el]));
   const bars = Object.fromEntries([...slot.querySelectorAll('[data-bar]')].map(el => [el.dataset.bar,el]));
