@@ -132,3 +132,32 @@ footer{border-top:1px solid rgba(255,255,255,.06);background:#01050b;padding:42p
 .single-plan .plan-card ul{min-height:auto;grid-template-columns:repeat(2,minmax(0,1fr))}
 .plan-actions{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:6px}.plan-actions .btn{width:100%}
 @media(max-width:620px){.single-plan .plan-card ul,.plan-actions{grid-template-columns:1fr}}
+
+
+/* Printly macOS Intel available — Apple card illuminated and downloadable. */
+.platform-card.mac-available,
+.hero .hero-support-panel .platform-card.mac-available {
+  color: #ecfaff;
+  text-decoration: none;
+  cursor: pointer;
+  border-color: rgba(70, 207, 255, .6);
+  background: linear-gradient(125deg, rgba(40, 163, 225, .22), rgba(61, 95, 190, .16));
+  box-shadow: inset 0 1px 0 rgba(237, 251, 255, .10), 0 0 25px rgba(25, 183, 236, .13);
+  opacity: 1;
+  filter: none;
+}
+.platform-card.mac-available .apple-logo {
+  color: #f5fcff;
+  filter: drop-shadow(0 0 7px rgba(102, 227, 255, .76));
+}
+.platform-card.mac-available small { color: #b6eafe; }
+.platform-card.mac-available:hover,
+.hero .hero-support-panel .platform-card.mac-available:hover {
+  border-color: rgba(115, 236, 255, .9);
+  background: linear-gradient(125deg, rgba(44, 177, 238, .30), rgba(70, 113, 218, .20));
+  box-shadow: 0 0 32px rgba(33, 191, 249, .24);
+}
+.platform-card.mac-available:focus-visible {
+  outline: 2px solid #88efff;
+  outline-offset: 3px;
+}
