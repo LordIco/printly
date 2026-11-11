@@ -253,7 +253,7 @@
           <div class="hero-support-heading"><span>FEITO PARA SUA OPERAÇÃO</span><strong>Mais controle, do orçamento à entrega.</strong></div>
         <div class="platform-availability" aria-label="Disponibilidade e manuais">
           <div class="platform-card available"><svg class="windows-logo" viewBox="0 0 48 48" aria-hidden="true"><path fill="#f25022" d="M4 5.5 22 3v18H4z"/><path fill="#7fba00" d="M26 2.5 46 0v21H26z"/><path fill="#00a4ef" d="M4 25h18v18L4 40.5z"/><path fill="#ffb900" d="M26 25h20v23l-20-3z"/></svg><span><b>Windows</b><small>Disponível agora</small></span></div>
-          <a class="platform-card available mac-available" href="downloads/Printly_Setup_v0.2.8.26_macOS_Intel.dmg" download aria-label="Baixar Printly para macOS Intel (High Sierra)"><svg class="apple-logo" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.15 6.9c-.95 0-2.42-1.08-3.96-1.04-2.04.03-3.91 1.18-4.96 3.01-2.12 3.68-.55 9.1 1.52 12.09 1.01 1.45 2.21 3.09 3.79 3.04 1.52-.07 2.09-.98 3.95-.98 1.85 0 2.35.98 3.96.94 1.64-.03 2.68-1.48 3.64-2.95 1.17-1.7 1.65-3.35 1.68-3.44-.04-.01-3.18-1.22-3.22-4.86-.03-3.04 2.48-4.49 2.6-4.56-1.43-2.1-3.64-2.34-4.42-2.39-2.01-.16-3.7 1.09-4.58 1.09zm3.25-3.12c.81-.96 1.34-2.3 1.34-3.64 0-.18-.01-.36-.05-.5-1.27.05-2.81.84-3.72 1.88-.71.81-1.36 2.14-1.36 3.55 0 .21.04.42.05.48.08.01.21.03.34.03 1.14 0 2.58-.77 3.4-1.8z"/></svg><span><b>macOS</b><small>Baixar para Mac · Intel</small></span></a>
+          <button class="platform-card available mac-available" type="button" data-open-download data-download-platform="mac" aria-label="Baixar Printly para macOS Intel (High Sierra)"><svg class="apple-logo" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.15 6.9c-.95 0-2.42-1.08-3.96-1.04-2.04.03-3.91 1.18-4.96 3.01-2.12 3.68-.55 9.1 1.52 12.09 1.01 1.45 2.21 3.09 3.79 3.04 1.52-.07 2.09-.98 3.95-.98 1.85 0 2.35.98 3.96.94 1.64-.03 2.68-1.48 3.64-2.95 1.17-1.7 1.65-3.35 1.68-3.44-.04-.01-3.18-1.22-3.22-4.86-.03-3.04 2.48-4.49 2.6-4.56-1.43-2.1-3.64-2.34-4.42-2.39-2.01-.16-3.7 1.09-4.58 1.09zm3.25-3.12c.81-.96 1.34-2.3 1.34-3.64 0-.18-.01-.36-.05-.5-1.27.05-2.81.84-3.72 1.88-.71.81-1.36 2.14-1.36 3.55 0 .21.04.42.05.48.08.01.21.03.34.03 1.14 0 2.58-.77 3.4-1.8z"/></svg><span><b>macOS</b><small>Baixar para Mac · Intel</small></span></button>
           <div class="manual-card"><span class="manual-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 2h8l4 4v16H6zM14 2v5h5M9 12h6M9 16h6"/></svg></span><span><b>Manuais em PDF</b><small><a href="downloads/Printly_Manual_Oficial_v0.2.8.3_REV6_PT-BR.pdf" download>Manual de uso</a> · <a href="downloads/Manual_Instalacao_Printly_Windows_PT-BR.pdf" download>Instalação</a></small></span></div>
         </div>
         <div class="language-support"><span aria-hidden="true">◎</span> Interface disponível em Português, English e Español.</div>
@@ -636,7 +636,7 @@
       <div class="faq-grid reveal">
         <details><summary>Como funciona o teste de 15 dias?</summary><p>Você pode usar o Printly com todos os recursos liberados por 15 dias. Ao final, seus dados permanecem salvos; para continuar editando, basta ativar uma licença permanente.</p></details>
         <details><summary>O Printly é uma planilha?</summary><p>Não. É um aplicativo desktop para Windows, com interface própria e banco de dados local.</p></details>
-        <details><summary>Funciona no macOS?</summary><p>Sim. O Printly está disponível para Windows e macOS Intel. A versão para Mac foi compilada e testada no macOS High Sierra 10.13.6; não é uma versão nativa para chips Apple Silicon. <a href="downloads/Printly_Setup_v0.2.8.26_macOS_Intel.dmg" download>Baixar para Mac Intel</a>. O instalador ainda não é notarizado pela Apple.</p></details>
+        <details><summary>Funciona no macOS?</summary><p>Sim. O Printly está disponível para Windows e macOS Intel. A versão para Mac foi compilada e testada no macOS High Sierra 10.13.6; não é uma versão nativa para chips Apple Silicon. <button class="mac-faq-action" type="button" data-open-download data-download-platform="mac">Baixar para Mac Intel</button>. O instalador ainda não é notarizado pela Apple.</p></details>
         <details><summary>O Printly calcula perdas e falhas?</summary><p>Sim. A taxa de falha pode entrar na formação de preço para que o custo do desperdício não seja simplesmente absorvido pela margem.</p></details>
         <details><summary>Consigo acompanhar ROI das impressoras?</summary><p>Sim. O cadastro de impressoras trabalha com valor da máquina, ROI desejado, horas por dia e dias por mês, trazendo o retorno para dentro da gestão.</p></details>
         <details><summary>O orçamento sai em PDF?</summary><p>Sim. O Printly gera PDF de orçamento e permite personalização do modelo comercial para apresentação ao cliente.</p></details>
@@ -691,7 +691,7 @@
       <span class="section-kicker">PRINTLY PARA WINDOWS · TESTE COMPLETO POR 15 DIAS</span>
       <h2 id="downloadTitle">Para onde enviamos seu acesso?</h2>
       <p>Preencha os dados abaixo para liberar o download do Printly e iniciar seu teste completo de 15 dias. Também podemos enviar informações importantes sobre instalação e atualizações.</p>
-      <form id="downloadForm">
+      <form id="downloadForm"><label>Sistema operacional<select name="platform" aria-label="Sistema operacional" required><option value="windows">Windows</option><option value="mac">macOS Intel (High Sierra)</option></select><small class="field-hint">Para Mac, instalador ainda sem assinatura/notarização da Apple.</small></label>
         <label>Nome completo<input aria-label="Nome completo" name="name" type="text" autocomplete="name" minlength="2" maxlength="100" required></label>
         <label>E-mail<input aria-label="E-mail" name="email" type="email" autocomplete="email" inputmode="email" maxlength="160" placeholder="voce@exemplo.com.br" required><small class="field-hint">Informe um endereço de e-mail válido.</small></label>
         <label>WhatsApp <small>(celular com DDD)</small><input aria-label="WhatsApp" name="whatsapp" type="tel" autocomplete="tel" inputmode="numeric" minlength="15" maxlength="15" pattern="\([1-9][0-9]\) 9[0-9]{4}-[0-9]{4}" placeholder="(19) 99999-9999" required><small class="field-hint">Obrigatório: celular brasileiro com DDD.</small></label>
@@ -708,8 +708,8 @@
     <img src="" alt="Tela ampliada do Printly">
   </div>
 
-  <script src="assets/js/download-config.js?v=20261019-7"></script>
-  <script src="assets/js/main.js?v=20261028-1"></script>
+  <script src="assets/js/download-config.js?v=20261111-mac-choice-1"></script>
+  <script src="assets/js/main.js?v=20261111-mac-choice-1"></script>
 
 <script id="printly-hero-video-controls">
 (()=>{
