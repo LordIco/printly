@@ -161,3 +161,10 @@ footer{border-top:1px solid rgba(255,255,255,.06);background:#01050b;padding:42p
   outline: 2px solid #88efff;
   outline-offset: 3px;
 }
+
+/* Printly downloads: preserve the hero grid when Mac is a button. */
+.hero .hero-support-panel .platform-card.mac-available{width:100%;font:inherit;text-align:left;cursor:pointer;appearance:none;-webkit-appearance:none}
+.mac-faq-action{display:inline;border:0;padding:0;background:none;color:var(--cyan);text-decoration:underline;font:inherit;cursor:pointer}
+.mac-faq-action:hover,.mac-faq-action:focus-visible{color:#bff9ff}
+#downloadForm select{width:100%;min-height:48px;padding:0 14px;border:1px solid rgba(86,158,207,.28);border-radius:12px;outline:0;background:#04101c;color:#fff;font:inherit;font-size:14px}
+#downloadForm select:focus{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(36,216,255,.09)}
