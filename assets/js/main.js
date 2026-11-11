@@ -96,6 +96,7 @@
   const downloadClose = $('.download-close');
   const emailInput = downloadForm?.elements.email;
   const phoneInput = downloadForm?.elements.whatsapp;
+  const platformSelect = downloadForm?.elements.platform;
   let downloadTrigger = null;
 
   const locale = document.documentElement.lang?.toLowerCase().startsWith('en')
@@ -169,6 +170,7 @@
   const openDownload = trigger => {
     if (!downloadModal) return;
     downloadTrigger = trigger;
+    if (platformSelect) platformSelect.value = trigger?.dataset.downloadPlatform || (/Macintosh|Mac OS X/i.test(navigator.userAgent) ? 'mac' : 'windows');
     downloadModal.classList.add('open');
     downloadModal.setAttribute('aria-hidden','false');
     document.body.style.overflow = 'hidden';
@@ -190,6 +192,8 @@
     const submit = $('.download-submit', downloadForm);
     const originalText = submit.textContent;
     const config = window.PRINTLY_DOWNLOAD_CONFIG || {};
+    const platform = platformSelect?.value === 'mac' ? 'mac' : 'windows';
+    const downloadUrl = platform === 'mac' ? config.MAC_DOWNLOAD_URL : config.DOWNLOAD_URL;
     const email = String(emailInput.value || '').trim().toLowerCase();
     const phoneDigits = onlyDigits(phoneInput.value);
 
@@ -233,10 +237,10 @@
       if (!response.ok) throw new Error(`Lead API: ${response.status}`);
 
       downloadForm.reset();
-      if (config.DOWNLOAD_URL) {
-        setDownloadStatus('success', messages.downloadReady(config.DOWNLOAD_URL));
+      if (downloadUrl) {
+        setDownloadStatus('success', messages.downloadReady(downloadUrl));
         const link = document.createElement('a');
-        link.href = config.DOWNLOAD_URL;
+        link.href = downloadUrl;
         link.rel = 'noopener';
         document.body.appendChild(link);
         link.click();
@@ -244,7 +248,7 @@
       } else {
         setDownloadStatus('success', messages.installerPending);
       }
-      window.dispatchEvent(new CustomEvent('printly:download-lead'));
+      window.dispatchEvent(new CustomEvent('printly:download-lead', { detail: { downloadUrl, platform } }));
     } catch (error) {
       console.error(error);
       setDownloadStatus('error', messages.submitError);
