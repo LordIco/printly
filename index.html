@@ -64,6 +64,13 @@
 .printly-calc-note{display:block;color:#9eb5c6;font-size:11px;line-height:1.45;margin-top:11px}
 @media(min-width:1024px){.hero{align-items:start}.hero .hero-copy{display:flex;flex-direction:column;min-height:100%}.hero .hero-proof{margin-top:26px}.hero .platform-availability{margin-top:10px}}
 @media(max-width:640px){.printly-cost-calculator{padding:16px}.printly-calc-grid{gap:9px}.printly-result-rows{grid-template-columns:1fr}.printly-price-highlight output{font-size:23px}}
+
+/* Correção de empilhamento: o vídeo nunca pode ficar sob a calculadora. */
+.hero .hero-visual{display:grid!important;grid-template-columns:minmax(0,1fr)!important;grid-auto-flow:row!important;grid-auto-rows:max-content!important;align-content:start!important;align-items:stretch!important;gap:18px!important;height:auto!important;overflow:visible!important;transform:none!important;opacity:1!important;position:relative!important;isolation:isolate!important}
+.hero .hero-visual>.printly-hero-video{display:block!important;position:relative!important;inset:auto!important;grid-column:1!important;grid-row:1!important;float:none!important;clear:both!important;flex:none!important;width:100%!important;max-width:100%!important;min-width:0!important;height:auto!important;min-height:0!important;margin:0!important;padding:0!important;opacity:1!important;visibility:visible!important;transform:none!important;z-index:2!important;overflow:hidden!important}
+.hero .hero-visual>.printly-cost-calculator{display:block!important;position:relative!important;inset:auto!important;grid-column:1!important;grid-row:2!important;float:none!important;clear:both!important;width:100%!important;min-width:0!important;height:auto!important;margin:0!important;opacity:1!important;visibility:visible!important;transform:none!important;z-index:1!important}
+.hero .printly-hero-video video{display:block!important;position:static!important;inset:auto!important;visibility:visible!important;opacity:1!important;width:100%!important;max-width:100%!important;height:auto!important;aspect-ratio:16/9!important;object-fit:contain!important;transform:none!important;z-index:auto!important}
+.hero .printly-hero-video .app-window-bar{display:flex!important;position:relative!important;z-index:1!important}
 </style>
 </head>
 <body>
