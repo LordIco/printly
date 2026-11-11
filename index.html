@@ -38,6 +38,36 @@
 .hero .printly-stacked-hero>.pc-calc{grid-column:1!important;grid-row:2!important;position:relative!important;width:100%!important;min-width:0!important;height:auto!important;margin:0!important;transform:none!important;opacity:1!important;visibility:visible!important}
 .hero .printly-stacked-hero .printly-hero-video video{display:block!important;width:100%!important;height:auto!important;aspect-ratio:16 / 9!important;object-fit:contain!important;opacity:1!important;visibility:visible!important;transform:none!important;background:#020a18}
 .hero .hero-proof>div{min-height:80px}
+/* Colunas alinhadas com painel de benefícios responsivo */
+@media(min-width:1041px){
+ .hero.container{align-items:stretch!important}
+ .hero .hero-copy{display:flex!important;flex-direction:column!important;min-height:100%!important}
+ .hero .hero-support-panel{flex:1 1 auto!important}
+}
+.hero .hero-support-panel{display:flex;flex-direction:column;gap:15px;margin-top:24px;padding:20px;border:1px solid rgba(54,184,239,.26);border-radius:20px;background:linear-gradient(160deg,rgba(7,33,61,.85),rgba(3,14,31,.85));box-shadow:0 14px 44px rgba(0,0,0,.18),inset 0 1px rgba(151,228,255,.04);min-width:0}
+.hero .hero-support-heading{display:flex;flex-direction:column;gap:6px}
+.hero .hero-support-heading span{font-size:10px;letter-spacing:.14em;color:#38dafa;font-weight:850}
+.hero .hero-support-heading strong{font-size:clamp(15px,1.4vw,19px);line-height:1.35;color:#e9f7ff;font-weight:760}
+.hero .hero-support-panel .platform-availability,.hero .hero-support-panel .hero-proof{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:0;min-width:0}
+.hero .hero-support-panel .platform-availability{flex:1 1 auto}
+.hero .hero-support-panel .hero-proof{flex:1 1 auto}
+.hero .hero-support-panel .platform-card,.hero .hero-support-panel .manual-card,.hero .hero-support-panel .hero-proof>div{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;min-width:0;min-height:112px;padding:clamp(12px,1.25vw,19px);gap:12px;border:1px solid rgba(66,161,226,.21);border-radius:15px;background:linear-gradient(150deg,rgba(20,60,104,.33),rgba(4,17,39,.5));transition:border-color .2s ease,background .2s ease}
+.hero .hero-support-panel .platform-card:hover,.hero .hero-support-panel .manual-card:hover,.hero .hero-support-panel .hero-proof>div:hover{border-color:rgba(53,207,252,.52);background:rgba(12,57,98,.52)}
+.hero .hero-support-panel .platform-card.coming{opacity:.72}
+.hero .hero-support-panel .platform-card b,.hero .hero-support-panel .manual-card b,.hero .hero-support-panel .hero-proof strong{font-size:clamp(12px,1vw,15px);line-height:1.3}
+.hero .hero-support-panel .platform-card small,.hero .hero-support-panel .manual-card small,.hero .hero-support-panel .hero-proof small{font-size:clamp(10px,.83vw,12px);line-height:1.5;overflow-wrap:anywhere}
+.hero .hero-support-panel .platform-card svg{width:37px;height:37px}
+.hero .hero-support-panel .manual-card{grid-column:auto}
+.hero .hero-support-panel .language-support{margin:0;padding:9px 2px;font-size:11px;line-height:1.5}
+.hero .hero-support-panel .hero-proof>div .mini-icon{font-size:23px;line-height:1}
+.hero .hero-support-panel .hero-proof>div p{display:grid;gap:5px}
+.hero .printly-hero-video .printly-video-actions{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 15px;background:rgba(2,12,27,.96);border-top:1px solid rgba(36,216,255,.12)}
+.hero .printly-hero-video .printly-video-actions>span{font-size:11px;color:#9cb9cd;line-height:1.5}
+.hero .printly-hero-video .printly-sound-toggle{border:1px solid rgba(47,202,255,.54);background:rgba(15,76,122,.47);color:#ecfaff;border-radius:9px;padding:9px 14px;min-height:38px;white-space:nowrap;cursor:pointer;font-size:12px;font-weight:800}
+.hero .printly-hero-video .printly-sound-toggle:hover,.hero .printly-hero-video .printly-sound-toggle:focus-visible{background:rgba(30,122,174,.7);outline:2px solid #30dfff;outline-offset:2px}
+@media(max-width:1040px){.hero .hero-support-panel{flex:none}.hero .hero-support-panel .platform-availability,.hero .hero-support-panel .hero-proof{grid-template-columns:repeat(3,minmax(0,1fr))}.hero .hero-support-panel .manual-card{grid-column:auto}}
+@media(max-width:620px){.hero .hero-support-panel{padding:14px;gap:13px}.hero .hero-support-panel .platform-availability,.hero .hero-support-panel .hero-proof{grid-template-columns:1fr}.hero .hero-support-panel .platform-card,.hero .hero-support-panel .manual-card,.hero .hero-support-panel .hero-proof>div{min-height:82px;flex-direction:row;align-items:center}.hero .printly-hero-video .printly-video-actions>span{display:none}.hero .printly-hero-video .printly-video-actions{justify-content:flex-end}}
+
 @media(max-width:1040px){.hero .hero-visual.printly-stacked-hero{width:100%!important;max-width:900px!important;margin:0 auto!important}}
 </style>
 </head>
@@ -81,6 +111,8 @@
           <button class="btn btn-primary btn-xl hero-primary-cta" type="button" data-open-download><svg class="btn-icon btn-icon-play" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m10 8 6 4-6 4z"/></svg> Testar Printly por 15 dias</button>
           <a class="btn btn-ghost btn-xl" href="#telas">Ver telas reais do app</a>
         </div>
+        <section class="hero-support-panel" aria-label="Plataformas e benefícios do Printly">
+          <div class="hero-support-heading"><span>FEITO PARA SUA OPERAÇÃO</span><strong>Mais controle, do orçamento à entrega.</strong></div>
         <div class="platform-availability" aria-label="Disponibilidade e manuais">
           <div class="platform-card available"><svg class="windows-logo" viewBox="0 0 48 48" aria-hidden="true"><path fill="#f25022" d="M4 5.5 22 3v18H4z"/><path fill="#7fba00" d="M26 2.5 46 0v21H26z"/><path fill="#00a4ef" d="M4 25h18v18L4 40.5z"/><path fill="#ffb900" d="M26 25h20v23l-20-3z"/></svg><span><b>Windows</b><small>Disponível agora</small></span></div>
           <div class="platform-card coming"><svg class="apple-logo" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.15 6.9c-.95 0-2.42-1.08-3.96-1.04-2.04.03-3.91 1.18-4.96 3.01-2.12 3.68-.55 9.1 1.52 12.09 1.01 1.45 2.21 3.09 3.79 3.04 1.52-.07 2.09-.98 3.95-.98 1.85 0 2.35.98 3.96.94 1.64-.03 2.68-1.48 3.64-2.95 1.17-1.7 1.65-3.35 1.68-3.44-.04-.01-3.18-1.22-3.22-4.86-.03-3.04 2.48-4.49 2.6-4.56-1.43-2.1-3.64-2.34-4.42-2.39-2.01-.16-3.7 1.09-4.58 1.09zm3.25-3.12c.81-.96 1.34-2.3 1.34-3.64 0-.18-.01-.36-.05-.5-1.27.05-2.81.84-3.72 1.88-.71.81-1.36 2.14-1.36 3.55 0 .21.04.42.05.48.08.01.21.03.34.03 1.14 0 2.58-.77 3.4-1.8z"/></svg><span><b>macOS</b><small>Em breve</small></span></div>
@@ -92,17 +124,19 @@
           <div><span class="mini-icon">✓</span><p><strong>Produção organizada</strong><small>Prazo, prioridade e status</small></p></div>
           <div><span class="mini-icon">✓</span><p><strong>Visão do negócio</strong><small>ROI, alertas, histórico e BI</small></p></div>
         </div>
+        </section>
       </div>
 
       <div class="hero-visual printly-stacked-hero">
         <figure class="hero-screen app-window printly-hero-video">
           <figcaption class="app-window-bar"><span></span><span></span><span></span><em>Veja o Printly em 15 segundos</em></figcaption>
-          <video controls playsinline preload="none" width="1280" height="720"
+          <video id="printlyHeroVideo" autoplay loop muted controls playsinline preload="metadata" width="1280" height="720"
             aria-label="Vídeo do Printly sobre custos e precificação de impressão 3D"
             poster="assets/img/printly-video-home.webp">
             <source src="assets/video/printly-video-home.mp4" type="video/mp4">
             <a href="assets/video/printly-video-home.mp4">Assistir ao vídeo do Printly</a>
           </video>
+          <div class="printly-video-actions"><span>Apresentação do Printly · reprodução contínua</span><button id="printlySoundToggle" class="printly-sound-toggle" type="button" aria-label="Ativar som do vídeo" aria-pressed="false">Ativar som <span aria-hidden="true">♫</span></button></div>
         </figure>
 
       </div>
@@ -538,6 +572,25 @@
 
   <script src="assets/js/download-config.js?v=20261019-7"></script>
   <script src="assets/js/main.js?v=20261028-1"></script>
+
+<script id="printly-hero-video-controls">
+(()=>{
+ const video=document.getElementById('printlyHeroVideo');
+ const button=document.getElementById('printlySoundToggle');
+ if(!video||!button)return;
+ video.muted=true;video.loop=true;video.defaultMuted=true;
+ const sync=()=>{button.textContent=video.muted?'Ativar som ♫':'Silenciar ♫';button.setAttribute('aria-pressed',String(!video.muted));button.setAttribute('aria-label',video.muted?'Ativar som do vídeo':'Silenciar vídeo');};
+ const start=()=>video.play().catch(()=>{});
+ button.addEventListener('click',()=>{
+  video.muted=!video.muted;
+  if(!video.muted)video.volume=1;
+  sync();start();
+ });
+ video.addEventListener('volumechange',sync);
+ video.addEventListener('canplay',()=>{if(video.paused)start();},{once:true});
+ sync();start();
+})();
+</script>
 
 </body>
 </html>
