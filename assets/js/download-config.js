@@ -2,6 +2,7 @@ window.PRINTLY_DOWNLOAD_CONFIG = {
   SUPABASE_URL: 'https://uiesczevcmkzdtybxuez.supabase.co',
   SUPABASE_PUBLISHABLE_KEY: 'sb_publishable_imVDY4_4fWx9oECG8-KSWg_Sw8ZtM8S',
   DOWNLOAD_URL: 'https://uiesczevcmkzdtybxuez.supabase.co/functions/v1/printly-link?key=download_url&source=site',
+  MAC_DOWNLOAD_URL: 'https://lordico.github.io/printly/downloads/Printly_Setup_v0.2.8.26_macOS_Intel.dmg',
   BUY_URL: 'https://uiesczevcmkzdtybxuez.supabase.co/functions/v1/printly-buy'
 };
 
@@ -67,13 +68,14 @@ window.PRINTLY_DOWNLOAD_CONFIG = {
     }
   });
 
-  window.addEventListener('printly:download-lead', function () {
+  window.addEventListener('printly:download-lead', function (event) {
     var cfg = window.PRINTLY_DOWNLOAD_CONFIG;
-    if (!pendingEmail || !cfg.SUPABASE_URL || !cfg.DOWNLOAD_URL) return;
+    var selectedUrl = event && event.detail && event.detail.downloadUrl || cfg.DOWNLOAD_URL;
+    if (!pendingEmail || !cfg.SUPABASE_URL || !selectedUrl) return;
     fetch(cfg.SUPABASE_URL + '/functions/v1/printly-download-track', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({ email: pendingEmail, source: 'printly-site', event_type: 'download_started', file_url: cfg.DOWNLOAD_URL })
+      body: JSON.stringify({ email: pendingEmail, source: 'printly-site', event_type: 'download_started', file_url: selectedUrl })
     }).catch(function () {});
     pendingEmail = '';
   });
