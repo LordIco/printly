@@ -109,7 +109,7 @@ window.PRINTLY_DOWNLOAD_CONFIG = {
     css.href = 'assets/css/landing-enhancements.css?v=20260920-1';
     document.head.appendChild(css);
     var script = document.createElement('script');
-    script.src = 'assets/js/landing-enhancements.js?v=20260920-1';
+    script.src = 'assets/js/landing-enhancements.js?v=20261111-intel';
     script.onerror = function () { css.remove(); };
     document.body.appendChild(script);
   }
@@ -131,7 +131,7 @@ window.PRINTLY_DOWNLOAD_CONFIG = {
     document.head.appendChild(link);
   });
   var script = document.createElement('script');
-  script.src = new URL('printly-i18n.js?v=20260920-i18n1', base).href;
+  script.src = new URL('printly-i18n.js?v=20261111-intel', base).href;
   document.body.appendChild(script);
 })();
 
