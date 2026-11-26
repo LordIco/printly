@@ -25,11 +25,13 @@
   <header class="nav-shell">
     <nav class="nav container" aria-label="Navegación principal">
       <a class="brand" href="#inicio" aria-label="Printly"><img src="../assets/img/printly-logo-header.png" width="1400" height="260" alt="Printly — 3D Printing Management"></a>
-      <div class="nav-links"><a href="#beneficios">Por qué Printly</a><a href="#pantallas">Pantallas reales</a><a href="#planes">Prueba y licencia</a><a href="https://loja.useprintly.com.br/" target="_blank" rel="noopener">Suministros</a></div>
+      <div class="nav-links"><a href="#beneficios">Por qué Printly</a><a href="#pantallas">Pantallas reales</a><a href="#planes">Prueba y licencia</a><a href="#printly-ebook">Guía gratis</a>
+        <a href="https://loja.useprintly.com.br/" target="_blank" rel="noopener">Suministros</a></div>
       <div class="nav-tools"><div class="language-switcher" aria-label="Idioma"><a href="../" lang="pt-BR">PT</a><a href="../en/" lang="en">EN</a><a class="active" href="./" lang="es">ES</a></div><button class="btn btn-small btn-primary nav-download printly-cta-primary" type="button" data-open-download><svg class="btn-icon btn-icon-flask" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3h6M10 3v5l-5 9a2 2 0 0 0 1.8 3h10.4A2 2 0 0 0 19 17l-5-9V3M8.5 14h7"/></svg> Prueba gratis por 15 días</button></div>
       <button class="menu-button" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span><span></span></button>
     </nav>
-    <div class="mobile-menu" aria-hidden="true"><a href="#beneficios">Por qué Printly</a><a href="#pantallas">Pantallas reales</a><a href="#planes">Prueba y licencia</a><a href="https://loja.useprintly.com.br/" target="_blank" rel="noopener">Tienda de suministros</a><a href="https://www.instagram.com/useprintly/" target="_blank" rel="noopener">Instagram @useprintly</a><button class="btn btn-primary printly-cta-primary" type="button" data-open-download><svg class="btn-icon btn-icon-download" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0 4-4m-4 4-4-4M5 18v2h14v-2"/></svg> Probar Printly 15 días</button><div class="mobile-languages"><a href="../">Português</a><a href="../en/">English</a><a class="active" href="./">Español</a></div></div>
+    <div class="mobile-menu" aria-hidden="true"><a href="#beneficios">Por qué Printly</a><a href="#pantallas">Pantallas reales</a><a href="#planes">Prueba y licencia</a><a href="https://loja.useprintly.com.br/" target="_blank" rel="noopener">Tienda de suministros</a><a href="https://www.instagram.com/useprintly/" target="_blank" rel="noopener">Instagram @useprintly</a><button class="btn btn-primary printly-cta-primary" type="button" data-open-download><svg class="btn-icon btn-icon-download" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0 4-4m-4 4-4-4M5 18v2h14v-2"/></svg> Probar Printly 15 días</button><div class="mobile-languages"><a href="../">Português</a><a href="../en/">English</a><a class="active" href="./">Español</a><a href="#printly-ebook">Guía gratis</a>
+      </div></div>
   </header>
 
   <main id="inicio">
@@ -64,11 +66,14 @@
       <h2 id="ebook-heading">Deja de perder rentabilidad <span>sin darte cuenta.</span></h2>
       <p>Descubre los costes ocultos, aprende a calcular precios con seguridad y usa una lista práctica de comprobación.</p>
       <ul class="printly-ebook-benefits"><li><span aria-hidden="true">✓</span>Materiales, energía, fallos y desgaste</li><li><span aria-hidden="true">✓</span>Margen frente a recargo, explicado</li><li><span aria-hidden="true">✓</span>Caso práctico y lista de verificación</li></ul>
-      <div class="printly-ebook-form-preview" aria-label="Recibir la guía gratis">
+      <form class="printly-ebook-form printly-ebook-form-preview" data-locale="es" novalidate>
         <label class="printly-ebook-label" for="printly-ebook-email">Tu correo electrónico</label>
-        <div class="printly-ebook-fields"><input id="printly-ebook-email" type="email" placeholder="Tu correo electrónico" autocomplete="off" disabled><button type="button" class="btn btn-primary printly-cta-primary" disabled>Recibir la guía gratis</button></div>
-        <small>Vista previa del formulario — el envío automático se activará en la publicación final.</small>
-      </div>
+        <div class="printly-ebook-fields"><input id="printly-ebook-email" name="email" type="email" placeholder="tu@ejemplo.com" autocomplete="email" maxlength="254" required><button type="submit" class="btn btn-primary printly-cta-primary">Descargar e-book gratis</button></div>
+        <label class="printly-ebook-optin"><input type="checkbox" name="marketingConsent"><span>Quiero recibir consejos y novedades de Printly por correo (opcional).</span></label>
+        <small>Utilizamos tu correo para registrar la descarga. Consulta nuestra <a href="../privacidade.html">Política de Privacidad</a>.</small>
+        <p class="printly-ebook-status" role="status" aria-live="polite"></p>
+        <input class="printly-ebook-honeypot" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+      </form>
     </div>
   </div>
 </section>
@@ -93,5 +98,6 @@
   <div class="download-modal" id="downloadModal" aria-hidden="true"><div class="download-dialog" role="dialog" aria-modal="true" aria-labelledby="downloadTitle"><button class="download-close" type="button" aria-label="Cerrar formulario">×</button><div class="download-icon"><img src="../assets/img/printly-symbol-512.png" width="256" height="256" alt=""></div><span class="section-kicker">PRINTLY · PRUEBA COMPLETA 15 DÍAS</span><h2 id="downloadTitle">¿Dónde enviamos tu acceso?</h2><p>Introduce tus datos para descargar Printly e iniciar la prueba completa de 15 días. También podemos enviarte información importante de instalación y actualizaciones.</p><form id="downloadForm"><label>Sistema operativo<select name="platform" aria-label="Sistema operativo" required><option value="windows">Windows</option><option value="mac">macOS Intel</option></select><small class="field-hint">Edición Intel probada en High Sierra 10.13.6; otras versiones pendientes de validación. Sin firma ni notarización de Apple.</small></label><label>Nombre completo<input aria-label="Nombre completo" name="name" type="text" autocomplete="name" minlength="2" maxlength="100" required></label><label>Correo electrónico<input aria-label="Correo electrónico" name="email" type="email" autocomplete="email" inputmode="email" maxlength="160" placeholder="tu@ejemplo.com" required><small class="field-hint">Introduce un correo válido.</small></label><label>WhatsApp <small>(móvil con código de área)</small><input aria-label="WhatsApp" name="whatsapp" type="tel" autocomplete="tel" inputmode="numeric" minlength="15" maxlength="15" pattern="\([1-9][0-9]\) 9[0-9]{4}-[0-9]{4}" placeholder="(19) 99999-9999" required><small class="field-hint">Obligatorio: móvil brasileño con código de área.</small></label><label class="consent-check"><input aria-label="Consentimiento de privacidad" name="consent" type="checkbox" required><span>Acepto el uso de estos datos para proporcionar la descarga y comunicaciones sobre Printly, conforme a la <a href="../privacidade.html" target="_blank">Política de privacidad (PT-BR)</a>.</span></label><button class="btn btn-primary download-submit" type="submit">Obtener mi descarga</button><div class="download-status" id="downloadStatus" role="status" aria-live="polite"></div></form><small class="download-assurance">Tus datos no se venden. Puedes solicitar su eliminación en cualquier momento.</small></div></div>
   <div class="lightbox" id="lightbox" aria-hidden="true"><button class="lightbox-close" aria-label="Cerrar">×</button><img src="" alt="Pantalla ampliada de Printly"></div>
   <script src="../assets/js/download-config.js?v=20261111-intel-final-2"></script><script src="../assets/js/main.js?v=20261111-mac-choice-1"></script>
+<script src="../assets/js/printly-ebook.js?v=20261126-ebook-1" defer></script>
 </body>
 </html>
