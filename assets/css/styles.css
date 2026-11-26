@@ -242,3 +242,15 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
 .printly-ebook-form-preview small{display:block;margin-top:10px;color:#9ab6c9;font-size:11px;line-height:1.5}
 @media(max-width:800px){.printly-ebook-shell{grid-template-columns:1fr;gap:30px}.printly-ebook-cover{width:min(100%,260px);min-height:340px;justify-self:center;transform:rotate(-1deg);padding:22px}.printly-ebook-cover-body strong{font-size:26px}.printly-ebook-preview{padding:52px 0}.printly-ebook-copy h2{font-size:clamp(29px,6.3vw,37px)}}
 @media(max-width:540px){.printly-ebook-fields{flex-direction:column}.printly-ebook-fields .btn{max-width:none;width:100%}.printly-ebook-form-preview{padding:15px}.printly-ebook-copy>p{font-size:14px}.printly-ebook-benefits li{font-size:13px}.supply-callout .printly-supplies-action{max-width:none!important;width:100%}}
+
+/* Accessible ebook lead capture controls (PT/EN/ES) */
+.printly-ebook-form .printly-ebook-optin{display:flex;align-items:flex-start;gap:10px;margin:14px 0 9px;cursor:pointer;color:#bed5e5;font-size:12px;line-height:1.55;font-weight:450}
+.printly-ebook-form .printly-ebook-optin input{appearance:auto;accent-color:#27c8e7;min-width:16px;width:16px;height:16px;min-height:16px;margin:1px 0 0;flex:0 0 16px;padding:0;border:0}
+.printly-ebook-form .printly-ebook-optin span{flex:1}
+.printly-ebook-form small a{color:#9feaff;text-decoration:underline;text-underline-offset:2px}
+.printly-ebook-form .printly-ebook-status{margin:9px 0 0;min-height:1px;font-size:12px;line-height:1.6;color:#a6ecff}
+.printly-ebook-form .printly-ebook-status:empty{display:none}
+.printly-ebook-form .printly-ebook-status .printly-ebook-direct{color:#fff;text-decoration:underline;font-weight:750}
+.printly-ebook-form .printly-ebook-honeypot{position:absolute!important;left:-10000px!important;top:auto!important;width:1px!important;height:1px!important;opacity:0!important;pointer-events:none!important}
+.printly-ebook-form button:disabled{cursor:progress!important}
+@media(max-width:540px){.printly-ebook-form .printly-ebook-optin{font-size:12px}.printly-ebook-form .printly-ebook-fields .btn{min-height:48px!important}}
