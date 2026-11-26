@@ -168,3 +168,14 @@ footer{border-top:1px solid rgba(255,255,255,.06);background:#01050b;padding:42p
 .mac-faq-action:hover,.mac-faq-action:focus-visible{color:#bff9ff}
 #downloadForm select{width:100%;min-height:48px;padding:0 14px;border:1px solid rgba(86,158,207,.28);border-radius:12px;outline:0;background:#04101c;color:#fff;font:inherit;font-size:14px}
 #downloadForm select:focus{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(36,216,255,.09)}
+
+/* PREVIEW 2026-11-26: legibilidade e acessibilidade sem mudar o layout.
+   Preservar vídeo, calculadora, cards e CTA existentes. */
+.hero-text{color:#d5e7f5;text-shadow:0 2px 12px rgba(0,8,18,.72)}
+.hero-text.secondary{color:#bbd3e5;text-shadow:0 2px 12px rgba(0,8,18,.72)}
+.split-copy p,.price-copy p,.section-heading p{color:#c2d8e9}
+.faq-grid details{background:rgba(4,18,35,.91);border-color:rgba(74,161,218,.28)}
+.faq-grid details summary{color:#eaf7ff}
+.faq-grid details p{color:#c8deef}
+a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #5de5ff;outline-offset:3px}
+@media(prefers-reduced-motion:reduce){.reveal,.reveal.visible{transition:none!important;transform:none!important;opacity:1!important}}
