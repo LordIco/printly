@@ -220,6 +220,7 @@
       <div class="nav-links">
         <a href="#dores">Por que Printly</a>
         <a href="#telas">Telas reais</a><a href="#recursos">Recursos</a>
+        <a href="#printly-ebook">Guia gratuito</a>
         <a href="#planos">Teste e licença</a>
         <a href="acesso/" aria-label="Recuperar minha licença Printly">Recuperar licença</a>
         <a href="https://loja.useprintly.com.br/" target="_blank" rel="noopener">Suprimentos</a>
@@ -234,7 +235,8 @@
       <a href="https://loja.useprintly.com.br/" target="_blank" rel="noopener">Loja de suprimentos</a>
       <a href="https://www.instagram.com/useprintly/" target="_blank" rel="noopener">Instagram @useprintly</a>
       <button class="btn btn-primary printly-cta-primary" type="button" data-open-download><svg class="btn-icon btn-icon-download" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0 4-4m-4 4-4-4M5 18v2h14v-2"/></svg> Testar Printly por 15 dias</button>
-      <div class="mobile-languages"><a class="active" href="./">Português</a><a href="en/">English</a><a href="es/">Español</a></div>
+      <div class="mobile-languages"><a class="active" href="./">Português</a><a href="en/">English</a><a href="es/">Español</a><a href="#printly-ebook">Guia gratuito</a>
+      </div>
     </div>
   </header>
 
@@ -293,11 +295,14 @@
       <h2 id="ebook-heading">Pare de perder margem <span>sem perceber.</span></h2>
       <p>Entenda os custos que passam despercebidos, aprenda a formar preços com segurança e leve um checklist prático para sua operação.</p>
       <ul class="printly-ebook-benefits"><li><span aria-hidden="true">✓</span>Material, energia, falhas e desgaste</li><li><span aria-hidden="true">✓</span>Margem x markup, sem confusão</li><li><span aria-hidden="true">✓</span>Estudo de caso e checklist de precificação</li></ul>
-      <div class="printly-ebook-form-preview" aria-label="Receber o guia gratuito">
+      <form class="printly-ebook-form printly-ebook-form-preview" data-locale="pt" novalidate>
         <label class="printly-ebook-label" for="printly-ebook-email">Seu melhor e-mail</label>
-        <div class="printly-ebook-fields"><input id="printly-ebook-email" type="email" placeholder="Seu melhor e-mail" autocomplete="off" disabled><button type="button" class="btn btn-primary printly-cta-primary" disabled>Receber o guia gratuito</button></div>
-        <small>Prévia do formulário — a entrega automática será ativada na publicação final.</small>
-      </div>
+        <div class="printly-ebook-fields"><input id="printly-ebook-email" name="email" type="email" placeholder="voce@exemplo.com.br" autocomplete="email" maxlength="254" required><button type="submit" class="btn btn-primary printly-cta-primary">Baixar e-book gratuitamente</button></div>
+        <label class="printly-ebook-optin"><input type="checkbox" name="marketingConsent"><span>Quero receber dicas e novidades do Printly por e-mail (opcional).</span></label>
+        <small>Seu e-mail é usado para registrar o download. Saiba mais na <a href="privacidade.html">Política de Privacidade</a>.</small>
+        <p class="printly-ebook-status" role="status" aria-live="polite"></p>
+        <input class="printly-ebook-honeypot" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+      </form>
     </div>
   </div>
 </section>
@@ -753,5 +758,6 @@
 })();
 </script>
 
+<script src="assets/js/printly-ebook.js?v=20261126-ebook-1" defer></script>
 </body>
 </html>
