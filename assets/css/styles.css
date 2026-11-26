@@ -179,3 +179,66 @@ footer{border-top:1px solid rgba(255,255,255,.06);background:#01050b;padding:42p
 .faq-grid details p{color:#c8deef}
 a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #5de5ff;outline-offset:3px}
 @media(prefers-reduced-motion:reduce){.reveal,.reveal.visible{transition:none!important;transform:none!important;opacity:1!important}}
+
+/* Printly 2026 · Premium CTA design system and educational guide preview */
+.btn.printly-cta-primary,
+.hero-actions .btn.printly-cta-primary,
+.nav .btn.printly-cta-primary,
+.mobile-menu .btn.printly-cta-primary{
+  display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:10px!important;
+  min-height:46px!important;padding:12px 19px!important;
+  border:1px solid #3fafe7!important;border-radius:11px!important;
+  background:linear-gradient(135deg,#0875ba 0%,#0b94d4 54%,#086db0 100%)!important;
+  color:#fff!important;font-weight:730!important;font-size:13px!important;
+  letter-spacing:.005em!important;text-align:center!important;line-height:1.28!important;
+  box-shadow:inset 0 1px rgba(255,255,255,.21),0 5px 18px rgba(0,111,195,.17)!important;
+  text-shadow:none!important;white-space:normal!important;
+  transition:background .2s ease,box-shadow .2s ease,transform .2s ease!important;
+}
+.btn.printly-cta-primary svg,.btn.printly-cta-secondary svg{width:16px!important;height:16px!important;flex-shrink:0}
+.btn.printly-cta-primary:not(:disabled):hover{background:linear-gradient(135deg,#0b86c8,#13aae1)!important;transform:translateY(-1px);box-shadow:inset 0 1px rgba(255,255,255,.22),0 8px 23px rgba(0,118,208,.23)!important}
+.btn.printly-cta-secondary,.supply-callout .btn.printly-cta-secondary{
+  display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:10px!important;
+  min-height:43px!important;padding:10px 17px!important;border-radius:10px!important;
+  border:1px solid rgba(82,176,225,.33)!important;background:rgba(9,30,52,.88)!important;
+  color:#d6eafa!important;font-size:13px!important;font-weight:650!important;box-shadow:none!important;
+  text-shadow:none!important;line-height:1.32!important;
+}
+.btn.printly-cta-secondary:hover,.supply-callout .btn.printly-cta-secondary:hover{
+  background:#123b5b!important;border-color:rgba(107,213,246,.69)!important;color:#fff!important
+}
+.btn.printly-cta-primary:focus-visible,.btn.printly-cta-secondary:focus-visible{outline:2px solid #b1f2ff!important;outline-offset:3px!important}
+.btn.printly-cta-primary:disabled{opacity:.65!important;filter:saturate(.65)!important;box-shadow:none!important;cursor:not-allowed!important}
+.supply-callout .printly-supplies-action{max-width:260px!important;flex-shrink:0!important}
+.printly-ebook-preview{position:relative;isolation:isolate;padding:clamp(64px,7vw,105px) 0;background:linear-gradient(180deg,#06182c 0%,#04111f 100%);border-block:1px solid rgba(66,175,227,.12)}
+.printly-ebook-shell{display:grid;grid-template-columns:minmax(240px,.82fr) minmax(0,1.18fr);align-items:center;gap:clamp(32px,6vw,95px);max-width:1120px}
+.printly-ebook-cover{position:relative;display:flex;flex-direction:column;justify-content:space-between;min-height:460px;max-width:360px;aspect-ratio:3/4;overflow:hidden;padding:27px;border-radius:14px;
+  border:1px solid rgba(82,211,242,.33);background:radial-gradient(circle at 62% 38%,rgba(23,141,203,.34),transparent 46%),linear-gradient(145deg,#092b45,#071524 64%,#02101f);
+  box-shadow:15px 24px 50px rgba(0,0,0,.33),inset 0 1px rgba(255,255,255,.08);transform:rotate(-2deg)}
+.printly-ebook-cover::before{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(255,255,255,.04),transparent 5%),repeating-linear-gradient(0deg,transparent 0 28px,rgba(34,180,227,.03) 29px 30px)}
+.printly-ebook-cover-top,.printly-ebook-cover-foot,.printly-ebook-cover-body{position:relative;z-index:1}
+.printly-ebook-cover-top{display:flex;align-items:center;gap:7px;color:#e6f7ff;font-size:18px;letter-spacing:-.03em}
+.printly-ebook-symbol{color:#21ddfa;font-size:30px}
+.printly-ebook-issue{margin-left:auto;color:#94cbdc;font-size:10px;letter-spacing:.13em}
+.printly-ebook-cover-art{position:absolute;inset:30% -15% auto 35%;height:140px;transform:rotate(-26deg);opacity:.65}
+.printly-ebook-cover-art span{display:block;height:42px;margin-bottom:10px;border:1px solid rgba(39,217,246,.4);transform:skewX(-18deg);background:linear-gradient(90deg,rgba(14,121,179,.43),transparent)}
+.printly-ebook-cover-body{margin-top:auto}
+.printly-ebook-cover-body small{display:block;color:#24dcf7;font-size:10px;font-weight:800;letter-spacing:.13em;margin-bottom:14px}
+.printly-ebook-cover-body strong{display:block;color:#f0fbff;font-size:clamp(24px,2.8vw,35px);line-height:1.08;letter-spacing:-.035em}
+.printly-ebook-cover-body p{color:#b9d7e8;font-size:12px;line-height:1.5;margin:18px 0 0}
+.printly-ebook-cover-foot{padding-top:22px;color:#73bcd7;font-size:9px;font-weight:800;letter-spacing:.19em;border-top:1px solid rgba(72,202,235,.25);margin-top:30px}
+.printly-ebook-copy{min-width:0}
+.printly-ebook-copy h2{max-width:680px;font-size:clamp(29px,3.2vw,46px);line-height:1.11;letter-spacing:-.037em;margin:16px 0;color:#eff9ff}
+.printly-ebook-copy h2 span{color:#38d8f1}
+.printly-ebook-copy>p{max-width:660px;color:#c2d8e8;font-size:15px;line-height:1.7}
+.printly-ebook-benefits{display:grid;gap:12px;margin:24px 0 28px;padding:0;list-style:none}
+.printly-ebook-benefits li{display:flex;align-items:flex-start;gap:11px;color:#dceef8;font-size:14px;line-height:1.5}
+.printly-ebook-benefits li span{flex:none;color:#30dfbb;font-weight:900}
+.printly-ebook-form-preview{padding:20px;border-radius:15px;background:#071e34;border:1px solid rgba(84,179,232,.24)}
+.printly-ebook-label{display:block;margin-bottom:10px;color:#cce6f4;font-size:12px;font-weight:730}
+.printly-ebook-fields{display:flex;gap:10px;align-items:stretch}
+.printly-ebook-fields input{min-width:0;flex:1;background:#061222;border:1px solid #30536d;color:#eaf8ff;padding:11px 14px;border-radius:10px;min-height:47px;font-size:14px}
+.printly-ebook-fields .btn{flex:0 0 auto;max-width:240px}
+.printly-ebook-form-preview small{display:block;margin-top:10px;color:#9ab6c9;font-size:11px;line-height:1.5}
+@media(max-width:800px){.printly-ebook-shell{grid-template-columns:1fr;gap:30px}.printly-ebook-cover{width:min(100%,260px);min-height:340px;justify-self:center;transform:rotate(-1deg);padding:22px}.printly-ebook-cover-body strong{font-size:26px}.printly-ebook-preview{padding:52px 0}.printly-ebook-copy h2{font-size:clamp(29px,6.3vw,37px)}}
+@media(max-width:540px){.printly-ebook-fields{flex-direction:column}.printly-ebook-fields .btn{max-width:none;width:100%}.printly-ebook-form-preview{padding:15px}.printly-ebook-copy>p{font-size:14px}.printly-ebook-benefits li{font-size:13px}.supply-callout .printly-supplies-action{max-width:none!important;width:100%}}
