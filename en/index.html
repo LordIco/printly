@@ -25,11 +25,13 @@
   <header class="nav-shell">
     <nav class="nav container" aria-label="Main navigation">
       <a class="brand" href="#home" aria-label="Printly home"><img src="../assets/img/printly-symbol-512.png" width="256" height="256" alt=""><span class="brand-wordmark"><b>Printly</b><small>3D PRINTING MANAGEMENT</small></span></a>
-      <div class="nav-links"><a href="#benefits">Why Printly</a><a href="#screens">Real screens</a><a href="#plans">Trial & license</a><a href="https://loja.useprintly.com.br/" target="_blank" rel="noopener">Supplies</a></div>
+      <div class="nav-links"><a href="#benefits">Why Printly</a><a href="#screens">Real screens</a><a href="#plans">Trial & license</a><a href="#printly-ebook">Free guide</a>
+        <a href="https://loja.useprintly.com.br/" target="_blank" rel="noopener">Supplies</a></div>
       <div class="nav-tools"><div class="language-switcher" aria-label="Language"><a href="../" lang="pt-BR">PT</a><a class="active" href="./" lang="en">EN</a><a href="../es/" lang="es">ES</a></div><button class="btn btn-small btn-primary nav-download printly-cta-primary" type="button" data-open-download><svg class="btn-icon btn-icon-flask" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3h6M10 3v5l-5 9a2 2 0 0 0 1.8 3h10.4A2 2 0 0 0 19 17l-5-9V3M8.5 14h7"/></svg> Free 15-day trial</button></div>
       <button class="menu-button" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </nav>
-    <div class="mobile-menu" aria-hidden="true"><a href="#benefits">Why Printly</a><a href="#screens">Real screens</a><a href="#plans">Trial & license</a><a href="https://loja.useprintly.com.br/" target="_blank" rel="noopener">Supplies store</a><a href="https://www.instagram.com/useprintly/" target="_blank" rel="noopener">Instagram @useprintly</a><button class="btn btn-primary printly-cta-primary" type="button" data-open-download><svg class="btn-icon btn-icon-download" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0 4-4m-4 4-4-4M5 18v2h14v-2"/></svg> Try Printly for 15 days</button><div class="mobile-languages"><a href="../">Português</a><a class="active" href="./">English</a><a href="../es/">Español</a></div></div>
+    <div class="mobile-menu" aria-hidden="true"><a href="#benefits">Why Printly</a><a href="#screens">Real screens</a><a href="#plans">Trial & license</a><a href="https://loja.useprintly.com.br/" target="_blank" rel="noopener">Supplies store</a><a href="https://www.instagram.com/useprintly/" target="_blank" rel="noopener">Instagram @useprintly</a><button class="btn btn-primary printly-cta-primary" type="button" data-open-download><svg class="btn-icon btn-icon-download" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0 4-4m-4 4-4-4M5 18v2h14v-2"/></svg> Try Printly for 15 days</button><div class="mobile-languages"><a href="../">Português</a><a class="active" href="./">English</a><a href="../es/">Español</a><a href="#printly-ebook">Free guide</a>
+      </div></div>
   </header>
 
   <main id="home">
@@ -64,11 +66,14 @@
       <h2 id="ebook-heading">Stop losing profit <span>without noticing.</span></h2>
       <p>Learn which hidden costs affect your prices, how to protect your margin, and use a practical pricing checklist.</p>
       <ul class="printly-ebook-benefits"><li><span aria-hidden="true">✓</span>Materials, power, failures and machine wear</li><li><span aria-hidden="true">✓</span>Margin vs. markup, explained</li><li><span aria-hidden="true">✓</span>Worked example and pricing checklist</li></ul>
-      <div class="printly-ebook-form-preview" aria-label="Get the free guide">
+      <form class="printly-ebook-form printly-ebook-form-preview" data-locale="en" novalidate>
         <label class="printly-ebook-label" for="printly-ebook-email">Your email address</label>
-        <div class="printly-ebook-fields"><input id="printly-ebook-email" type="email" placeholder="Your email address" autocomplete="off" disabled><button type="button" class="btn btn-primary printly-cta-primary" disabled>Get the free guide</button></div>
-        <small>Form preview — automated delivery will be activated at the final release.</small>
-      </div>
+        <div class="printly-ebook-fields"><input id="printly-ebook-email" name="email" type="email" placeholder="you@example.com" autocomplete="email" maxlength="254" required><button type="submit" class="btn btn-primary printly-cta-primary">Download the free e-book</button></div>
+        <label class="printly-ebook-optin"><input type="checkbox" name="marketingConsent"><span>I want to receive Printly tips and updates by email (optional).</span></label>
+        <small>We use your email to register your download. Read our <a href="../privacidade.html">Privacy Policy</a>.</small>
+        <p class="printly-ebook-status" role="status" aria-live="polite"></p>
+        <input class="printly-ebook-honeypot" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+      </form>
     </div>
   </div>
 </section>
@@ -104,5 +109,6 @@
   <div class="download-modal" id="downloadModal" aria-hidden="true"><div class="download-dialog" role="dialog" aria-modal="true" aria-labelledby="downloadTitle"><button class="download-close" type="button" aria-label="Close download form">×</button><div class="download-icon"><img src="../assets/img/printly-symbol-512.png" width="256" height="256" alt=""></div><span class="section-kicker">PRINTLY · FULL 15-DAY TRIAL</span><h2 id="downloadTitle">Where should we send your access?</h2><p>Enter your details to download Printly and start the full 15-day trial. We may also send important installation and update information.</p><form id="downloadForm"><label>Operating system<select name="platform" aria-label="Operating system" required><option value="windows">Windows</option><option value="mac">macOS Intel</option></select><small class="field-hint">Intel Mac edition tested on High Sierra 10.13.6; other versions not yet validated. Installer is not Apple signed or notarized.</small></label><label>Full name<input aria-label="Full name" name="name" type="text" autocomplete="name" minlength="2" maxlength="100" required></label><label>Email<input aria-label="Email" name="email" type="email" autocomplete="email" inputmode="email" maxlength="160" placeholder="you@example.com" required><small class="field-hint">Enter a valid email address.</small></label><label>WhatsApp <small>(mobile with area code)</small><input aria-label="WhatsApp" name="whatsapp" type="tel" autocomplete="tel" inputmode="numeric" minlength="15" maxlength="15" pattern="\([1-9][0-9]\) 9[0-9]{4}-[0-9]{4}" placeholder="(19) 99999-9999" required><small class="field-hint">Required: Brazilian mobile number with area code.</small></label><label class="consent-check"><input aria-label="Privacy consent" name="consent" type="checkbox" required><span>I agree to the use of this data to provide the download and communications about Printly, according to the <a href="../privacidade.html" target="_blank">Privacy Policy (PT-BR)</a>.</span></label><button class="btn btn-primary download-submit" type="submit">Get my download</button><div class="download-status" id="downloadStatus" role="status" aria-live="polite"></div></form><small class="download-assurance">Your data is not sold. You may request deletion at any time.</small></div></div>
   <div class="lightbox" id="lightbox" aria-hidden="true"><button class="lightbox-close" aria-label="Close">×</button><img src="" alt="Enlarged Printly screen"></div>
   <script src="../assets/js/download-config.js?v=20261111-intel-final-2"></script><script src="../assets/js/main.js?v=20261111-mac-choice-1"></script>
+<script src="../assets/js/printly-ebook.js?v=20261126-ebook-1" defer></script>
 </body>
 </html>
