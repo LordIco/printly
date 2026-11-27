@@ -665,3 +665,61 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
   .money-section .split-copy>p,.roi-section .split-copy>p,.quote-section .split-copy>p,.alerts-section .split-copy>p,.bi-section .split-copy>p{font-size:16px;line-height:1.7}
   .money-section .split-copy li,.roi-section .split-copy li,.quote-section .split-copy li,.alerts-section .split-copy li,.bi-section .split-copy li{font-size:16px;line-height:1.6}
 }
+
+/* Desktop hero alignment with approved wide editorial product sections.
+   No mobile changes. Video and calculator keep their existing stacked behavior. */
+@media(min-width:1101px){
+  main .hero.container{
+    width:min(1580px,calc(100% - 64px));
+    max-width:none;
+    grid-template-columns:minmax(0,.91fr) minmax(0,1.09fr);
+    column-gap:clamp(28px,3vw,54px);
+    align-items:start!important;
+    padding-top:clamp(54px,4vw,75px);
+  }
+  main .hero .hero-copy{
+    min-width:0;
+    width:100%;
+  }
+  main .hero .hero-visual.printly-stacked-hero{
+    min-width:0;
+    width:100%;
+    max-width:none;
+    margin:0;
+  }
+  main .hero h1{
+    font-size:clamp(49px,4.1vw,70px);
+    line-height:1.045;
+    letter-spacing:-.047em;
+    margin:20px 0 22px;
+    max-width:none;
+    text-wrap:balance;
+  }
+  main .hero .hero-text{
+    font-size:clamp(17px,1.15vw,19px);
+    line-height:1.67;
+    max-width:680px;
+    color:#d3e5f1;
+  }
+  main .hero .hero-text.secondary{
+    font-size:clamp(16px,1.08vw,18px);
+    line-height:1.65;
+    color:#bdd4e5;
+  }
+  main .hero .hero-support-panel{
+    max-width:none;
+  }
+  main .hero .printly-hero-video{
+    max-width:none;
+  }
+}
+@media(min-width:1101px) and (max-width:1350px){
+  main .hero.container{
+    width:calc(100% - 50px);
+    grid-template-columns:minmax(0,.94fr) minmax(0,1.06fr);
+    column-gap:28px;
+  }
+  main .hero h1{
+    font-size:clamp(45px,4.15vw,55px);
+  }
+}
