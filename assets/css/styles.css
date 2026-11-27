@@ -558,3 +558,110 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
  .cost-list strong{font-size:14px}
  .cost-list small{font-size:13px}
 }
+
+/* Desktop-wide editorial layout preview — do not modify hero or calculator */
+@media (min-width:1101px){
+  .money-section>.container,
+  .roi-section>.container,
+  .quote-section>.container,
+  .alerts-section>.container,
+  .bi-section>.container{
+    width:min(1580px,calc(100% - 64px));
+    max-width:none;
+  }
+  .money-section .split-row,
+  .roi-section .split-row,
+  .quote-section .split-row,
+  .alerts-section .split-row,
+  .bi-section .split-row,
+  .money-section .split-row.reverse,
+  .roi-section .split-row.reverse,
+  .quote-section .split-row.reverse,
+  .alerts-section .split-row.reverse,
+  .bi-section .split-row.reverse{
+    grid-template-columns:minmax(0,.91fr) minmax(0,1.09fr);
+    column-gap:clamp(28px,3vw,54px);
+    align-items:center;
+  }
+  .money-section .split-row.reverse,
+  .roi-section .split-row.reverse,
+  .quote-section .split-row.reverse,
+  .alerts-section .split-row.reverse,
+  .bi-section .split-row.reverse{
+    grid-template-columns:minmax(0,1.09fr) minmax(0,.91fr);
+  }
+  .money-section .split-copy,
+  .roi-section .split-copy,
+  .quote-section .split-copy,
+  .alerts-section .split-copy,
+  .bi-section .split-copy {min-width:0}
+  .money-section .split-copy h2,
+  .roi-section .split-copy h2,
+  .quote-section .split-copy h2,
+  .alerts-section .split-copy h2,
+  .bi-section .split-copy h2 {
+    font-size:clamp(40px,3.6vw,65px);
+    line-height:1.10;
+    letter-spacing:-.035em;
+    text-wrap:balance;
+  }
+  .money-section .split-copy>p,
+  .roi-section .split-copy>p,
+  .quote-section .split-copy>p,
+  .alerts-section .split-copy>p,
+  .bi-section .split-copy>p{
+    font-size:clamp(17px,1.14vw,19px);
+    line-height:1.75;
+    max-width:660px;
+    color:#d4e7f4;
+  }
+  .money-section .split-copy li,
+  .roi-section .split-copy li,
+  .quote-section .split-copy li,
+  .alerts-section .split-copy li,
+  .bi-section .split-copy li{
+    font-size:clamp(16px,1.08vw,18px);
+    line-height:1.65;
+    color:#d4e5f1;
+  }
+  .money-section .split-screen,
+  .roi-section .split-screen,
+  .quote-section .split-screen,
+  .alerts-section .split-screen,
+  .bi-section .split-screen{
+    min-width:0;
+    width:100%;
+    border-color:rgba(90,182,233,.33);
+    box-shadow:0 24px 70px rgba(0,5,15,.34),0 0 38px rgba(24,126,205,.08);
+  }
+  .money-section .split-screen img,
+  .roi-section .split-screen img,
+  .quote-section .split-screen img,
+  .alerts-section .split-screen img,
+  .bi-section .split-screen img {
+    display:block;
+    width:100%;
+    height:auto;
+  }
+  .money-section .screen-caption,
+  .roi-section .screen-caption,
+  .quote-section .screen-caption,
+  .alerts-section .screen-caption,
+  .bi-section .screen-caption{
+    font-size:15px;
+    padding:15px 19px;
+  }
+}
+@media (min-width:1101px) and (max-width:1350px){
+  .money-section>.container,.roi-section>.container,.quote-section>.container,.alerts-section>.container,.bi-section>.container{
+    width:calc(100% - 50px);
+  }
+  .money-section .split-copy h2,.roi-section .split-copy h2,.quote-section .split-copy h2,.alerts-section .split-copy h2,.bi-section .split-copy h2{font-size:clamp(37px,3.3vw,48px)}
+}
+@media(max-width:1100px){
+  .money-section>.container,.roi-section>.container,.quote-section>.container,.alerts-section>.container,.bi-section>.container{
+    width:min(var(--max),calc(100% - 32px));
+  }
+  .money-section .split-copy>p,.roi-section .split-copy>p,.quote-section .split-copy>p,.alerts-section .split-copy>p,.bi-section .split-copy>p{font-size:16px;line-height:1.7}
+  .money-section .split-copy li,.roi-section .split-copy li,.quote-section .split-copy li,.alerts-section .split-copy li,.bi-section .split-copy li{font-size:16px;line-height:1.6}
+}
