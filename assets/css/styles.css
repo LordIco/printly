@@ -411,3 +411,150 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
 @media(prefers-reduced-motion:reduce){
  .printly-announcement::before{animation:none!important;opacity:.46!important;transform:none!important}
 }
+
+/* PRINTLY READABILITY PASS 2026-11-27
+   Intended for all PT/EN/ES pages; increases legibility without changing
+   approved hero video, calculator mechanics, grids or navigation layout. */
+:root{--muted:#b7ccdc}
+.section-heading>p,.split-copy>p,.price-copy>p,.brand-copy>p{
+  font-size:clamp(16px,1.12vw,18px);
+  line-height:1.72;
+  color:#d2e4f1;
+}
+.section-heading h2,.split-copy h2,.price-copy h2,.brand-copy h2{
+  line-height:1.12;
+}
+.cost-list{gap:13px;margin-top:28px}
+.cost-list>div{
+  align-items:flex-start;
+  min-width:0;
+  min-height:119px;
+  gap:12px;
+  padding:19px 18px;
+  border-radius:17px;
+  background:rgba(11,34,57,.86);
+  border-color:rgba(102,176,218,.27);
+}
+.cost-list>div>span{
+  flex:none;
+  font-size:12px;
+  line-height:1.55;
+}
+.cost-list p{min-width:0;line-height:1.5}
+.cost-list strong{
+  font-size:16px;
+  line-height:1.33;
+  font-weight:760;
+  color:#f4fbff;
+  overflow-wrap:break-word;
+}
+.cost-list small{
+  margin-top:9px;
+  font-size:15px;
+  line-height:1.55;
+  color:#cee1ee;
+  overflow-wrap:break-word;
+}
+.pain-card p,.pillar-card p{
+  font-size:15.5px;
+  line-height:1.65;
+  color:#c8dfed;
+}
+.pain-quote{font-size:18px;line-height:1.4}
+.pillar-card h3,.pain-card h3{line-height:1.28}
+.feature-row p,.flow-node small,.mini-metrics small,
+.alert-list li,.price-description,.plan-note,.supply-callout p{
+  font-size:15px;
+  line-height:1.6;
+  color:#c9deec;
+}
+.flow-node{max-width:230px;min-height:174px;padding:19px}
+.flow-node b,.mini-metrics b{font-size:16px}
+.hero-proof strong,.platform-card b,.manual-card b{
+  font-size:14px;
+  line-height:1.4;
+}
+.hero-proof small,.platform-card small,.manual-card small,
+.btn-free-card small,.language-support{
+  font-size:13px;
+  line-height:1.48;
+  color:#c1d9e8;
+}
+.screen-caption{
+  font-size:14px;
+  line-height:1.5;
+  color:#c9e2f0;
+}
+.screen-caption b{color:#f0f9ff}
+.stage-number,.section-kicker,.eyebrow{font-size:12px;line-height:1.5}
+.footer-brand p,.footer-grid a,.footer-grid strong,
+.footer-grid button,.footer-bottom{
+  font-size:14px;
+  line-height:1.6;
+  color:#bdd4e5;
+}
+.footer-grid strong{color:#eef8ff}
+.footer-bottom{color:#b1c9dc}
+.contact-links a,.email-link,.free-link{font-size:15px;line-height:1.55}
+.plan-price small,.price-value small,.price-value span{font-size:13px;color:#bed6e6}
+.btn-free-card b,.btn-buy b{font-size:14px}
+.download-dialog>p,.download-assurance,.field-hint,
+.consent-check,.download-status,
+#printly-ebook .printly-ebook-form-preview small,
+.printly-ebook-form .printly-ebook-optin,
+.printly-ebook-form .printly-ebook-status{
+  font-size:13.5px;
+  line-height:1.58;
+  color:#c2d8e9;
+}
+#downloadForm>label:not(.consent-check),.printly-ebook-label{
+  font-size:14px;
+  line-height:1.5;
+  color:#d7eaf5;
+}
+#downloadForm input,#downloadForm select,
+.printly-ebook-fields input{
+  font-size:16px;
+}
+.printly-ebook-benefits li{font-size:15px;line-height:1.55}
+.printly-ebook-copy>p{font-size:16px;line-height:1.7}
+.printly-ebook-cover-body p{font-size:13.5px}
+.printly-ebook-cover-body small,.printly-ebook-cover-foot{font-size:11px}
+.faq-grid details p,.faq-grid details summary{
+  font-size:16px;
+  line-height:1.65;
+  color:#d1e4f0;
+}
+.legal-content p,.legal-content li{
+  font-size:16px;
+  line-height:1.8;
+  color:#cbdde9;
+}
+.legal-date{font-size:14px;color:#c0d4e3}
+@media(min-width:1600px){
+ .cost-list>div{min-height:125px;padding:21px 20px}
+ .cost-list strong{font-size:17px}
+ .cost-list small{font-size:16px}
+ .pain-card p,.pillar-card p{font-size:16px}
+ .feature-row p{font-size:16px}
+}
+@media(max-width:767px){
+ .section-heading>p,.split-copy>p,.price-copy>p,.brand-copy>p{font-size:16px;line-height:1.65}
+ .cost-list>div{padding:15px 13px;min-height:0}
+ .cost-list strong{font-size:15px}
+ .cost-list small{font-size:14px;line-height:1.5;margin-top:6px}
+ .cost-list>div>span{font-size:11px}
+ .pain-card p,.pillar-card p,.feature-row p,.flow-node small,.mini-metrics small{font-size:14.5px}
+ .flow-node{min-height:145px;max-width:100%}
+ .hero-proof small,.platform-card small,.manual-card small{font-size:12.5px}
+ .footer-grid a,.footer-grid strong,.footer-bottom{font-size:13.5px}
+ .printly-ebook-benefits li{font-size:14px}
+ .printly-ebook-copy>p{font-size:15px}
+ .printly-ebook-form .printly-ebook-optin{font-size:13px}
+}
+@media(max-width:400px){
+ .cost-list{gap:9px}
+ .cost-list>div{padding:13px 10px;gap:7px}
+ .cost-list strong{font-size:14px}
+ .cost-list small{font-size:13px}
+}
