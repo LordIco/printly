@@ -1,5 +1,5 @@
 /* Printly: rotating educational guide announcement.
-   One message per page load, language-aware, dismissible for 24 hours. */
+   One message per page load; closing affects only the current page. */
 (() => {
   const bar = document.querySelector(".printly-announcement");
   if (!bar) return;
@@ -25,12 +25,7 @@
     ]
   };
   const phrases = sets[locale] || sets.pt;
-  const storageKey = "printly-ebook-announcement-dismissed-until-v2";
   const lastKey = "printly-ebook-announcement-last-" + locale;
-  let dismissedUntil = 0;
-  try { dismissedUntil = Number(localStorage.getItem(storageKey) || 0); } catch {}
-  if (dismissedUntil > Date.now()) { bar.remove(); return; }
-  if (dismissedUntil) { try { localStorage.removeItem(storageKey); } catch {} }
   let previous = -1;
   try { previous = Number(sessionStorage.getItem(lastKey) ?? -1); } catch {}
   // Avoid showing the exact same phrase on consecutive page loads.
@@ -40,8 +35,5 @@
   if (message) message.textContent = phrases[chosen];
   try { sessionStorage.setItem(lastKey, String(chosen)); } catch {}
   const close = bar.querySelector(".printly-announcement-close");
-  if (close) close.addEventListener("click", () => {
-    try { localStorage.setItem(storageKey, String(Date.now() + 86400000)); } catch {}
-    bar.remove();
-  });
+  if (close) close.addEventListener("click", () => bar.remove());
 })();
